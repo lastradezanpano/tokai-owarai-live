@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>東海お笑いライブ帳</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap');
+
+:root{
+  --bg:#FAF5EC;
+  --surface:#FFFFFF;
+  --surface-2:#F3ECDF;
+  --line-soft:#E4D9C4;
+  --text:#241F1B;
+  --text-muted:#736656;
+  --text-faint:#A0937E;
+  --accent:#B5502A;
+  --accent-ink:#7C381D;
+  --accent-tint:#F4E1D4;
+  --pine:#3E5C4A;
+  --pine-tint:#DEEAE2;
+  --curtain-black:#211D1A;
+  --status-open-bg:#E4EFE2;
+  --status-open-fg:#33643F;
+  --status-soon-bg:#F4E9D6;
+  --status-soon-fg:#8A5A1E;
+  --status-closed-bg:#EFE3E0;
+  --status-closed-fg:#8C4A3E;
+  --status-unknown-bg:#EAE5DC;
+  --status-unknown-fg:#77695A;
+  --shadow: 0 1px 2px rgba(33,29,26,0.06), 0 6px 20px -8px rgba(33,29,26,0.18);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1B1815;
+    --surface:#242019;
+    --surface-2:#2C271F;
+    --line-soft:#3B342A;
+    --text:#F2EBDE;
+    --text-muted:#B7A98F;
+    --text-faint:#8A7C66;
+    --accent:#E08355;
+    --accent-ink:#F4B491;
+    --accent-tint:#3A281F;
+    --pine:#8FC3A2;
+    --pine-tint:#233A2C;
+    --curtain-black:#100E0C;
+    --status-open-bg:#20372A;
+    --status-open-fg:#8FD3A0;
+    --status-soon-bg:#3A2E17;
+    --status-soon-fg:#E3B564;
+    --status-closed-bg:#3A241F;
+    --status-closed-fg:#E39C8B;
+    --status-unknown-bg:#332D24;
+    --status-unknown-fg:#B7A98F;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 10px 24px -10px rgba(0,0,0,0.55);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1B1815;
+  --surface:#242019;
+  --surface-2:#2C271F;
+  --line-soft:#3B342A;
+  --text:#F2EBDE;
+  --text-muted:#B7A98F;
+  --text-faint:#8A7C66;
+  --accent:#E08355;
+  --accent-ink:#F4B491;
+  --accent-tint:#3A281F;
+  --pine:#8FC3A2;
+  --pine-tint:#233A2C;
+  --curtain-black:#100E0C;
+  --status-open-bg:#20372A;
+  --status-open-fg:#8FD3A0;
+  --status-soon-bg:#3A2E17;
+  --status-soon-fg:#E3B564;
+  --status-closed-bg:#3A241F;
+  --status-closed-fg:#E39C8B;
+  --status-unknown-bg:#332D24;
+  --status-unknown-fg:#B7A98F;
+  --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 10px 24px -10px rgba(0,0,0,0.55);
+}
+
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Zen Kaku Gothic New', 'Hiragino Sans', sans-serif;
+  font-feature-settings:"palt";
+}
+::selection{background:var(--accent-tint);color:var(--accent-ink);}
+
+.wrap{max-width:1080px;margin:0 auto;padding:28px 20px 80px;}
+
+/* ---- curtain stripe motif (定式幕) ---- */
+.curtain{
+  height:9px;
+  background:repeating-linear-gradient(
+    90deg,
+    var(--curtain-black) 0 34px,
+    var(--accent) 34px 68px,
+    var(--pine) 68px 102px
+  );
+  border-radius:3px;
+  opacity:.9;
+}
+
+header.top{
+  display:flex;
+  flex-wrap:wrap;
+  gap:18px 28px;
+  align-items:flex-end;
+  justify-content:space-between;
+  margin:22px 0 20px;
+}
+.title-block h1{
+  font-family:'Shippori Mincho B1', serif;
+  font-weight:800;
+  font-size:clamp(28px,4vw,40px);
+  margin:0 0 6px;
+  letter-spacing:.02em;
+  text-wrap:balance;
+}
+.title-block .sub{
+  margin:0;
+  color:var(--text-muted);
+  font-size:14.5px;
+  line-height:1.7;
+  max-width:56ch;
+}
+.meta-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  background:var(--surface);
+  border:1px solid var(--line-soft);
+  border-radius:999px;
+  padding:8px 14px;
+  font-size:12.5px;
+  color:var(--text-muted);
+  box-shadow:var(--shadow);
+  white-space:nowrap;
+}
+.meta-pill b{color:var(--text);font-weight:700;}
+.update-tools{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end;}
+.update-btn{
+  border:0;border-radius:999px;padding:10px 16px;background:var(--accent);color:#fff;
+  font:inherit;font-size:13px;font-weight:800;cursor:pointer;box-shadow:var(--shadow);
+}
+.update-btn:hover{filter:brightness(.94);}
+.update-btn:disabled{opacity:.65;cursor:wait;}
+.update-result{font-size:12px;color:var(--text-muted);min-height:1.4em;}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--pine);flex:none;}
+
+/* ---- stat row ---- */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:12px;
+  margin-bottom:22px;
+}
+.stat{
+  background:var(--surface);
+  border:1px solid var(--line-soft);
+  border-radius:14px;
+  padding:14px 16px;
+  box-shadow:var(--shadow);
+}
+.stat .n{
+  font-family:'Shippori Mincho B1',serif;
+  font-size:28px;
+  font-weight:800;
+  font-variant-numeric:tabular-nums;
+  line-height:1;
+}
+.stat .n small{font-family:'Zen Kaku Gothic New',sans-serif;font-size:13px;font-weight:500;color:var(--text-muted);margin-left:2px;}
+.stat .l{margin-top:6px;font-size:12.5px;color:var(--text-muted);letter-spacing:.03em;}
+.stat.accent .n{color:var(--accent);}
+
+/* ---- controls ---- */
+.controls{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  align-items:center;
+  margin-bottom:18px;
+  padding:14px 16px;
+  background:var(--surface-2);
+  border:1px solid var(--line-soft);
+  border-radius:14px;
+}
+.chipset{display:flex;flex-wrap:wrap;gap:6px;}
+.chip{
+  border:1px solid var(--line-soft);
+  background:var(--surface);
+  color:var(--text-muted);
+  padding:6px 13px;
+  border-radius:999px;
+  font-size:13px;
+  font-weight:500;
+  cursor:pointer;
+  transition:background .12s,color .12s,border-color .12s;
+  font-family:inherit;
+}
+.chip:hover{border-color:var(--accent);}
+.chip[aria-pressed="true"]{
+  background:var(--curtain-black);
+  border-color:var(--curtain-black);
+  color:#F4EDE1;
+}
+.chip.pref[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff;}
+.sep{width:1px;align-self:stretch;background:var(--line-soft);margin:0 2px;}
+.search{
+  margin-left:auto;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  background:var(--surface);
+  border:1px solid var(--line-soft);
+  border-radius:999px;
+  padding:7px 14px;
+  min-width:220px;
+  flex:1 1 220px;
+}
+.search svg{flex:none;color:var(--text-faint);}
+.search input{
+  border:0;outline:0;background:transparent;color:var(--text);
+  font-family:inherit;font-size:14px;width:100%;
+}
+.search input::placeholder{color:var(--text-faint);}
+
+/* ---- list ---- */
+.section-label{
+  display:flex;align-items:center;gap:10px;
+  margin:26px 0 12px;
+  color:var(--text-muted);
+  font-size:13px;letter-spacing:.06em;font-weight:700;
+}
+.section-label::after{content:"";flex:1;height:1px;background:var(--line-soft);}
+
+.empty{
+  padding:36px 20px;text-align:center;color:var(--text-muted);
+  background:var(--surface);border:1px dashed var(--line-soft);border-radius:14px;font-size:14px;
+}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;}
+
+.card{
+  background:var(--surface);
+  border:1px solid var(--line-soft);
+  border-radius:14px;
+  padding:16px 17px;
+  box-shadow:var(--shadow);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  text-decoration:none;
+  color:inherit;
+  cursor:pointer;
+}
+.card:hover{border-color:var(--accent);}
+.card:hover h3{color:var(--accent-ink);}
+.card:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+.card .rowtop{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
+.datebox{
+  font-family:'Shippori Mincho B1',serif;
+  font-weight:800;
+  line-height:1;
+  color:var(--accent-ink);
+  flex:none;
+}
+.datebox .md{font-size:21px;font-variant-numeric:tabular-nums;}
+.datebox .wd{font-size:11px;font-weight:500;color:var(--text-faint);margin-top:3px;font-family:'Zen Kaku Gothic New',sans-serif;}
+.pill{
+  font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:999px;white-space:nowrap;letter-spacing:.02em;
+}
+.pill.open{background:var(--status-open-bg);color:var(--status-open-fg);}
+.pill.soon{background:var(--status-soon-bg);color:var(--status-soon-fg);}
+.pill.closed{background:var(--status-closed-bg);color:var(--status-closed-fg);}
+.pill.unknown{background:var(--status-unknown-bg);color:var(--status-unknown-fg);}
+
+.card h3{
+  margin:0;
+  font-size:16.5px;
+  font-weight:700;
+  line-height:1.45;
+  text-wrap:balance;
+}
+.card .venue{font-size:13px;color:var(--text-muted);display:flex;gap:6px;align-items:baseline;flex-wrap:wrap;}
+.card .venue .pref{
+  font-size:11px;font-weight:700;color:var(--pine);
+  background:var(--pine-tint);padding:1px 7px;border-radius:6px;flex:none;
+}
+.card .foot{
+  margin-top:auto;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding-top:10px;border-top:1px solid var(--line-soft);
+}
+.card .src{font-size:11.5px;color:var(--text-faint);}
+.card .go{
+  font-size:12.5px;font-weight:700;color:var(--accent-ink);
+  display:inline-flex;align-items:center;gap:4px;
+}
+.card:hover .go{text-decoration:underline;}
+.chip:focus-visible, .search input:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+
+/* ---- regular theaters ---- */
+.theaters{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;}
+.theater{
+  background:var(--surface);border:1px solid var(--line-soft);border-radius:14px;padding:15px 17px;box-shadow:var(--shadow);
+}
+.theater h4{margin:0 0 6px;font-size:15px;}
+.theater p{margin:0 0 10px;font-size:12.8px;color:var(--text-muted);line-height:1.6;}
+.theater a{font-size:12.5px;font-weight:700;color:var(--accent-ink);text-decoration:none;}
+.theater a:hover{text-decoration:underline;}
+
+/* ---- sources footer ---- */
+.sources{
+  margin-top:30px;background:var(--surface-2);border:1px solid var(--line-soft);border-radius:16px;padding:20px 22px;
+}
+.sources h2{
+  font-family:'Shippori Mincho B1',serif;font-size:18px;margin:0 0 4px;
+}
+.sources > p{margin:0 0 14px;font-size:13px;color:var(--text-muted);max-width:70ch;line-height:1.7;}
+.src-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;}
+.src-list li{
+  background:var(--surface);border:1px solid var(--line-soft);border-radius:10px;padding:11px 13px;font-size:12.8px;
+}
+.src-list li a{color:var(--accent-ink);font-weight:700;text-decoration:none;}
+.src-list li a:hover{text-decoration:underline;}
+.src-list li .note{display:block;margin-top:4px;color:var(--text-faint);font-size:11.8px;}
+
+.disclaimer{
+  margin-top:18px;font-size:11.8px;color:var(--text-faint);line-height:1.8;max-width:78ch;
+}
+
+@media (prefers-reduced-motion: no-preference){
+  .card,.stat,.theater{transition:transform .15s ease, box-shadow .15s ease;}
+  .card:hover,.theater:hover{transform:translateY(-2px);}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="curtain" role="presentation"></div>
+
+  <header class="top">
+    <div class="title-block">
+      <h1>東海お笑いライブ帳</h1>
+      <p class="sub">愛知・岐阜・三重で開催されるお笑いライブ／芸人トークライブの開催情報とチケット発売状況を、主要チケットサイトと芸能事務所の公式サイトから集約しています。</p>
+    </div>
+    <div class="update-tools">
+      <div class="meta-pill" id="lastUpdated"><span class="dot"></span>最終更新 <b>2026年9月17日</b>（FANY・愛知・岐阜・三重を再確認）</div>
+      <button class="update-btn" id="updateBtn" type="button">情報更新</button>
+      <span class="update-result" id="updateResult" role="status" aria-live="polite"></span>
+    </div>
+  </header>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="controls">
+    <div class="chipset" id="prefChips"></div>
+    <div class="sep"></div>
+    <div class="chipset" id="statusChips"></div>
+    <div class="search">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="q" type="text" placeholder="芸人名・会場名・公演名で検索" />
+    </div>
+  </div>
+
+  <div class="section-label">単発公演（日付順）</div>
+  <div class="grid" id="grid"></div>
+  <div class="empty" id="emptyMsg" hidden>条件に合う公演が見つかりませんでした。フィルターを変えてお試しください。</div>
+
+  <div class="section-label">定期開催の劇場・寄席</div>
+  <div class="theaters" id="theaters"></div>
+
+  <div class="sources" id="sourcesBox">
+    <h2>収集している情報源</h2>
+    <p>下記のチケット販売サイト・公式サイトを定期的に確認し、愛知・岐阜・三重で開催される公演を抽出しています。太字サイトへのリンクから最新情報を直接確認できます。</p>
+    <ul class="src-list" id="srcList"></ul>
+  </div>
+
+  <p class="disclaimer">
+    ※ チケット状況・日程は変更される場合があります。購入前に必ず各チケットサイト／公式サイトで最新情報をご確認ください。「未確認」は情報源の一覧ページには掲載があるものの、受付状況が個別ページでのみ確認できたものです。本ページは特定の事務所・興行主とは無関係の非公式まとめです。
+  </p>
+</div>
+
+<script>
+const TODAY = new Date('2026-09-17');
+
+let EVENTS = [
+  {date:'2026-09-17', title:'ロングコートダディ単独ライブツアー「月光もたらす」', venue:'名古屋芸術大学アートスクエア 大ホール', city:'名古屋市', pref:'愛知', status:'closed', src:'fany', url:'https://ticket.fany.lol/reception/61327/49912'},
+  {date:'2026-09-18', title:'ロングコートダディ単独ライブツアー「月光もたらす」', venue:'名古屋芸術大学アートスクエア 大ホール', city:'名古屋市', pref:'愛知', status:'open', src:'fany', url:'https://ticket.fany.lol/reception/61327/49914'},
+  {date:'2026-09-19', title:'水谷千重子', venue:'Niterra日本特殊陶業市民会館 フォレストホール', city:'名古屋市', pref:'愛知', status:'unknown', src:'busikaku'},
+  {date:'2026-09-19', title:'ミキ漫2026全国ツアー 愛知公演', venue:'犬山市民文化会館', city:'犬山市', pref:'愛知', status:'open', src:'fany', url:'https://ticket.fany.lol/reception/44345/38617'},
+  {date:'2026-09-19', title:'『はるかぜに告ぐロックンロールツアー！アストロビスタ』', venue:'RAD HALL', city:'名古屋市', pref:'愛知', status:'open', src:'fany', url:'https://ticket.fany.lol/reception/55599/45942'},
+  {date:'2026-09-18', title:'UDE-DA-MESHI', venue:'静かの海', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-09-20', title:'先着 爆笑！お笑いライブ in 安城', venue:'安城市民会館 サルビアホール', city:'安城市', pref:'愛知', status:'closed', src:'eplus_aichi'},
+  {date:'2026-09-20', title:'ネクストメンバーコーナーライブ', venue:'静かの海', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-09-20', title:'スペーす単独ライブ「ランデブー」', venue:'静かの海', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-09-20', title:'漫才賞レース直前！UDE-DA-MESHI なごよし芸人SP', venue:'静かの海', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-09-21', title:'山里亮太の140 愛知公演～逃げ上手の不如帰～', venue:'御園座', city:'名古屋市', pref:'愛知', status:'open', src:'fany', url:'https://ticket.fany.lol/reception/57632/47153'},
+  {date:'2026-09-21', title:'第5回エレガントライブ「LOVE BALCONY」', venue:'メニコンシアターAoi', city:'名古屋市', pref:'愛知', status:'open', src:'fany', url:'https://ticket.fany.lol/reception/56121/46247'},
+  {date:'2026-09-22', dateEnd:'2026-09-23', title:'M-1グランプリ2026 1回戦（愛知）', venue:'今池ガスホール', city:'名古屋市', pref:'愛知', status:'open', src:'fany', url:'https://ticket.fany.lol/reception/65662/52636'},
+  {date:'2026-09-26', title:'なごよしチャレンジバトル', venue:'静かの海', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-09-26', title:'もさもさ子単独ライブ「ぴかぴか」', venue:'静かの海', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-09-26', title:'絶対楽しいライブ', venue:'静かの海', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-09-26', title:'UDE-DA-MESHI', venue:'静かの海', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-09-26', title:'CITY LIVE TOUR 2026「EXPLORE THE CITY」名古屋公演', venue:'大須演芸場', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-09-26', title:'大須でコントっす！', venue:'大須演芸場', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-09-26', title:'吉田たち名古屋単独ライブ「吉田たちのエビフライ漫才」', venue:'大須演芸場', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-09-26', title:'トット漫才全国ツアー「一路漫進」名古屋公演', venue:'今池ガスホール', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-09-26', title:'馬場園 秋のネタ祭り2026（第5回単独ライブ）', venue:'大須演芸場', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-09-27', title:'ネタしゃち寄席', venue:'長円寺会館', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-09-27', title:'コーナーしゃち', venue:'長円寺会館', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-09-27', title:'VSなごよし', venue:'長円寺会館', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-09-29', title:'ピュートと名古屋よしもと若手芸人コーナーライブ', venue:'大須演芸場', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-09-29', title:'紅ポイント', venue:'大須演芸場', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-09-30', title:'よしもと名駅四丁目ライブ 東名阪交流SHOW', venue:'ミッドランドスクエアシネマ2', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-10-05', title:'先着 鳥肌実 名古屋毒炎会「アルゴリズム演説」', venue:'名古屋CLUB QUATTRO', city:'名古屋市', pref:'愛知', status:'open', src:'eplus_aichi'},
+  {date:'2026-10-07', title:'NORA名古屋「NORA寄席」', venue:'愛知県芸術劇場 小ホール', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-10-07', title:'NORA名古屋「NORAコーナー」', venue:'愛知県芸術劇場 小ホール', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-10-07', title:'マルゲリーター男とキャンパスガール ～JARUJARU CONTE TOUR～', venue:'日本特殊陶業市民会館 ビレッジホール', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-10-08', dateEnd:'2026-10-09', title:'ラブレターズ 単独ライブ2026「溺愛」', venue:'名古屋市中村文化小劇場', city:'名古屋市', pref:'愛知', status:'open', src:'eplus_aichi'},
+  {date:'2026-10-09', title:'大久保佳代子 with 青木さやか ザ・トークショー', venue:'東別院テラスホール', city:'名古屋市', pref:'愛知', status:'open', src:'eplus_aichi'},
+  {date:'2026-10-10', title:'吉本新喜劇 アキのいぃよぉ～の感謝祭2026', venue:'東別院テラスホール', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-10-10', title:'吉本新喜劇 アキのトークライブ', venue:'東別院テラスホール', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-10-10', dateEnd:'2026-10-11', title:'ニューヨーク単独ライブ「ニューヨークの横からシツレ～します！」（2回公演あり）', venue:'じゅうろくプラザ ホール', city:'岐阜市', pref:'岐阜', status:'open', src:'fany'},
+  {date:'2026-10-10', title:'圧巻！歌まね 歌謡ショー', venue:'ぎふしんフォーラム', city:'岐阜市', pref:'岐阜', status:'open', src:'eplus_gifu', url:'https://eplus.jp/sf/detail/2660340001'},
+  {date:'2026-10-15', title:'春風亭昇太・林家たい平 二人会', venue:'三重県文化会館', city:'津市', pref:'三重', status:'open', src:'eplus_mie'},
+  {date:'2026-10-16', title:'春風亭昇太・林家たい平 二人会', venue:'四日市市文化会館', city:'四日市市', pref:'三重', status:'open', src:'eplus_mie'},
+  {date:'2026-10-18', title:'柳家三三 独演会', venue:'柿安シティホール', city:'桑名市', pref:'三重', status:'open', src:'eplus_mie'},
+  {date:'2026-10-24', title:'立川談春 独演会', venue:'四日市市文化会館', city:'四日市市', pref:'三重', status:'closed', src:'eplus_mie'},
+  {date:'2026-10-16', dateEnd:'2026-10-17', title:'HRF 2026 ～偽物だらけの国内最大級フェス～', venue:'東別院テラスホール', city:'名古屋市', pref:'愛知', status:'closed', src:'eplus_aichi'},
+  {date:'2026-10-16', title:'よしもと名駅四丁目ライブ 東名阪交流SHOW', venue:'ミッドランドスクエアシネマ2', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-10-17', title:'COWCOW 33rd LIVE 名古屋(愛知)公演', venue:'今池ガスホール', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-10-22', title:'名駅ツーマンライブ「ダブルヒガシ×ド桜」ネタとコーナー', venue:'ミッドランドスクエアシネマ2', city:'名古屋市', pref:'愛知', status:'soon', src:'fany'},
+  {date:'2026-10-22', title:'名駅ツーマンライブ「ダブルヒガシ×ド桜」ネタとトーク', venue:'ミッドランドスクエアシネマ2', city:'名古屋市', pref:'愛知', status:'soon', src:'fany'},
+  {date:'2026-10-30', title:'ニューヨーク単独ライブ「ニューヨークの横からシツレ～します！」（愛知公演）', venue:'ウインクあいち 大ホール', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-11-13', title:'サルゴリラのコントと旅2026', venue:'今池ガスホール', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-11-14', title:'愛知爆音漫才選集（14:00／18:30 2回公演）', venue:'Zepp Nagoya', city:'名古屋市', pref:'愛知', status:'soon', src:'fany'},
+  {date:'2026-11-15', title:'神奈月 ソロライブツアー2026「ものまねLOVE」', venue:'東別院テラスホール', city:'名古屋市', pref:'愛知', status:'open', src:'eplus_aichi'},
+  {date:'2026-11-15', title:'ツートライブ漫才ツアー『闊歩旅\'26』IN愛知', venue:'大須演芸場', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-11-18', dateEnd:'2026-11-19', title:'2026芸協らくご・伊勢おかげ寄席', venue:'伊勢市ハートプラザみその', city:'伊勢市', pref:'三重', status:'open', src:'eplus_mie'},
+  {date:'2026-11-19', title:'美川憲一＆コロッケ（14:00／18:00 2回公演）', venue:'三重県文化会館 大ホール（三重県総合文化センター）', city:'津市', pref:'三重', status:'open', src:'eplus_mie'},
+  {date:'2026-11-20', title:'芸協らくご ぎふやまがた寄席（13:30／18:30 2回公演）', venue:'岐阜市文化センター', city:'岐阜市', pref:'岐阜', status:'soon', src:'eplus_gifu'},
+  {date:'2026-11-20', title:'美川憲一＆コロッケ（14:00／18:00 2回公演）', venue:'長良川国際会議場', city:'岐阜市', pref:'岐阜', status:'open', src:'eplus_gifu'},
+  {date:'2026-11-22', dateEnd:'2026-11-23', title:'座長・酒井藍in御園座 吉本新喜劇＆バラエティーショー', venue:'御園座', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-11-27', title:'『千原ジュニアのヘベレケ』トークライブ2', venue:'岡谷鋼機名古屋公会堂', city:'名古屋市', pref:'愛知', status:'open', src:'eplus_aichi'},
+  {date:'2026-11-28', title:'トータルテンボス全国漫才ツアー2026「ニコイチ」in愛知', venue:'御園座', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-11-28', title:'デルマパンゲの((巨爆笑))ツアー2026', venue:'大須演芸場', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-11-28', dateEnd:'2026-11-29', title:'兵動大樹のおしゃべり大好き♥48', venue:'御園座', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-11-28', title:'あっちこっちカンパニー〈愛知公演〉', venue:'御園座', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-11-28', title:'三代目林家菊丸独演会2026～上方人情話の世界～', venue:'大須演芸場', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-11-29', title:'アインシュタイン15周年ツアー「ゲストシュタイン in名古屋」', venue:'御園座', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2026-11-29', title:'爆笑！お笑いエンタメライブ in 岐阜', venue:'ぎふしんフォーラム', city:'岐阜市', pref:'岐阜', status:'open', src:'eplus_gifu'},
+  {date:'2026-12-12', title:'教育おたのしみ会 ～笑いとげんじつ～', venue:'ウインクあいち', city:'名古屋市', pref:'愛知', status:'soon', src:'eplus_aichi'},
+  {date:'2026-12-12', title:'アブナイ ヨセ 全国ツアー2026', venue:'ウインクあいち', city:'名古屋市', pref:'愛知', status:'closed', src:'eplus_aichi'},
+  {date:'2027-01-08', title:'最強！ものまねフェス in 名古屋', venue:'Niterra日本特殊陶業市民会館', city:'名古屋市', pref:'愛知', status:'open', src:'eplus_aichi'},
+  {date:'2027-01-30', title:'THE 柳沢慎吾劇場 日本列島大捜査網', venue:'Niterra日本特殊陶業市民会館', city:'名古屋市', pref:'愛知', status:'soon', src:'eplus_aichi'},
+  {date:'2027-01-31', title:'僕らの別紙 全国ツアー2026～名古屋～', venue:'中日ホール', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+  {date:'2027-02-07', title:'三代目三遊亭百生 落語会', venue:'東員町総合文化センター', city:'東員町', pref:'三重', status:'soon', src:'eplus_mie'},
+  {date:'2027-02-28', title:'佐久間一行LIVE TOUR2026-2027「30周年コントセレクション」', venue:'今池ガスホール', city:'名古屋市', pref:'愛知', status:'open', src:'fany'},
+];
+
+const THEATERS = [
+  {name:'名古屋よしもと（静かの海／長円寺会館／大須演芸場）', pref:'愛知', desc:'ほぼ毎週末、若手コーナーライブから単独ライブまで多数開催。吉本興業の公式サイトで週次スケジュールを公開。', url:'https://nagoya.yoshimoto.co.jp/schedule/', linkLabel:'スケジュールを見る'},
+  {name:'大須演芸場（中京圏唯一の常設寄席）', pref:'愛知', desc:'毎月1〜10日ごろが定席寄席、それ以外は主催者による落語・漫才・音楽等の公演。月替わりで演目が更新される。', url:'https://www.osuengei.nagoya/vaudeville', linkLabel:'寄席案内を見る'},
+];
+
+const SOURCES = [
+  {name:'イープラス（愛知）', url:'https://eplus.jp/sf/play/comedy/aichi', note:'お笑いジャンル×都道府県で絞込済み'},
+  {name:'イープラス（岐阜）', url:'https://eplus.jp/sf/play/comedy/gifu', note:'お笑いジャンル×都道府県で絞込済み'},
+  {name:'イープラス（三重）', url:'https://eplus.jp/sf/play/comedy/mie', note:'お笑いジャンル×都道府県で絞込済み'},
+  {name:'チケットぴあ', url:'https://t.pia.jp/', note:'公演名・会場から個別検索'},
+  {name:'ローソンチケット', url:'https://l-tike.com/search/?tig=240&pref=21%2C23%2C24', note:'お笑いジャンル×岐阜/愛知/三重で絞込'},
+  {name:'バス比較なび（中部お笑いライブ）', url:'https://www.bushikaku.net/expedition/play/shows/403/region-chubu/', note:'複数サイトの遠征向けまとめ'},
+  {name:'名古屋よしもと（公式）', url:'https://nagoya.yoshimoto.co.jp/', note:'吉本興業 名古屋拠点・週次スケジュール'},
+  {name:'よしもとライブ（愛知タグ）', url:'https://live.yoshimoto.co.jp/tag/%E6%84%9B%E7%9F%A5/', note:'吉本の全国ツアー公演を都道府県で絞込'},
+  {name:'よしもとライブ（岐阜タグ）', url:'https://live.yoshimoto.co.jp/tag/%E5%B2%90%E9%98%9C/', note:'吉本の全国ツアー公演を都道府県で絞込'},
+  {name:'よしもとライブ（三重タグ）', url:'https://live.yoshimoto.co.jp/tag/%E4%B8%89%E9%87%8D/', note:'吉本の全国ツアー公演を都道府県で絞込'},
+  {name:'FANYチケット（吉本興業公式）', url:'https://ticket.fany.lol/', note:'よしもと公式チケット検索。都道府県×お笑いジャンルで絞込可能'},
+  {name:'大須演芸場（公式）', url:'https://www.osuengei.nagoya/', note:'中京圏唯一の常設寄席'},
+  {name:'ワタナベエンターテインメント LIVE INFO', url:'https://www.watanabepro.co.jp/liveinfo/', note:'JS描画のためブラウザでの確認推奨'},
+];
+
+const STATUS_LABEL = {open:'受付中', soon:'受付前', closed:'完売・終了', unknown:'未確認'};
+const SRC_LABEL = {
+  eplus_aichi:'イープラス(愛知)', eplus_mie:'イープラス(三重)', eplus_gifu:'イープラス(岐阜)',
+  busikaku:'バス比較なび', pia:'チケットぴあ', fany:'FANYチケット(吉本公式)',
+};
+// 個別のチケットページが分からない公演は、情報を確認した一覧ページにリンクする
+const SRC_FALLBACK_URL = {
+  eplus_aichi:'https://eplus.jp/sf/play/comedy/aichi',
+  eplus_mie:'https://eplus.jp/sf/play/comedy/mie',
+  eplus_gifu:'https://eplus.jp/sf/play/comedy/gifu',
+  busikaku:'https://www.bushikaku.net/expedition/play/shows/403/region-chubu/',
+  pia:'https://t.pia.jp/',
+  fany:'https://ticket.fany.lol/',
+};
+const PREF_CODE = {'岐阜':'21','愛知':'23','三重':'24'};
+function eventUrl(e){
+  if(e.url) return e.url;
+  if(e.src==='fany'){
+    const code = PREF_CODE[e.pref] || '23';
+    return `https://ticket.fany.lol/search/event?keywords=&from=&to=&prefectures=${code}&genre=30&search_type=form`;
+  }
+  return SRC_FALLBACK_URL[e.src] || '#';
+}
+
+function fmtDate(iso){
+  const d = new Date(iso);
+  const wd = ['日','月','火','水','木','金','土'][d.getDay()];
+  return {md:`${d.getMonth()+1}/${d.getDate()}`, wd:`(${wd})`};
+}
+
+const state = {pref:'すべて', status:'すべて', q:''};
+
+function buildChips(container, values, key){
+  container.innerHTML='';
+  values.forEach(v=>{
+    const b=document.createElement('button');
+    b.className='chip'+(key==='pref'?' pref':'');
+    b.textContent=v;
+    b.setAttribute('aria-pressed', state[key]===v ? 'true':'false');
+    b.addEventListener('click', ()=>{ state[key]=v; render(); });
+    container.appendChild(b);
+  });
+}
+
+function render(){
+  buildChips(document.getElementById('prefChips'), ['すべて','愛知','岐阜','三重'], 'pref');
+  buildChips(document.getElementById('statusChips'), ['すべて','受付中','受付前','完売・終了','未確認'], 'status');
+
+  const q = state.q.trim();
+  const filtered = EVENTS.filter(e=>{
+    if(state.pref!=='すべて' && e.pref!==state.pref) return false;
+    if(state.status!=='すべて' && STATUS_LABEL[e.status]!==state.status) return false;
+    if(q && !(e.title+e.venue+e.city).includes(q)) return false;
+    return true;
+  }).sort((a,b)=> a.date.localeCompare(b.date));
+
+  const grid = document.getElementById('grid');
+  grid.innerHTML='';
+  document.getElementById('emptyMsg').hidden = filtered.length>0;
+
+  filtered.forEach(e=>{
+    const {md,wd} = fmtDate(e.date);
+    const endLabel = e.dateEnd ? ` 〜 ${fmtDate(e.dateEnd).md}` : '';
+    const card = document.createElement('a');
+    card.className='card';
+    card.href = eventUrl(e);
+    card.target = '_blank';
+    card.rel = 'noopener';
+    card.innerHTML = `
+      <div class="rowtop">
+        <div class="datebox"><div class="md">${md}${endLabel}</div><div class="wd">${wd}</div></div>
+        <span class="pill ${e.status}">${STATUS_LABEL[e.status]}</span>
+      </div>
+      <h3>${e.title}</h3>
+      <div class="venue"><span class="pref">${e.pref}</span>${e.venue}</div>
+      <div class="foot">
+        <span class="src">情報源: ${SRC_LABEL[e.src]||e.src}</span>
+        <span class="go">詳細を見る →</span>
+      </div>`;
+    grid.appendChild(card);
+  });
+
+  const stats = document.getElementById('stats');
+  const todayStr = TODAY.toISOString().slice(0,10);
+  const upcoming = EVENTS.filter(e=>e.date>= todayStr);
+  const byPref = p => upcoming.filter(e=>e.pref===p).length;
+  stats.innerHTML = `
+    <div class="stat accent"><div class="n">${upcoming.length}<small>件</small></div><div class="l">掲載中の公演</div></div>
+    <div class="stat"><div class="n">${byPref('愛知')}<small>件</small></div><div class="l">愛知県</div></div>
+    <div class="stat"><div class="n">${byPref('岐阜')}<small>件</small></div><div class="l">岐阜県</div></div>
+    <div class="stat"><div class="n">${byPref('三重')}<small>件</small></div><div class="l">三重県</div></div>
+  `;
+}
+
+document.getElementById('q').addEventListener('input', (e)=>{ state.q = e.target.value; render(); });
+
+const SRC_ID_MAP = {fany_ticket:'fany', bushikaku_chubu:'busikaku'};
+function normalizeEvent(e){
+  return {
+    ...e,
+    dateEnd: e.date_end || e.dateEnd,
+    src: SRC_ID_MAP[e.src] || e.src
+  };
+}
+
+async function updateInformation(){
+  const button = document.getElementById('updateBtn');
+  const result = document.getElementById('updateResult');
+  button.disabled = true;
+  button.textContent = '更新中…';
+  result.textContent = 'プロジェクト内の最新データを確認しています';
+  try{
+    const response = await fetch('data/events.json?ts='+Date.now(), {cache:'no-store'});
+    if(!response.ok) throw new Error('HTTP '+response.status);
+    const data = await response.json();
+    if(!Array.isArray(data.events)) throw new Error('イベントデータの形式が不正です');
+    EVENTS = data.events.map(normalizeEvent);
+    render();
+    const d = String(data.last_updated || '').split('-');
+    if(d.length===3){
+      document.getElementById('lastUpdated').innerHTML =
+        '<span class="dot"></span>最終更新 <b>'+Number(d[0])+'年'+Number(d[1])+'月'+Number(d[2])+'日</b>（プロジェクト内データ）';
+    }
+    result.textContent = EVENTS.length+'件を再読み込みしました';
+  }catch(error){
+    render();
+    result.textContent = '表示中の'+EVENTS.length+'件を更新しました（サーバー停止中）';
+    console.error(error);
+  }finally{
+    button.disabled = false;
+    button.textContent = '情報更新';
+  }
+}
+document.getElementById('updateBtn').addEventListener('click', updateInformation);
+
+const theaterBox = document.getElementById('theaters');
+THEATERS.forEach(t=>{
+  const el = document.createElement('div');
+  el.className='theater';
+  el.innerHTML = `<h4>${t.name}</h4><p>${t.desc}</p><a href="${t.url}" target="_blank" rel="noopener">${t.linkLabel} →</a>`;
+  theaterBox.appendChild(el);
+});
+
+const srcList = document.getElementById('srcList');
+SOURCES.forEach(s=>{
+  const li = document.createElement('li');
+  li.innerHTML = `<a href="${s.url}" target="_blank" rel="noopener">${s.name}</a><span class="note">${s.note}</span>`;
+  srcList.appendChild(li);
+});
+
+render();
+updateInformation();
+</script>
+</body>
+</html>

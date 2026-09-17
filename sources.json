@@ -1,0 +1,110 @@
+{
+  "region": ["愛知", "岐阜", "三重"],
+  "updated_note": "各サイトの実際のURLパターンは変更されることがあるため、定期実行時にリンク切れがあれば都度修正すること。",
+  "sources": [
+    {
+      "id": "eplus_aichi",
+      "name": "イープラス（愛知）",
+      "type": "ticket_platform_genre_pref",
+      "url": "https://eplus.jp/sf/play/comedy/aichi",
+      "prefecture": "愛知",
+      "notes": "お笑いジャンル×都道府県で絞込済みの静的HTML一覧。最も安定した情報源。"
+    },
+    {
+      "id": "eplus_gifu",
+      "name": "イープラス（岐阜）",
+      "type": "ticket_platform_genre_pref",
+      "url": "https://eplus.jp/sf/play/comedy/gifu",
+      "prefecture": "岐阜",
+      "notes": "お笑いジャンル×都道府県で絞込済み。まれに503が返るため失敗時は再試行。"
+    },
+    {
+      "id": "eplus_mie",
+      "name": "イープラス（三重）",
+      "type": "ticket_platform_genre_pref",
+      "url": "https://eplus.jp/sf/play/comedy/mie",
+      "prefecture": "三重",
+      "notes": "お笑いジャンル×都道府県で絞込済み。まれに503が返るため失敗時は再試行。"
+    },
+    {
+      "id": "ltike_search",
+      "name": "ローソンチケット（お笑い×岐阜/愛知/三重）",
+      "type": "ticket_platform_search",
+      "url": "https://l-tike.com/search/?tig=240&pref=21%2C23%2C24",
+      "prefecture": "全て",
+      "notes": "tig=240がお笑いジャンルコード、pref=21,23,24が岐阜/愛知/三重。応答が遅い場合がある。"
+    },
+    {
+      "id": "pia_search",
+      "name": "チケットぴあ",
+      "type": "ticket_platform_search",
+      "url": "https://t.pia.jp/",
+      "prefecture": "全て",
+      "notes": "重要な注意（2026-09-16に判明した過去の誤り）: ジャンル×都道府県の直接URLが未確認のため、WebSearchで『チケットぴあ お笑い <地域名>』等を都度検索して補完する運用だが、WebSearchの要約文だけを見て日程を記載してはならない。過去に『爆笑！お笑いライブ in 岡崎/豊田/刈谷』で、WebSearch結果のタイトルと会場だけを見て開催日を未確認のまま記載し、後日ユーザー指摘で誤りと判明した（該当eventCdは404、または実際の開催日が既に過去だった）。この情報源を使う場合は、必ずWebFetchでイベント詳細ページ本体を開き、そこに明記された開催日・受付状況を確認してから掲載すること。日程が確認できない場合は掲載を見送るか、status:unknownかつ日付欄に『未確認』と明記し、date値を確定日として扱わない。"
+    },
+    {
+      "id": "bushikaku_chubu",
+      "name": "バス比較なび（中部のお笑いライブ）",
+      "type": "aggregator",
+      "url": "https://www.bushikaku.net/expedition/play/shows/403/region-chubu/",
+      "prefecture": "全て（中部地方、静岡県含むため要フィルタ）",
+      "notes": "遠征サイトによる複数チケットサイトのまとめ。静岡県のイベントも混在するので都道府県名で必ずフィルタする。"
+    },
+    {
+      "id": "yoshimoto_live_aichi",
+      "name": "よしもとライブ（全国お笑いライブ）愛知タグ",
+      "type": "agency_official_genre_pref",
+      "url": "https://live.yoshimoto.co.jp/tag/%E6%84%9B%E7%9F%A5/",
+      "prefecture": "愛知",
+      "notes": "吉本興業の全国公演ポータルを都道府県タグで絞込。2026-09-15時点は該当0件だったが、ツアー公演が入り次第表示されるため定期確認の価値あり。"
+    },
+    {
+      "id": "yoshimoto_live_gifu",
+      "name": "よしもとライブ（全国お笑いライブ）岐阜タグ",
+      "type": "agency_official_genre_pref",
+      "url": "https://live.yoshimoto.co.jp/tag/%E5%B2%90%E9%98%9C/",
+      "prefecture": "岐阜",
+      "notes": "同上。岐阜タグ版。"
+    },
+    {
+      "id": "yoshimoto_live_mie",
+      "name": "よしもとライブ（全国お笑いライブ）三重タグ",
+      "type": "agency_official_genre_pref",
+      "url": "https://live.yoshimoto.co.jp/tag/%E4%B8%89%E9%87%8D/",
+      "prefecture": "三重",
+      "notes": "同上。三重タグ版。"
+    },
+    {
+      "id": "fany_ticket",
+      "name": "FANYチケット（吉本興業 公式チケットサイト・検索API）",
+      "type": "ticket_platform_json_api",
+      "url": "https://ticket.fany.lol/search/event_more?keywords=&from=&to=&prefectures={PREF_CODE}&genre=30&search_type=form&offset={OFFSET}",
+      "prefecture": "全て（{PREF_CODE}: 岐阜=21, 愛知=23, 三重=24。JIS都道府県コード準拠）",
+      "notes": "重要・要注意点あり。トップページの個別公演の『マイページ』的な深い操作はログインが要るが、この検索結果API自体はログイン不要でJSONを直接返す(WebFetchで取得可能、Cookie不要)。1回のリクエストで最大10件、{OFFSET}を0,10,20,...と増やしてperformances配列が空になるまで取得すると全件揃う。genre=30(お笑い)を指定しても山岡カントリークラブのゴルフ大会等、明らかに非お笑いの項目が混ざることがあるため、genreパラメータだけを信用せずタイトル・会場から目視でお笑い公演か判断すること。除外してよいのはスポーツ大会（ゴルフ大会等、明らかに競技イベント）とファンミーティング（『〜初ファンイベント』等、ライブ/ネタ披露ではなく物販・交流が主目的のもの）のみ。名古屋よしもと定期公演(静かの海／長円寺会館／大須演芸場)の個々の公演（UDE-DA-MESHI、ネクストメンバーコーナーライブ、ネタしゃち寄席等）は『定期公演だから』という理由だけで丸めて省略しない — 2026-09-16にユーザーから『掲載漏れ』を指摘され、これらを個別カードとして追加し直した経緯がある。1つ1つが実際にチケットが取れる別公演なので、必ず個別に掲載すること。performances[].name=公演名、venue_name=会場、performance_date=日付、performance_sales[0].display_sales_status=販売状況、performance_sales[0].destination_url=購入ページURL。"
+    },
+    {
+      "id": "yoshimoto_nagoya",
+      "name": "名古屋よしもと（吉本興業 公式）",
+      "type": "agency_official",
+      "url": "https://nagoya.yoshimoto.co.jp/schedule/",
+      "prefecture": "愛知",
+      "notes": "静かの海・長円寺会館・大須演芸場での週次公演スケジュール。件数が多いため『定期公演』として要約する運用でも良い。"
+    },
+    {
+      "id": "osu_engeijo",
+      "name": "大須演芸場（公式）",
+      "type": "venue_official",
+      "url": "https://www.osuengei.nagoya/vaudeville",
+      "prefecture": "愛知",
+      "notes": "中京圏唯一の常設寄席。月替わりで演目ページが更新される（例: /vaudeville/202609）。"
+    },
+    {
+      "id": "watanabe_liveinfo",
+      "name": "ワタナベエンターテインメント LIVE INFO",
+      "type": "agency_official",
+      "url": "https://www.watanabepro.co.jp/liveinfo/",
+      "prefecture": "全て",
+      "notes": "JavaScript描画のため、通常のWebFetchでは本文が取得できないことがある。取得できない場合はWebSearchで代替情報を探す。"
+    }
+  ]
+}

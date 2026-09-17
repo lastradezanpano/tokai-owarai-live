@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+run_update_stdout.log
+.env
+.env.*

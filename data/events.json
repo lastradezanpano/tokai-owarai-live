@@ -1,0 +1,790 @@
+{
+  "last_updated": "2026-09-17",
+  "last_updated_note": "GitHub ActionsでFANY公開検索と既存確認済み情報を更新",
+  "artifact_url": "https://claude.ai/artifact/5saz5d5CVZmiU6VrCUBWmu",
+  "events": [
+    {
+      "date": "2026-09-17",
+      "title": "ロングコートダディ単独ライブツアー「月光もたらす」",
+      "venue": "名古屋芸術大学アートスクエア　大ホール",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "closed",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/61327/49912"
+    },
+    {
+      "date": "2026-09-18",
+      "title": "UDE-DA-MESHI",
+      "venue": "静かの海",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/64234/51704"
+    },
+    {
+      "date": "2026-09-18",
+      "title": "ロングコートダディ単独ライブツアー「月光もたらす」",
+      "venue": "名古屋芸術大学アートスクエア　大ホール",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/61327/49914"
+    },
+    {
+      "date": "2026-09-19",
+      "title": "『はるかぜに告ぐロックンロールツアー！アストロビスタ』",
+      "venue": "RAD HALL",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/55599/45942"
+    },
+    {
+      "date": "2026-09-19",
+      "title": "ミキ漫2026全国ツアー　愛知公演",
+      "venue": "犬山市民文化会館",
+      "city": "",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/44345/38617"
+    },
+    {
+      "date": "2026-09-19",
+      "title": "水谷千重子",
+      "venue": "Niterra日本特殊陶業市民会館 フォレストホール",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "unknown",
+      "src": "bushikaku_chubu"
+    },
+    {
+      "date": "2026-09-20",
+      "title": "スペーす単独ライブ「ランデブー」",
+      "venue": "静かの海",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/64280/51742"
+    },
+    {
+      "date": "2026-09-20",
+      "title": "ネクストメンバーコーナーライブ",
+      "venue": "静かの海",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/64279/51741"
+    },
+    {
+      "date": "2026-09-20",
+      "title": "先着 爆笑！お笑いライブ in 安城",
+      "venue": "安城市民会館 サルビアホール",
+      "city": "安城市",
+      "pref": "愛知",
+      "status": "closed",
+      "src": "eplus_aichi"
+    },
+    {
+      "date": "2026-09-20",
+      "title": "漫才賞レース直前！UDE-DA-MESHI なごよし芸人SP",
+      "venue": "静かの海",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/64281/51743"
+    },
+    {
+      "date": "2026-09-21",
+      "title": "山里亮太の140 愛知公演～逃げ上手の不如帰～",
+      "venue": "御園座",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/57632/47153"
+    },
+    {
+      "date": "2026-09-21",
+      "title": "第5回エレガントライブ「LOVE BALCONY」",
+      "venue": "メニコンシアターAoi",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/56121/46247"
+    },
+    {
+      "date": "2026-09-22",
+      "title": "M-1グランプリ2026　1回戦",
+      "venue": "今池ガスホール",
+      "city": "",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/65662/52636"
+    },
+    {
+      "date": "2026-09-23",
+      "title": "M-1グランプリ2026　1回戦",
+      "venue": "今池ガスホール",
+      "city": "",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/65662/52637"
+    },
+    {
+      "date": "2026-09-26",
+      "title": "CITY LIVE TOUR 2026「EXPLORE THE CITY」名古屋公演",
+      "venue": "大須演芸場",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/58179/47723"
+    },
+    {
+      "date": "2026-09-26",
+      "title": "UDE-DA-MESHI",
+      "venue": "静かの海",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/64234/51706"
+    },
+    {
+      "date": "2026-09-26",
+      "title": "なごよしチャレンジバトル",
+      "venue": "静かの海",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/64314/51768"
+    },
+    {
+      "date": "2026-09-26",
+      "title": "もさもさ子単独ライブ「ぴかぴか」",
+      "venue": "静かの海",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/64315/51770"
+    },
+    {
+      "date": "2026-09-26",
+      "title": "トット漫才全国ツアー「一路漫進」 名古屋公演",
+      "venue": "今池ガスホール",
+      "city": "",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/60191/49002"
+    },
+    {
+      "date": "2026-09-26",
+      "title": "吉田たち名古屋単独ライブ『吉田たちのエビフライ漫才』",
+      "venue": "大須演芸場",
+      "city": "",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/62771/50556"
+    },
+    {
+      "date": "2026-09-26",
+      "title": "大須でコントっす！",
+      "venue": "大須演芸場",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/65007/52426"
+    },
+    {
+      "date": "2026-09-26",
+      "title": "第5回 単独ライブ 「馬場園 秋のネタ祭り2026」",
+      "venue": "大須演芸場",
+      "city": "",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/59785/48368"
+    },
+    {
+      "date": "2026-09-26",
+      "title": "絶対楽しいライブ",
+      "venue": "静かの海",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/64316/51769"
+    },
+    {
+      "date": "2026-09-27",
+      "title": "VSなごよし",
+      "venue": "長円寺会館",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/63833/51206"
+    },
+    {
+      "date": "2026-09-27",
+      "title": "コーナーしゃち",
+      "venue": "長円寺会館",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/63832/51205"
+    },
+    {
+      "date": "2026-09-27",
+      "title": "ネタしゃち寄席",
+      "venue": "長円寺会館",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/63828/51204"
+    },
+    {
+      "date": "2026-09-29",
+      "title": "ピュートと名古屋よしもと若手芸人コーナーライブ",
+      "venue": "大須演芸場",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/63975/51229"
+    },
+    {
+      "date": "2026-09-29",
+      "title": "紅ポイント",
+      "venue": "大須演芸場",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/63987/51230"
+    },
+    {
+      "date": "2026-09-30",
+      "title": "よしもと名駅四丁目ライブ 東名阪交流SHOW",
+      "venue": "ミッドランドスクエアシネマ２スクリーン８",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/66403/52851"
+    },
+    {
+      "date": "2026-10-05",
+      "title": "先着 鳥肌実 名古屋毒炎会「アルゴリズム演説」",
+      "venue": "名古屋CLUB QUATTRO",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "open",
+      "src": "eplus_aichi"
+    },
+    {
+      "date": "2026-10-07",
+      "title": "NORAコーナー",
+      "venue": "愛知県芸術劇場　小ホール",
+      "city": "",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/65625/52623"
+    },
+    {
+      "date": "2026-10-07",
+      "title": "NORA寄席",
+      "venue": "愛知県芸術劇場　小ホール",
+      "city": "",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/65625/52622"
+    },
+    {
+      "date": "2026-10-07",
+      "title": "マルゲリータ男とキャンパスガール～JARUJARU CONTE TOUR ・・・",
+      "venue": "日本特殊陶業市民会館　ビレッジホール",
+      "city": "",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/64191/51663"
+    },
+    {
+      "date": "2026-10-08",
+      "date_end": "2026-10-09",
+      "title": "ラブレターズ 単独ライブ2026「溺愛」",
+      "venue": "名古屋市中村文化小劇場",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "open",
+      "src": "eplus_aichi"
+    },
+    {
+      "date": "2026-10-09",
+      "title": "大久保佳代子 with 青木さやか ザ・トークショー",
+      "venue": "東別院テラスホール",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "open",
+      "src": "eplus_aichi"
+    },
+    {
+      "date": "2026-10-10",
+      "title": "ニューヨーク単独ライブ｢ニューヨークの横からシツレ～します！｣",
+      "venue": "じゅうろくプラザ　ホール",
+      "city": "",
+      "pref": "岐阜",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/55719/45991"
+    },
+    {
+      "date": "2026-10-10",
+      "title": "圧巻！歌まね 歌謡ショー",
+      "venue": "ぎふしんフォーラム",
+      "city": "岐阜市",
+      "pref": "岐阜",
+      "status": "open",
+      "src": "eplus_gifu",
+      "url": "https://eplus.jp/sf/detail/2660340001"
+    },
+    {
+      "date": "2026-10-10",
+      "title": "吉本新喜劇アキと愉快な仲間たちトークライブin名古屋",
+      "venue": "東別院テラスホール",
+      "city": "",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/64438/51947"
+    },
+    {
+      "date": "2026-10-10",
+      "title": "吉本新喜劇アキのいぃよぉ ～の感謝祭2026",
+      "venue": "東別院テラスホール",
+      "city": "",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/61535/50211"
+    },
+    {
+      "date": "2026-10-11",
+      "title": "ニューヨーク単独ライブ｢ニューヨークの横からシツレ～します！｣",
+      "venue": "じゅうろくプラザ　ホール",
+      "city": "",
+      "pref": "岐阜",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/55719/45993"
+    },
+    {
+      "date": "2026-10-15",
+      "title": "春風亭昇太・林家たい平 二人会",
+      "venue": "三重県文化会館",
+      "city": "津市",
+      "pref": "三重",
+      "status": "open",
+      "src": "eplus_mie"
+    },
+    {
+      "date": "2026-10-16",
+      "title": "春風亭昇太・林家たい平 二人会",
+      "venue": "四日市市文化会館",
+      "city": "四日市市",
+      "pref": "三重",
+      "status": "open",
+      "src": "eplus_mie"
+    },
+    {
+      "date": "2026-10-16",
+      "date_end": "2026-10-17",
+      "title": "HRF 2026 ～偽物だらけの国内最大級フェス～",
+      "venue": "東別院テラスホール",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "closed",
+      "src": "eplus_aichi"
+    },
+    {
+      "date": "2026-10-16",
+      "title": "よしもと名駅四丁目ライブ 東名阪交流SHOW",
+      "venue": "ミッドランドスクエアシネマ２スクリーン８",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/67105/53574"
+    },
+    {
+      "date": "2026-10-17",
+      "title": "COWCOW 33rd LIVE 名古屋(愛知)公演",
+      "venue": "今池ガスホール",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/63151/50690"
+    },
+    {
+      "date": "2026-10-18",
+      "title": "柳家三三 独演会",
+      "venue": "柿安シティホール",
+      "city": "桑名市",
+      "pref": "三重",
+      "status": "open",
+      "src": "eplus_mie"
+    },
+    {
+      "date": "2026-10-22",
+      "title": "名駅ツーマンライブ 「ダブルヒガシ×ド桜 ネタとコーナーの回」",
+      "venue": "ミッドランドスクエアシネマ２スクリーン８",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/66992/53482"
+    },
+    {
+      "date": "2026-10-22",
+      "title": "名駅ツーマンライブ 「ダブルヒガシ×ド桜 ネタとトークの回」",
+      "venue": "ミッドランドスクエアシネマ２スクリーン８",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/67006/53519"
+    },
+    {
+      "date": "2026-10-24",
+      "title": "立川談春 独演会",
+      "venue": "四日市市文化会館",
+      "city": "四日市市",
+      "pref": "三重",
+      "status": "closed",
+      "src": "eplus_mie"
+    },
+    {
+      "date": "2026-10-30",
+      "title": "ニューヨーク単独ライブ｢ニューヨークの横からシツレ～します！｣",
+      "venue": "ウインクあいち　大ホール",
+      "city": "",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/55721/45995"
+    },
+    {
+      "date": "2026-11-13",
+      "title": "サルゴリラのコントと旅2026",
+      "venue": "今池ガスホール",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/51787/43339"
+    },
+    {
+      "date": "2026-11-14",
+      "title": "愛知爆音漫才選集",
+      "venue": "Zepp Nagoya",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/67206/53599"
+    },
+    {
+      "date": "2026-11-15",
+      "title": "ツートライブ漫才ツアー『闊歩旅'26』IN愛知",
+      "venue": "大須演芸場",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/59274/47986"
+    },
+    {
+      "date": "2026-11-15",
+      "title": "神奈月 ソロライブツアー2026「ものまねLOVE」",
+      "venue": "東別院テラスホール",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "open",
+      "src": "eplus_aichi"
+    },
+    {
+      "date": "2026-11-18",
+      "date_end": "2026-11-19",
+      "title": "2026芸協らくご・伊勢おかげ寄席",
+      "venue": "伊勢市ハートプラザみその",
+      "city": "伊勢市",
+      "pref": "三重",
+      "status": "open",
+      "src": "eplus_mie"
+    },
+    {
+      "date": "2026-11-19",
+      "title": "美川憲一＆コロッケ（14:00／18:00 2回公演）",
+      "venue": "三重県文化会館 大ホール（三重県総合文化センター）",
+      "city": "津市",
+      "pref": "三重",
+      "status": "open",
+      "src": "eplus_mie"
+    },
+    {
+      "date": "2026-11-20",
+      "title": "美川憲一＆コロッケ（14:00／18:00 2回公演）",
+      "venue": "長良川国際会議場",
+      "city": "岐阜市",
+      "pref": "岐阜",
+      "status": "open",
+      "src": "eplus_gifu"
+    },
+    {
+      "date": "2026-11-20",
+      "title": "芸協らくご ぎふやまがた寄席（13:30／18:30 2回公演）",
+      "venue": "岐阜市文化センター",
+      "city": "岐阜市",
+      "pref": "岐阜",
+      "status": "soon",
+      "src": "eplus_gifu"
+    },
+    {
+      "date": "2026-11-22",
+      "title": "座長・酒井藍ｉｎ御園座　吉本新喜劇＆バラエティーショー",
+      "venue": "御園座",
+      "city": "",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/67489/53737"
+    },
+    {
+      "date": "2026-11-23",
+      "title": "座長・酒井藍ｉｎ御園座　吉本新喜劇＆バラエティーショー",
+      "venue": "御園座",
+      "city": "",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/67489/53738"
+    },
+    {
+      "date": "2026-11-27",
+      "title": "『千原ジュニアのヘベレケ』トークライブ2",
+      "venue": "岡谷鋼機名古屋公会堂",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "open",
+      "src": "eplus_aichi"
+    },
+    {
+      "date": "2026-11-27",
+      "title": "『千原ジュニアのヘベレケ』トークライブ２",
+      "venue": "岡谷鋼機名古屋公会堂　大ホール",
+      "city": "",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/66112/52652"
+    },
+    {
+      "date": "2026-11-28",
+      "title": "あっちこっちカンパニ～＜愛知公演＞",
+      "venue": "御園座",
+      "city": "",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/56544/46638"
+    },
+    {
+      "date": "2026-11-28",
+      "title": "デルマパンゲの((巨爆笑))ツアー2026・・・",
+      "venue": "大須演芸場",
+      "city": "",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/59309/48055"
+    },
+    {
+      "date": "2026-11-28",
+      "title": "トータルテンボス全国漫才ツアー2026「ニコイチ」in愛知",
+      "venue": "御園座",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/57969/47705"
+    },
+    {
+      "date": "2026-11-28",
+      "title": "三代目林家菊丸独演会2026～上方人情噺の世界～",
+      "venue": "大須演芸場",
+      "city": "",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/66553/52906"
+    },
+    {
+      "date": "2026-11-28",
+      "title": "兵動大樹のおしゃべり大好き。48",
+      "venue": "御園座",
+      "city": "",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/54544/45117"
+    },
+    {
+      "date": "2026-11-29",
+      "title": "爆笑！お笑いエンタメライブ in 岐阜",
+      "venue": "ぎふしんフォーラム",
+      "city": "岐阜市",
+      "pref": "岐阜",
+      "status": "open",
+      "src": "eplus_gifu"
+    },
+    {
+      "date": "2026-11-29",
+      "title": "アインシュタイン15周年ツアー「ゲストシュタインin名古屋」",
+      "venue": "御園座",
+      "city": "",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/60308/49250"
+    },
+    {
+      "date": "2026-11-29",
+      "title": "兵動大樹のおしゃべり大好き。48",
+      "venue": "御園座",
+      "city": "",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/54544/45118"
+    },
+    {
+      "date": "2026-12-12",
+      "title": "アブナイ ヨセ 全国ツアー2026",
+      "venue": "ウインクあいち",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "closed",
+      "src": "eplus_aichi"
+    },
+    {
+      "date": "2026-12-12",
+      "title": "アブナイ ヨセ全国ツアー2026「アブナイ ヨセin愛知」",
+      "venue": "ウインクあいち　大ホール",
+      "city": "",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/65579/52585"
+    },
+    {
+      "date": "2026-12-12",
+      "title": "教育おたのしみ会 ～笑いとげんじつ～",
+      "venue": "ウインクあいち",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "eplus_aichi"
+    },
+    {
+      "date": "2026-12-12",
+      "title": "教育おたのしみ会～笑いとげんじつ～【愛知公演】",
+      "venue": "ウインクあいち　大ホール",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/67301/53656"
+    },
+    {
+      "date": "2027-01-08",
+      "title": "最強！ものまねフェス in 名古屋",
+      "venue": "Niterra日本特殊陶業市民会館",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "open",
+      "src": "eplus_aichi"
+    },
+    {
+      "date": "2027-01-30",
+      "title": "THE 柳沢慎吾劇場 日本列島大捜査網",
+      "venue": "Niterra日本特殊陶業市民会館",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "eplus_aichi"
+    },
+    {
+      "date": "2027-01-31",
+      "title": "僕らの別荘 全国ツアー 2026～名古屋～",
+      "venue": "中日ホール",
+      "city": "",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/51131/43106"
+    },
+    {
+      "date": "2027-02-07",
+      "title": "三代目三遊亭百生 落語会",
+      "venue": "東員町総合文化センター",
+      "city": "東員町",
+      "pref": "三重",
+      "status": "soon",
+      "src": "eplus_mie"
+    },
+    {
+      "date": "2027-02-28",
+      "title": "佐久間一行LIVE TOUR2026-2027「30周年コントセレクション」",
+      "venue": "今池ガスホール",
+      "city": "名古屋市",
+      "pref": "愛知",
+      "status": "open",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/62951/50622"
+    }
+  ],
+  "regular_theaters": [
+    {
+      "name": "名古屋よしもと（静かの海／長円寺会館／大須演芸場）",
+      "pref": "愛知",
+      "url": "https://nagoya.yoshimoto.co.jp/schedule/"
+    },
+    {
+      "name": "大須演芸場（中京圏唯一の常設寄席）",
+      "pref": "愛知",
+      "url": "https://www.osuengei.nagoya/vaudeville"
+    }
+  ]
+}
