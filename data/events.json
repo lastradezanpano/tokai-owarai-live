@@ -1,25 +1,15 @@
 {
-  "last_updated": "2026-09-17",
+  "last_updated": "2026-09-18",
   "last_updated_note": "GitHub ActionsでFANY公開検索と既存確認済み情報を更新",
   "artifact_url": "https://claude.ai/artifact/5saz5d5CVZmiU6VrCUBWmu",
   "events": [
-    {
-      "date": "2026-09-17",
-      "title": "ロングコートダディ単独ライブツアー「月光もたらす」",
-      "venue": "名古屋芸術大学アートスクエア　大ホール",
-      "city": "名古屋市",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/61327/49912"
-    },
     {
       "date": "2026-09-18",
       "title": "UDE-DA-MESHI",
       "venue": "静かの海",
       "city": "名古屋市",
       "pref": "愛知",
-      "status": "open",
+      "status": "closed",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/64234/51704"
     },
@@ -29,7 +19,7 @@
       "venue": "名古屋芸術大学アートスクエア　大ホール",
       "city": "名古屋市",
       "pref": "愛知",
-      "status": "open",
+      "status": "closed",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/61327/49914"
     },
@@ -484,6 +474,46 @@
       "pref": "三重",
       "status": "closed",
       "src": "eplus_mie"
+    },
+    {
+      "date": "2026-10-24",
+      "title": "ぎょうぶ×バッテリィズツーマンライブ「おいなり」",
+      "venue": "大須演芸場",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/67694/53855"
+    },
+    {
+      "date": "2026-10-24",
+      "title": "大須よしもとお笑いライブ～ネタとコーナーを楽しむライブ～",
+      "venue": "大須演芸場",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/67697/53856"
+    },
+    {
+      "date": "2026-10-24",
+      "title": "大須よしもとお笑いライブ～ネタとトークを楽しむライブ～",
+      "venue": "大須演芸場",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/67699/53857"
+    },
+    {
+      "date": "2026-10-24",
+      "title": "大須よしもとネタコレクション",
+      "venue": "大須演芸場",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/67689/53854"
     },
     {
       "date": "2026-10-30",
