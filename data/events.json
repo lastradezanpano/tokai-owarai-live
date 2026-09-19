@@ -1,35 +1,15 @@
 {
-  "last_updated": "2026-09-18",
+  "last_updated": "2026-09-19",
   "last_updated_note": "GitHub ActionsでFANY公開検索と既存確認済み情報を更新",
   "artifact_url": "https://claude.ai/artifact/5saz5d5CVZmiU6VrCUBWmu",
   "events": [
-    {
-      "date": "2026-09-18",
-      "title": "UDE-DA-MESHI",
-      "venue": "静かの海",
-      "city": "名古屋市",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/64234/51704"
-    },
-    {
-      "date": "2026-09-18",
-      "title": "ロングコートダディ単独ライブツアー「月光もたらす」",
-      "venue": "名古屋芸術大学アートスクエア　大ホール",
-      "city": "名古屋市",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/61327/49914"
-    },
     {
       "date": "2026-09-19",
       "title": "『はるかぜに告ぐロックンロールツアー！アストロビスタ』",
       "venue": "RAD HALL",
       "city": "名古屋市",
       "pref": "愛知",
-      "status": "open",
+      "status": "closed",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/55599/45942"
     },
@@ -39,7 +19,7 @@
       "venue": "犬山市民文化会館",
       "city": "",
       "pref": "愛知",
-      "status": "open",
+      "status": "closed",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/44345/38617"
     },
@@ -514,6 +494,36 @@
       "status": "soon",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/67689/53854"
+    },
+    {
+      "date": "2026-10-25",
+      "title": "VSなごよし",
+      "venue": "長円寺会館",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/67599/53805"
+    },
+    {
+      "date": "2026-10-25",
+      "title": "コーナーしゃち",
+      "venue": "長円寺会館",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/67593/53803"
+    },
+    {
+      "date": "2026-10-25",
+      "title": "ネタしゃち寄席",
+      "venue": "長円寺会館",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/67587/53801"
     },
     {
       "date": "2026-10-30",
