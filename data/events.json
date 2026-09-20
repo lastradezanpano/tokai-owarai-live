@@ -1,44 +1,15 @@
 {
-  "last_updated": "2026-09-19",
+  "last_updated": "2026-09-20",
   "last_updated_note": "GitHub ActionsでFANY公開検索と既存確認済み情報を更新",
   "artifact_url": "https://claude.ai/artifact/5saz5d5CVZmiU6VrCUBWmu",
   "events": [
-    {
-      "date": "2026-09-19",
-      "title": "『はるかぜに告ぐロックンロールツアー！アストロビスタ』",
-      "venue": "RAD HALL",
-      "city": "名古屋市",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/55599/45942"
-    },
-    {
-      "date": "2026-09-19",
-      "title": "ミキ漫2026全国ツアー　愛知公演",
-      "venue": "犬山市民文化会館",
-      "city": "",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/44345/38617"
-    },
-    {
-      "date": "2026-09-19",
-      "title": "水谷千重子",
-      "venue": "Niterra日本特殊陶業市民会館 フォレストホール",
-      "city": "名古屋市",
-      "pref": "愛知",
-      "status": "unknown",
-      "src": "bushikaku_chubu"
-    },
     {
       "date": "2026-09-20",
       "title": "スペーす単独ライブ「ランデブー」",
       "venue": "静かの海",
       "city": "名古屋市",
       "pref": "愛知",
-      "status": "open",
+      "status": "closed",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/64280/51742"
     },
@@ -48,7 +19,7 @@
       "venue": "静かの海",
       "city": "名古屋市",
       "pref": "愛知",
-      "status": "open",
+      "status": "closed",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/64279/51741"
     },
@@ -67,7 +38,7 @@
       "venue": "静かの海",
       "city": "名古屋市",
       "pref": "愛知",
-      "status": "open",
+      "status": "closed",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/64281/51743"
     },
@@ -77,7 +48,7 @@
       "venue": "御園座",
       "city": "名古屋市",
       "pref": "愛知",
-      "status": "open",
+      "status": "closed",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/57632/47153"
     },
@@ -262,6 +233,56 @@
       "url": "https://ticket.fany.lol/reception/66403/52851"
     },
     {
+      "date": "2026-10-02",
+      "title": "UDE-DA-MESHI",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/68064/54072"
+    },
+    {
+      "date": "2026-10-04",
+      "title": "PAA LIVE vol.10 ～亀裂の大復活祭り～",
+      "venue": "MusicBarPerch",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/68132/54151"
+    },
+    {
+      "date": "2026-10-04",
+      "title": "ちょっとお邪魔していいですか？",
+      "venue": "MusicBarPerch",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/68131/54150"
+    },
+    {
+      "date": "2026-10-04",
+      "title": "ポニーものまね大バズりライブ",
+      "venue": "MusicBarPerch",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/68073/54110"
+    },
+    {
+      "date": "2026-10-04",
+      "title": "異世界 単独ライブ「離世界」",
+      "venue": "MusicBarPerch",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/68130/54149"
+    },
+    {
       "date": "2026-10-05",
       "title": "先着 鳥肌実 名古屋毒炎会「アルゴリズム演説」",
       "venue": "名古屋CLUB QUATTRO",
@@ -341,6 +362,36 @@
     },
     {
       "date": "2026-10-10",
+      "title": "UDE-DA-MESHI",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/68064/54073"
+    },
+    {
+      "date": "2026-10-10",
+      "title": "おばけ 単独ライブ「全部の中の人 」",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/68154/54244"
+    },
+    {
+      "date": "2026-10-10",
+      "title": "なごよしネクストバトル",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/68137/54231"
+    },
+    {
+      "date": "2026-10-10",
       "title": "吉本新喜劇アキと愉快な仲間たちトークライブin名古屋",
       "venue": "東別院テラスホール",
       "city": "",
@@ -360,6 +411,26 @@
       "url": "https://ticket.fany.lol/reception/61535/50211"
     },
     {
+      "date": "2026-10-10",
+      "title": "紅点×天ロクの丘ツーマンライブ「テンテン」",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/68193/54261"
+    },
+    {
+      "date": "2026-10-10",
+      "title": "紅点×天ロクの丘ツーマンライブ「テンテン」 トークライブ",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/68194/54262"
+    },
+    {
       "date": "2026-10-11",
       "title": "ニューヨーク単独ライブ｢ニューヨークの横からシツレ～します！｣",
       "venue": "じゅうろくプラザ　ホール",
@@ -368,6 +439,36 @@
       "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/55719/45993"
+    },
+    {
+      "date": "2026-10-12",
+      "title": "KUWATA SUPER LIVE",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/68156/54246"
+    },
+    {
+      "date": "2026-10-12",
+      "title": "UDE-DA-MESHI",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/68064/54076"
+    },
+    {
+      "date": "2026-10-12",
+      "title": "ネクストメンバー コーナーライブ",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/68155/54248"
     },
     {
       "date": "2026-10-15",
@@ -447,6 +548,16 @@
       "url": "https://ticket.fany.lol/reception/67006/53519"
     },
     {
+      "date": "2026-10-23",
+      "title": "UDE-DA-MESHI",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/68064/54077"
+    },
+    {
       "date": "2026-10-24",
       "title": "立川談春 独演会",
       "venue": "四日市市文化会館",
@@ -471,7 +582,7 @@
       "venue": "大須演芸場",
       "city": "",
       "pref": "愛知",
-      "status": "soon",
+      "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/67697/53856"
     },
@@ -481,7 +592,7 @@
       "venue": "大須演芸場",
       "city": "",
       "pref": "愛知",
-      "status": "soon",
+      "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/67699/53857"
     },
@@ -491,7 +602,7 @@
       "venue": "大須演芸場",
       "city": "",
       "pref": "愛知",
-      "status": "soon",
+      "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/67689/53854"
     },
@@ -501,7 +612,7 @@
       "venue": "長円寺会館",
       "city": "",
       "pref": "愛知",
-      "status": "soon",
+      "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/67599/53805"
     },
@@ -511,7 +622,7 @@
       "venue": "長円寺会館",
       "city": "",
       "pref": "愛知",
-      "status": "soon",
+      "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/67593/53803"
     },
@@ -521,7 +632,7 @@
       "venue": "長円寺会館",
       "city": "",
       "pref": "愛知",
-      "status": "soon",
+      "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/67587/53801"
     },
@@ -534,6 +645,46 @@
       "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/55721/45995"
+    },
+    {
+      "date": "2026-10-31",
+      "title": "UDE-DA-MESHI",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/68064/54078"
+    },
+    {
+      "date": "2026-10-31",
+      "title": "もりのくまさん 単独ライブ「カヨウビにピース！」",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/68158/54247"
+    },
+    {
+      "date": "2026-10-31",
+      "title": "ペニックス 単独ライブ「ペニる。」",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/68157/54249"
+    },
+    {
+      "date": "2026-10-31",
+      "title": "刻めダカタ 単独ライブ「秋 秋 TRAIN」",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/68159/54245"
     },
     {
       "date": "2026-11-13",
@@ -551,7 +702,7 @@
       "venue": "Zepp Nagoya",
       "city": "",
       "pref": "愛知",
-      "status": "soon",
+      "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/67206/53599"
     },
@@ -763,7 +914,7 @@
       "venue": "ウインクあいち　大ホール",
       "city": "",
       "pref": "愛知",
-      "status": "soon",
+      "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/67301/53656"
     },
