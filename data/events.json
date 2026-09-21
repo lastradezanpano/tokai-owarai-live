@@ -1,47 +1,8 @@
 {
-  "last_updated": "2026-09-20",
+  "last_updated": "2026-09-21",
   "last_updated_note": "GitHub ActionsでFANY公開検索と既存確認済み情報を更新",
   "artifact_url": "https://claude.ai/artifact/5saz5d5CVZmiU6VrCUBWmu",
   "events": [
-    {
-      "date": "2026-09-20",
-      "title": "スペーす単独ライブ「ランデブー」",
-      "venue": "静かの海",
-      "city": "名古屋市",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/64280/51742"
-    },
-    {
-      "date": "2026-09-20",
-      "title": "ネクストメンバーコーナーライブ",
-      "venue": "静かの海",
-      "city": "名古屋市",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/64279/51741"
-    },
-    {
-      "date": "2026-09-20",
-      "title": "先着 爆笑！お笑いライブ in 安城",
-      "venue": "安城市民会館 サルビアホール",
-      "city": "安城市",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "eplus_aichi"
-    },
-    {
-      "date": "2026-09-20",
-      "title": "漫才賞レース直前！UDE-DA-MESHI なごよし芸人SP",
-      "venue": "静かの海",
-      "city": "名古屋市",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/64281/51743"
-    },
     {
       "date": "2026-09-21",
       "title": "山里亮太の140 愛知公演～逃げ上手の不如帰～",
@@ -58,7 +19,7 @@
       "venue": "メニコンシアターAoi",
       "city": "名古屋市",
       "pref": "愛知",
-      "status": "open",
+      "status": "closed",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/56121/46247"
     },
@@ -533,7 +494,7 @@
       "venue": "ミッドランドスクエアシネマ２スクリーン８",
       "city": "",
       "pref": "愛知",
-      "status": "soon",
+      "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/66992/53482"
     },
@@ -543,7 +504,7 @@
       "venue": "ミッドランドスクエアシネマ２スクリーン８",
       "city": "",
       "pref": "愛知",
-      "status": "soon",
+      "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/67006/53519"
     },
