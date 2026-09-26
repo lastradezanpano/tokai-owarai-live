@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-25",
+  "last_updated": "2026-09-26",
   "last_updated_note": "GitHub ActionsでFANY公開検索と既存確認済み情報を更新",
   "artifact_url": "https://claude.ai/artifact/5saz5d5CVZmiU6VrCUBWmu",
   "events": [
@@ -9,7 +9,7 @@
       "venue": "大須演芸場",
       "city": "名古屋市",
       "pref": "愛知",
-      "status": "open",
+      "status": "closed",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/58179/47723"
     },
@@ -19,7 +19,7 @@
       "venue": "静かの海",
       "city": "名古屋市",
       "pref": "愛知",
-      "status": "open",
+      "status": "closed",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/64234/51706"
     },
@@ -29,7 +29,7 @@
       "venue": "静かの海",
       "city": "名古屋市",
       "pref": "愛知",
-      "status": "open",
+      "status": "closed",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/64314/51768"
     },
@@ -39,7 +39,7 @@
       "venue": "静かの海",
       "city": "名古屋市",
       "pref": "愛知",
-      "status": "open",
+      "status": "closed",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/64315/51770"
     },
@@ -49,7 +49,7 @@
       "venue": "今池ガスホール",
       "city": "",
       "pref": "愛知",
-      "status": "open",
+      "status": "closed",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/60191/49002"
     },
@@ -59,7 +59,7 @@
       "venue": "大須演芸場",
       "city": "",
       "pref": "愛知",
-      "status": "open",
+      "status": "closed",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/62771/50556"
     },
@@ -69,7 +69,7 @@
       "venue": "大須演芸場",
       "city": "名古屋市",
       "pref": "愛知",
-      "status": "open",
+      "status": "closed",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/65007/52426"
     },
@@ -79,7 +79,7 @@
       "venue": "大須演芸場",
       "city": "",
       "pref": "愛知",
-      "status": "open",
+      "status": "closed",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/59785/48368"
     },
@@ -89,7 +89,7 @@
       "venue": "静かの海",
       "city": "名古屋市",
       "pref": "愛知",
-      "status": "open",
+      "status": "closed",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/64316/51769"
     },
@@ -702,6 +702,16 @@
       "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/67489/53737"
+    },
+    {
+      "date": "2026-11-23",
+      "title": "西田どらやきの怪研部 感謝ダーツの旅 4本目「岐阜」",
+      "venue": "みんなの森 ぎふﾒﾃﾞｨｱｺｽﾓｽ みんなのﾎｰﾙ",
+      "city": "",
+      "pref": "岐阜",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/68550/54517"
     },
     {
       "date": "2026-11-23",
