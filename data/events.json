@@ -1,105 +1,15 @@
 {
-  "last_updated": "2026-09-26",
+  "last_updated": "2026-09-27",
   "last_updated_note": "GitHub ActionsでFANY公開検索と既存確認済み情報を更新",
   "artifact_url": "https://claude.ai/artifact/5saz5d5CVZmiU6VrCUBWmu",
   "events": [
-    {
-      "date": "2026-09-26",
-      "title": "CITY LIVE TOUR 2026「EXPLORE THE CITY」名古屋公演",
-      "venue": "大須演芸場",
-      "city": "名古屋市",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/58179/47723"
-    },
-    {
-      "date": "2026-09-26",
-      "title": "UDE-DA-MESHI",
-      "venue": "静かの海",
-      "city": "名古屋市",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/64234/51706"
-    },
-    {
-      "date": "2026-09-26",
-      "title": "なごよしチャレンジバトル",
-      "venue": "静かの海",
-      "city": "名古屋市",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/64314/51768"
-    },
-    {
-      "date": "2026-09-26",
-      "title": "もさもさ子単独ライブ「ぴかぴか」",
-      "venue": "静かの海",
-      "city": "名古屋市",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/64315/51770"
-    },
-    {
-      "date": "2026-09-26",
-      "title": "トット漫才全国ツアー「一路漫進」 名古屋公演",
-      "venue": "今池ガスホール",
-      "city": "",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/60191/49002"
-    },
-    {
-      "date": "2026-09-26",
-      "title": "吉田たち名古屋単独ライブ『吉田たちのエビフライ漫才』",
-      "venue": "大須演芸場",
-      "city": "",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/62771/50556"
-    },
-    {
-      "date": "2026-09-26",
-      "title": "大須でコントっす！",
-      "venue": "大須演芸場",
-      "city": "名古屋市",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/65007/52426"
-    },
-    {
-      "date": "2026-09-26",
-      "title": "第5回 単独ライブ 「馬場園 秋のネタ祭り2026」",
-      "venue": "大須演芸場",
-      "city": "",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/59785/48368"
-    },
-    {
-      "date": "2026-09-26",
-      "title": "絶対楽しいライブ",
-      "venue": "静かの海",
-      "city": "名古屋市",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/64316/51769"
-    },
     {
       "date": "2026-09-27",
       "title": "VSなごよし",
       "venue": "長円寺会館",
       "city": "名古屋市",
       "pref": "愛知",
-      "status": "open",
+      "status": "closed",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/63833/51206"
     },
@@ -109,7 +19,7 @@
       "venue": "長円寺会館",
       "city": "名古屋市",
       "pref": "愛知",
-      "status": "open",
+      "status": "closed",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/63832/51205"
     },
@@ -119,7 +29,7 @@
       "venue": "長円寺会館",
       "city": "名古屋市",
       "pref": "愛知",
-      "status": "open",
+      "status": "closed",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/63828/51204"
     },
