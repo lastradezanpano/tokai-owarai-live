@@ -1,38 +1,8 @@
 {
-  "last_updated": "2026-09-27",
+  "last_updated": "2026-09-28",
   "last_updated_note": "GitHub ActionsでFANY公開検索と既存確認済み情報を更新",
   "artifact_url": "https://claude.ai/artifact/5saz5d5CVZmiU6VrCUBWmu",
   "events": [
-    {
-      "date": "2026-09-27",
-      "title": "VSなごよし",
-      "venue": "長円寺会館",
-      "city": "名古屋市",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/63833/51206"
-    },
-    {
-      "date": "2026-09-27",
-      "title": "コーナーしゃち",
-      "venue": "長円寺会館",
-      "city": "名古屋市",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/63832/51205"
-    },
-    {
-      "date": "2026-09-27",
-      "title": "ネタしゃち寄席",
-      "venue": "長円寺会館",
-      "city": "名古屋市",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/63828/51204"
-    },
     {
       "date": "2026-09-29",
       "title": "ピュートと名古屋よしもと若手芸人コーナーライブ",
@@ -403,7 +373,7 @@
       "venue": "大須演芸場",
       "city": "",
       "pref": "愛知",
-      "status": "soon",
+      "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/67694/53855"
     },
