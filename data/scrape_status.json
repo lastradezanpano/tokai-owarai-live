@@ -13,13 +13,13 @@
     },
     "イープラス": {
       "ok": true,
-      "count": 18,
+      "count": 1,
       "error": null
     },
     "ローソンチケット": {
       "ok": false,
       "count": 0,
-      "error": "Error: Page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://l-tike.com/search/?tig=240&pref=21%2C23%2C24\nCall log:\n  - navigating to \"https://l-tike.com/search/?tig=240&pref=21%2C23%2C24\", waiting until \"domcontentloaded\"\n"
+      "error": "TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://l-tike.com/search/?tig=240&pref=21%2C23%2C24\", waiting until \"domcontentloaded\"\n"
     }
   }
 }
