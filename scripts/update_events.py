@@ -1,8 +1,13 @@
 #!/usr/bin/env python3
-"""FANYの公開検索APIとバス比較なびから東海3県のお笑い公演を更新する。
+"""FANY・バス比較なび・イープラス・ローソンチケットから東海3県のお笑い公演を更新する。
 
-イープラス・チケットぴあは、単純なHTTPリクエストではbot対策(503)や
-安定した一覧URLの不在によりCIから自動取得できないため対象外。
+イープラス・ローソンチケットは単純なHTTPリクエストだとbot対策で
+ブロックされる(HTTP 503 / タイムアウト・強制切断)ため、Playwrightで
+実際のChromiumを起動して取得する。playwrightが使えない環境
+(ローカルでのテスト等)では警告を出してその2件をスキップする。
+
+チケットぴあは、ジャンル×都道府県で絞り込める安定した一覧URLが
+見つかっていないため引き続き対象外(手動でClaudeに調査を依頼する運用)。
 """
 
 from __future__ import annotations
@@ -29,6 +34,32 @@ BROWSER_HEADERS = {
         "(KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
     )
 }
+
+EPLUS_PREFS = {"aichi": "愛知", "gifu": "岐阜", "mie": "三重"}
+LTIKE_URL = "https://l-tike.com/search/?tig=240&pref=21%2C23%2C24"
+LTIKE_PREF_BY_KEYWORD = {"愛知": "愛知", "岐阜": "岐阜", "三重": "三重"}
+
+
+def _get_browser_html(url: str) -> str | None:
+    """Playwrightで実ブラウザを起動してレンダリング済みHTMLを取得する。
+
+    playwrightが利用できない(未インストール)環境ではNoneを返し、
+    呼び出し側でそのソースの取得をスキップできるようにする。
+    """
+    try:
+        from playwright.sync_api import sync_playwright
+    except ImportError:
+        print(f"[warn] playwright未インストールのためスキップ: {url}")
+        return None
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        try:
+            page = browser.new_page(user_agent=BROWSER_HEADERS["User-Agent"])
+            page.goto(url, wait_until="networkidle", timeout=45000)
+            html = page.content()
+        finally:
+            browser.close()
+    return html
 
 
 def fetch_page(pref_code: str, offset: int) -> list[dict]:
@@ -163,6 +194,132 @@ def fetch_bushikaku(slug: str) -> list[dict]:
     return results
 
 
+EPLUS_ITEM_RE = re.compile(
+    r'<a class="ticket-item ticket-item--kouen" href="([^"]*)">(.*?)</a>\s*(?=<a class="ticket-item|$)',
+    re.DOTALL,
+)
+EPLUS_YYYY_RE = re.compile(r'ticket-item__yyyy">([^<]*)<')
+EPLUS_MMDD_RE = re.compile(r'ticket-item__mmdd">([^<]*)<')
+EPLUS_TITLE_RE = re.compile(r'ticket-item__title">(.*?)</h3>', re.DOTALL)
+EPLUS_VENUE_RE = re.compile(r'ticket-item__venue">\s*<p>(.*?)</p>', re.DOTALL)
+EPLUS_STATUS_RE = re.compile(r'ticket-status__item[^"]*">([^<]*)<')
+
+
+def fetch_eplus(pref_slug: str) -> list[dict]:
+    url = f"https://eplus.jp/sf/play/comedy/{pref_slug}"
+    html = _get_browser_html(url)
+    if html is None:
+        return []
+    results = []
+    for match in EPLUS_ITEM_RE.finditer(html):
+        href, body = match.group(1), match.group(2)
+        yyyy_match = EPLUS_YYYY_RE.search(body)
+        mmdd_match = EPLUS_MMDD_RE.search(body)
+        title_match = EPLUS_TITLE_RE.search(body)
+        venue_match = EPLUS_VENUE_RE.search(body)
+        if not (yyyy_match and mmdd_match and title_match and venue_match):
+            continue
+        md = re.match(r"(\d{1,2})/(\d{1,2})", mmdd_match.group(1))
+        if not md:
+            continue
+        year = yyyy_match.group(1).strip("/")
+        date = f"{year}-{int(md.group(1)):02d}-{int(md.group(2)):02d}"
+        status_match = EPLUS_STATUS_RE.search(body)
+        status_text = status_match.group(1) if status_match else ""
+        if "受付中" in status_text or "発売中" in status_text:
+            status = "open"
+        elif "受付前" in status_text or "発売前" in status_text:
+            status = "soon"
+        elif "終了" in status_text or "完売" in status_text:
+            status = "closed"
+        else:
+            status = "unknown"
+        results.append({
+            "title": _clean_text(title_match.group(1)),
+            "date": date,
+            "venue": re.sub(r"[（(](?:岐阜|愛知|三重)県[）)]$", "", _clean_text(venue_match.group(1))),
+            "status": status,
+            "url": urllib.parse.urljoin(url, href),
+        })
+    return results
+
+
+def normalize_eplus(raw: dict, pref: str) -> dict | None:
+    title = raw["title"].strip()
+    if not title or any(word in title for word in EXCLUDED_WORDS):
+        return None
+    return {
+        "date": raw["date"], "title": title, "venue": raw["venue"],
+        "city": "", "pref": pref, "status": raw["status"],
+        "src": f"eplus_{ {'愛知': 'aichi', '岐阜': 'gifu', '三重': 'mie'}[pref] }",
+        "url": raw["url"],
+    }
+
+
+LTIKE_ITEM_RE = re.compile(
+    r'<div class="ResultBox boxContents prfSummaryItem[^"]*"[^>]*>(.*?)'
+    r'(?=<div class="ResultBox boxContents prfSummaryItem[^"]*"|$)',
+    re.DOTALL,
+)
+LTIKE_TITLE_RE = re.compile(r'ResultBox__title">([^<]*)<')
+LTIKE_VENUE_RE = re.compile(r'会場：</dt>\s*<dt class="ResultBox__informationText">([^<]*)<')
+LTIKE_LCODE_RE = re.compile(r'data-lcode="(\d+)"')
+LTIKE_PRFDATE_RE = re.compile(r'data-prfdate="(\d{8})')  # 複数日公演はカンマ区切りのため先頭日のみ取得
+LTIKE_STATUS_RE = re.compile(r'ResultBox__status[^"]*">\s*([^<]*)<')
+
+
+def fetch_ltike() -> list[dict]:
+    html = _get_browser_html(LTIKE_URL)
+    if html is None:
+        return []
+    results = []
+    for match in LTIKE_ITEM_RE.finditer(html):
+        block = match.group(1)
+        title_match = LTIKE_TITLE_RE.search(block)
+        venue_match = LTIKE_VENUE_RE.search(block)
+        lcode_match = LTIKE_LCODE_RE.search(block)
+        prfdate_match = LTIKE_PRFDATE_RE.search(block)
+        if not (title_match and venue_match and lcode_match and prfdate_match):
+            continue
+        d = prfdate_match.group(1)
+        date = f"{d[0:4]}-{d[4:6]}-{d[6:8]}"
+        venue_raw = venue_match.group(1).strip()
+        pref = next((p for kw, p in LTIKE_PREF_BY_KEYWORD.items() if kw in venue_raw), "")
+        if not pref:
+            continue
+        venue = re.sub(r"[（(](?:岐阜|愛知|三重)県[）)]$", "", venue_raw).strip()
+        status_match = LTIKE_STATUS_RE.search(block)
+        status_text = status_match.group(1).strip() if status_match else ""
+        if "受付中" in status_text or "発売中" in status_text:
+            status = "open"
+        elif "受付前" in status_text or "発売前" in status_text:
+            status = "soon"
+        elif "終了" in status_text or "完売" in status_text:
+            status = "closed"
+        else:
+            status = "unknown"
+        results.append({
+            "title": _clean_text(title_match.group(1)),
+            "date": date,
+            "venue": venue,
+            "pref": pref,
+            "status": status,
+            "url": f"https://l-tike.com/order/?gLcode={lcode_match.group(1)}",
+        })
+    return results
+
+
+def normalize_ltike(raw: dict) -> dict | None:
+    title = raw["title"].strip()
+    if not title or any(word in title for word in EXCLUDED_WORDS):
+        return None
+    return {
+        "date": raw["date"], "title": title, "venue": raw["venue"],
+        "city": "", "pref": raw["pref"], "status": raw["status"],
+        "src": "ltike", "url": raw["url"],
+    }
+
+
 _TITLE_NOISE_RE = re.compile(r"[\s!！「」『』～〜\-ー]")
 
 
@@ -193,30 +350,34 @@ def main() -> None:
         (e.get("date", ""), e.get("title", "")): e.get("city", "")
         for e in existing if e.get("src") == "fany_ticket"
     }
-    auto_sources = {"fany_ticket", "bushikaku_chubu"}
+    auto_sources = {
+        "fany_ticket", "bushikaku_chubu",
+        "eplus_aichi", "eplus_gifu", "eplus_mie", "ltike",
+    }
     retained = [
         e for e in existing
         if e.get("src") not in auto_sources and e.get("date", "") >= today
     ]
-    fany_events = []
-    for code, pref in PREFS.items():
-        for performance in fetch_all(code):
-            event = normalize(performance, pref, old_cities)
-            if event and event["date"] >= today:
-                fany_events.append(event)
     retained_by_date: dict[str, list[str]] = {}
     for e in retained:
         retained_by_date.setdefault(e["date"], []).append(_title_key(e["title"]))
 
     def is_duplicate_of_retained(event: dict) -> bool:
-        # イープラス等、既により良い情報源で同じ日付・同一公演らしきものが
-        # 登録済みなら、タイトル表記の揺れ(記号・スペース・省略)による
+        # チケットぴあ等、既に手動で登録済みの情報と同じ日付・同一公演らしき
+        # ものがあれば、タイトル表記の揺れ(記号・スペース・省略)による
         # 重複カード化を避けるため部分一致でスキップする。
         key = _title_key(event["title"])
         for other in retained_by_date.get(event["date"], []):
             if len(key) >= 3 and len(other) >= 3 and (key in other or other in key):
                 return True
         return False
+
+    fany_events = []
+    for code, pref in PREFS.items():
+        for performance in fetch_all(code):
+            event = normalize(performance, pref, old_cities)
+            if event and event["date"] >= today:
+                fany_events.append(event)
 
     bushikaku_events = []
     for slug, pref in BUSHIKAKU_PREFS.items():
@@ -227,11 +388,34 @@ def main() -> None:
             if is_duplicate_of_retained(event):
                 continue
             bushikaku_events.append(event)
+
+    eplus_events = []
+    for slug, pref in EPLUS_PREFS.items():
+        for raw in fetch_eplus(slug):
+            event = normalize_eplus(raw, pref)
+            if not event or event["date"] < today:
+                continue
+            if is_duplicate_of_retained(event):
+                continue
+            eplus_events.append(event)
+
+    ltike_events = []
+    for raw in fetch_ltike():
+        event = normalize_ltike(raw)
+        if not event or event["date"] < today:
+            continue
+        if is_duplicate_of_retained(event):
+            continue
+        ltike_events.append(event)
+
     unique = {}
-    for event in retained + fany_events + bushikaku_events:
+    for event in retained + fany_events + bushikaku_events + eplus_events + ltike_events:
         unique[(event["date"], event["title"], event["venue"])] = event
     data["last_updated"] = today
-    data["last_updated_note"] = "GitHub ActionsでFANY公開検索・バス比較なびと既存確認済み情報を更新"
+    data["last_updated_note"] = (
+        "GitHub ActionsでFANY・バス比較なび・イープラス・ローソンチケットと"
+        "既存確認済み情報を更新"
+    )
     data["events"] = sorted(
         unique.values(),
         key=lambda e: (e.get("date", ""), e.get("pref", ""), e.get("title", "")),
@@ -241,7 +425,8 @@ def main() -> None:
     )
     print(
         f"updated {len(data['events'])} events "
-        f"({len(fany_events)} from FANY, {len(bushikaku_events)} from bushikaku)"
+        f"({len(fany_events)} FANY, {len(bushikaku_events)} bushikaku, "
+        f"{len(eplus_events)} eplus, {len(ltike_events)} ltike)"
     )
 
 

@@ -88,3 +88,17 @@
 - `scripts/update_events.py`に`fetch_bushikaku`/`normalize_bushikaku`を追加し、`src: "bushikaku_chubu"`の公演を毎日自動更新する対象に組み込んだ。タイトル表記の揺れ（記号・スペース・省略）でイープラス等の既存情報と重複カード化しないよう、部分一致による重複排除も実装。
 - ローカルで実データに対しテスト実行し、愛知9件・岐阜3件・三重0件を正しく取得、重複排除後2件が新規追加されることを確認（既存情報と重なる分は自動的にスキップされる）。
 - SETUP.md/README.mdを更新し、自動更新される範囲（FANY・バス比較なび）とされない範囲（イープラス・チケットぴあ、理由付き）を明記。
+
+## 2026-09-29 Playwright導入でイープラス・ローソンチケットも自動化
+
+- ユーザーの了承を得てPlaywright(Chromium)導入を試行。
+- 実ブラウザ(Claude Browser)でeplus.jp・l-tike.comのDOM構造を調査し、以下を確認:
+  - イープラス: `<a class="ticket-item ticket-item--kouen" href="...">` 形式のカードで日付(yyyy/mmdd別span)・タイトル・会場・受付状況が構造化されている。
+  - ローソンチケット: `<div class="ResultBox boxContents prfSummaryItem">` 形式のカードで、購入ボタンの`data-lcode`(Lコード)と`data-prfdate`(YYYYMMDD)から個別URL・日付を直接取得できる。
+- `scripts/update_events.py`に`_get_browser_html`(Playwright起動、未インストール時はNoneを返し警告のみでスキップ)、`fetch_eplus`/`normalize_eplus`、`fetch_ltike`/`normalize_ltike`を追加。
+- 実装中に発見した2つのバグを修正:
+  - ローソンチケットの偶数番目カードには`class="ResultBox boxContents prfSummaryItem evenNumber"`と余分なクラスが付き、厳密一致の正規表現だと奇数番目しか拾えていなかった（19件中8件→修正後19件）。
+  - 複数日程公演は`data-prfdate="20261008,20261009"`のようにカンマ区切りになっており、8桁固定の正規表現では抽出に失敗していた（先頭日のみ取得する形に修正）。
+- Claude Browserで取得した実HTMLを保存してパースロジックをローカル検証（Playwright自体はpip install制限によりローカル実行不可のため、実データでの最終確認はGitHub Actions上で行う）。
+- ワークフローに`pip install playwright && playwright install --with-deps chromium`を追加。イープラス・ローソンチケットの担当を`auto_sources`に組み込み、手動データ(`retained`)はチケットぴあ分のみに縮小。
+- SETUP.md/README.mdを更新し、Playwright導入の理由と、bot対策強化で再びブロックされた場合の対処方針を明記。
