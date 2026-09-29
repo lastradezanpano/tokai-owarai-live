@@ -1,0 +1,25 @@
+{
+  "checked_at": "2026-09-29",
+  "sources": {
+    "FANY": {
+      "ok": true,
+      "count": 65,
+      "error": null
+    },
+    "バス比較なび": {
+      "ok": true,
+      "count": 12,
+      "error": null
+    },
+    "イープラス": {
+      "ok": true,
+      "count": 18,
+      "error": null
+    },
+    "ローソンチケット": {
+      "ok": false,
+      "count": 0,
+      "error": "Error: Page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://l-tike.com/search/?tig=240&pref=21%2C23%2C24\nCall log:\n  - navigating to \"https://l-tike.com/search/?tig=240&pref=21%2C23%2C24\", waiting until \"domcontentloaded\"\n"
+    }
+  }
+}
