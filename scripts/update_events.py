@@ -426,19 +426,25 @@ def main() -> None:
     fany_events, fany_ok = _run_source("FANY", fetch_fany_all, diagnostics)
     bushikaku_events, bushikaku_ok = _run_source("バス比較なび", fetch_bushikaku_all, diagnostics)
     eplus_events, eplus_ok = _run_source("イープラス", fetch_eplus_all, diagnostics)
-    ltike_events, ltike_ok = _run_source("ローソンチケット", fetch_ltike_all, diagnostics)
-    # イープラス・ローソンチケットはbot対策で無言のまま0件になり得る
-    # (Playwright未インストール、bot検知でブロック等、例外を投げない失敗)。
-    # 愛知・岐阜・三重3県合計で0件は現実的にまず起きないので、0件は
-    # 「取得失敗」とみなして既存データを上書きしない安全側に倒す。
+    # ローソンチケットは2026-09-29に自動化を断念(詳細はSETUP.md参照)。
+    # Playwright+HTTP/2無効化+リトライでも net::ERR_HTTP2_PROTOCOL_ERROR が
+    # 再現し、同条件でイープラスは成功しているためブラウザ側の問題ではなく
+    # GitHub Actionsのクラウド上のIPアドレス自体を相手側がネットワーク
+    # レベルでブロックしていると判断した。fetch_ltike自体は温存してあるので
+    # 状況が変われば呼び出しを復活させればよい。
+    ltike_events: list[dict] = []
+    ltike_ok = False
+    diagnostics["ローソンチケット"] = {
+        "ok": False, "count": 0,
+        "error": "自動化を断念(2026-09-29): net::ERR_HTTP2_PROTOCOL_ERRORが解消せずIPブロックと判断。詳細はSETUP.md参照",
+    }
+    # イープラスはbot対策で無言のまま0件になり得る(bot検知でブロックされ
+    # ても例外を投げないことがある)。愛知・岐阜・三重3県合計で0件は現実的
+    # にまず起きないので、0件は「取得失敗」とみなして既存データを維持する。
     if eplus_ok and not eplus_events:
         print("[warn] イープラス: 0件のため取得失敗とみなし既存データを維持")
         eplus_ok = False
         diagnostics["イープラス"] = {"ok": False, "count": 0, "error": "0件(bot対策等でブロックされた可能性)"}
-    if ltike_ok and not ltike_events:
-        print("[warn] ローソンチケット: 0件のため取得失敗とみなし既存データを維持")
-        ltike_ok = False
-        diagnostics["ローソンチケット"] = {"ok": False, "count": 0, "error": "0件(bot対策等でブロックされた可能性)"}
 
     diagnostics_path = ROOT / "data" / "scrape_status.json"
     diagnostics_path.write_text(

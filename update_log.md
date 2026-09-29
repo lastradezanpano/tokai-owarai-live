@@ -102,3 +102,11 @@
 - Claude Browserで取得した実HTMLを保存してパースロジックをローカル検証（Playwright自体はpip install制限によりローカル実行不可のため、実データでの最終確認はGitHub Actions上で行う）。
 - ワークフローに`pip install playwright && playwright install --with-deps chromium`を追加。イープラス・ローソンチケットの担当を`auto_sources`に組み込み、手動データ(`retained`)はチケットぴあ分のみに縮小。
 - SETUP.md/README.mdを更新し、Playwright導入の理由と、bot対策強化で再びブロックされた場合の対処方針を明記。
+
+## 2026-09-29 ローソンチケットの自動化を断念、イープラスは自動化成功で確定
+
+- HTTP/2無効化+リトライを追加してpushしたが、`net::ERR_HTTP2_PROTOCOL_ERROR`が再現（scrape_status.jsonで確認）。同一コードでイープラスは18件取得に成功しているため、Playwrightの設定ではなくGitHub ActionsのクラウドIPアドレス自体をローソンチケット側がネットワークレベルでブロックしていると判断。
+- ユーザーと相談し、ローソンチケットは自動化対象外のまま運用を続けることで合意。
+- `scripts/update_events.py`の`main()`から`fetch_ltike`の呼び出しを外し、`ltike`は常に「自動化を断念」の診断メッセージを記録する形に変更(関数自体は将来の再挑戦に備えて残してある)。
+- 最終状態: FANY・バス比較なび・イープラスの3ソースが自動更新。チケットぴあ・ローソンチケットは手動収集/対象外。
+- SETUP.md/README.mdを最終状態に合わせて更新。
