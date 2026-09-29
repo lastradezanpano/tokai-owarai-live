@@ -55,7 +55,10 @@ def _get_browser_html(url: str) -> str | None:
         browser = p.chromium.launch()
         try:
             page = browser.new_page(user_agent=BROWSER_HEADERS["User-Agent"])
-            page.goto(url, wait_until="networkidle", timeout=45000)
+            # "networkidle"はアナリティクス等の常時通信でタイムアウトしやすいため、
+            # DOM構築完了を待ってから固定時間だけ追加待機する方式にする。
+            page.goto(url, wait_until="domcontentloaded", timeout=30000)
+            page.wait_for_timeout(3000)
             html = page.content()
         finally:
             browser.close()
@@ -341,6 +344,21 @@ def normalize_bushikaku(raw: dict, pref: str) -> dict | None:
     return event
 
 
+def _run_source(label: str, fetch_fn) -> tuple[list[dict], bool]:
+    """1情報源の取得を実行する。例外が起きても他ソースを巻き込まない。
+
+    戻り値の2つ目はこの取得が成功したかどうか。失敗した場合、
+    呼び出し側は既存データを温存し、誤って全消去しないようにする。
+    """
+    try:
+        events = fetch_fn()
+        print(f"[ok] {label}: {len(events)}件取得")
+        return events, True
+    except Exception as exc:  # noqa: BLE001 - 1ソースの失敗で全体を止めない
+        print(f"[warn] {label}の取得に失敗したためスキップ: {exc!r}")
+        return [], False
+
+
 def main() -> None:
     jst = timezone(timedelta(hours=9))
     today = datetime.now(jst).date().isoformat()
@@ -350,71 +368,102 @@ def main() -> None:
         (e.get("date", ""), e.get("title", "")): e.get("city", "")
         for e in existing if e.get("src") == "fany_ticket"
     }
-    auto_sources = {
-        "fany_ticket", "bushikaku_chubu",
-        "eplus_aichi", "eplus_gifu", "eplus_mie", "ltike",
-    }
+
+    def fetch_fany_all() -> list[dict]:
+        out = []
+        for code, pref in PREFS.items():
+            for performance in fetch_all(code):
+                event = normalize(performance, pref, old_cities)
+                if event and event["date"] >= today:
+                    out.append(event)
+        return out
+
+    def fetch_bushikaku_all() -> list[dict]:
+        out = []
+        for slug, pref in BUSHIKAKU_PREFS.items():
+            for raw in fetch_bushikaku(slug):
+                event = normalize_bushikaku(raw, pref)
+                if event and event["date"] >= today:
+                    out.append(event)
+        return out
+
+    def fetch_eplus_all() -> list[dict]:
+        out = []
+        for slug, pref in EPLUS_PREFS.items():
+            for raw in fetch_eplus(slug):
+                event = normalize_eplus(raw, pref)
+                if event and event["date"] >= today:
+                    out.append(event)
+        return out
+
+    def fetch_ltike_all() -> list[dict]:
+        out = []
+        for raw in fetch_ltike():
+            event = normalize_ltike(raw)
+            if event and event["date"] >= today:
+                out.append(event)
+        return out
+
+    fany_events, fany_ok = _run_source("FANY", fetch_fany_all)
+    bushikaku_events, bushikaku_ok = _run_source("バス比較なび", fetch_bushikaku_all)
+    eplus_events, eplus_ok = _run_source("イープラス", fetch_eplus_all)
+    ltike_events, ltike_ok = _run_source("ローソンチケット", fetch_ltike_all)
+    # イープラス・ローソンチケットはbot対策で無言のまま0件になり得る
+    # (Playwright未インストール、bot検知でブロック等、例外を投げない失敗)。
+    # 愛知・岐阜・三重3県合計で0件は現実的にまず起きないので、0件は
+    # 「取得失敗」とみなして既存データを上書きしない安全側に倒す。
+    if eplus_ok and not eplus_events:
+        print("[warn] イープラス: 0件のため取得失敗とみなし既存データを維持")
+        eplus_ok = False
+    if ltike_ok and not ltike_events:
+        print("[warn] ローソンチケット: 0件のため取得失敗とみなし既存データを維持")
+        ltike_ok = False
+
+    # 取得に成功したソースの既存データだけを入れ替え対象にする。失敗した
+    # ソース(bot対策強化やサイト構造変更等)は既存データをそのまま温存し、
+    # 手動収集分(チケットぴあ等)と合わせて残す。
+    replaced_sources = set()
+    if fany_ok:
+        replaced_sources.add("fany_ticket")
+    if bushikaku_ok:
+        replaced_sources.add("bushikaku_chubu")
+    if eplus_ok:
+        replaced_sources.update({"eplus_aichi", "eplus_gifu", "eplus_mie"})
+    if ltike_ok:
+        replaced_sources.add("ltike")
+
     retained = [
         e for e in existing
-        if e.get("src") not in auto_sources and e.get("date", "") >= today
+        if e.get("src") not in replaced_sources and e.get("date", "") >= today
     ]
     retained_by_date: dict[str, list[str]] = {}
     for e in retained:
         retained_by_date.setdefault(e["date"], []).append(_title_key(e["title"]))
 
     def is_duplicate_of_retained(event: dict) -> bool:
-        # チケットぴあ等、既に手動で登録済みの情報と同じ日付・同一公演らしき
-        # ものがあれば、タイトル表記の揺れ(記号・スペース・省略)による
-        # 重複カード化を避けるため部分一致でスキップする。
+        # 手動収集分(チケットぴあ等)や取得失敗で温存した分と同じ日付・
+        # 同一公演らしきものがあれば、タイトル表記の揺れ(記号・スペース・
+        # 省略)による重複カード化を避けるため部分一致でスキップする。
         key = _title_key(event["title"])
         for other in retained_by_date.get(event["date"], []):
             if len(key) >= 3 and len(other) >= 3 and (key in other or other in key):
                 return True
         return False
 
-    fany_events = []
-    for code, pref in PREFS.items():
-        for performance in fetch_all(code):
-            event = normalize(performance, pref, old_cities)
-            if event and event["date"] >= today:
-                fany_events.append(event)
-
-    bushikaku_events = []
-    for slug, pref in BUSHIKAKU_PREFS.items():
-        for raw in fetch_bushikaku(slug):
-            event = normalize_bushikaku(raw, pref)
-            if not event or event["date"] < today:
-                continue
-            if is_duplicate_of_retained(event):
-                continue
-            bushikaku_events.append(event)
-
-    eplus_events = []
-    for slug, pref in EPLUS_PREFS.items():
-        for raw in fetch_eplus(slug):
-            event = normalize_eplus(raw, pref)
-            if not event or event["date"] < today:
-                continue
-            if is_duplicate_of_retained(event):
-                continue
-            eplus_events.append(event)
-
-    ltike_events = []
-    for raw in fetch_ltike():
-        event = normalize_ltike(raw)
-        if not event or event["date"] < today:
-            continue
-        if is_duplicate_of_retained(event):
-            continue
-        ltike_events.append(event)
+    new_events = [
+        e for e in fany_events + bushikaku_events + eplus_events + ltike_events
+        if not is_duplicate_of_retained(e)
+    ]
 
     unique = {}
-    for event in retained + fany_events + bushikaku_events + eplus_events + ltike_events:
+    for event in retained + new_events:
         unique[(event["date"], event["title"], event["venue"])] = event
     data["last_updated"] = today
     data["last_updated_note"] = (
         "GitHub ActionsでFANY・バス比較なび・イープラス・ローソンチケットと"
         "既存確認済み情報を更新"
+        + ("" if all([fany_ok, bushikaku_ok, eplus_ok, ltike_ok])
+           else "（一部ソースは取得失敗のため既存データを維持）")
     )
     data["events"] = sorted(
         unique.values(),
@@ -424,9 +473,11 @@ def main() -> None:
         json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
     print(
-        f"updated {len(data['events'])} events "
-        f"({len(fany_events)} FANY, {len(bushikaku_events)} bushikaku, "
-        f"{len(eplus_events)} eplus, {len(ltike_events)} ltike)"
+        f"updated {len(data['events'])} events total "
+        f"(FANY {len(fany_events)}/{'ok' if fany_ok else 'FAILED'}, "
+        f"bushikaku {len(bushikaku_events)}/{'ok' if bushikaku_ok else 'FAILED'}, "
+        f"eplus {len(eplus_events)}/{'ok' if eplus_ok else 'FAILED'}, "
+        f"ltike {len(ltike_events)}/{'ok' if ltike_ok else 'FAILED'})"
     )
 
 
