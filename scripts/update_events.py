@@ -51,18 +51,31 @@ def _get_browser_html(url: str) -> str | None:
     except ImportError:
         print(f"[warn] playwright未インストールのためスキップ: {url}")
         return None
+    last_error: Exception | None = None
     with sync_playwright() as p:
-        browser = p.chromium.launch()
+        # 一部サイトはCIからのHTTP/2接続をbot対策としてリセットするらしく
+        # net::ERR_HTTP2_PROTOCOL_ERRORになることがあるため、HTTP/2を無効化
+        # しつつ2回まで試行する。
+        browser = p.chromium.launch(args=["--disable-http2"])
         try:
-            page = browser.new_page(user_agent=BROWSER_HEADERS["User-Agent"])
-            # "networkidle"はアナリティクス等の常時通信でタイムアウトしやすいため、
-            # DOM構築完了を待ってから固定時間だけ追加待機する方式にする。
-            page.goto(url, wait_until="domcontentloaded", timeout=30000)
-            page.wait_for_timeout(3000)
-            html = page.content()
+            for attempt in range(2):
+                try:
+                    page = browser.new_page(user_agent=BROWSER_HEADERS["User-Agent"])
+                    # "networkidle"はアナリティクス等の常時通信でタイムアウトしや
+                    # すいため、DOM構築完了を待ってから固定時間だけ追加待機する。
+                    page.goto(url, wait_until="domcontentloaded", timeout=30000)
+                    page.wait_for_timeout(3000)
+                    html = page.content()
+                    page.close()
+                    return html
+                except Exception as exc:  # noqa: BLE001
+                    last_error = exc
+                    print(f"[warn] {url} 取得{attempt + 1}回目失敗: {exc!r}")
         finally:
             browser.close()
-    return html
+    if last_error:
+        raise last_error
+    return None
 
 
 def fetch_page(pref_code: str, offset: int) -> list[dict]:
