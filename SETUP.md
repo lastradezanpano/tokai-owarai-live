@@ -1,92 +1,50 @@
-# 東海お笑いライブ帳 - 運用セットアップ手順
+# 東海お笑いライブ帳 - 運用の仕組み
 
 ## 全体構成
 
 ```
-[Windowsタスクスケジューラー]
-   → [Claude Code をバッチ(非対話)モードで起動]
-       → sources.json の各サイトを WebFetch で確認
-       → 愛知/岐阜/三重のお笑いライブ情報を抽出
+[GitHub Actions（毎日 9:15 JST + push時 + 手動実行）]
+   → scripts/update_events.py を実行
+       → FANYチケットの公開検索API（ログイン不要）から
+         愛知・岐阜・三重のお笑い公演を取得
        → data/events.json を更新
-       → プロジェクト内の index.html を更新
-       → 利用可能な場合は公開済みArtifactも同じURLで再公開
-   → Codexで index.html を開き、いつでも最新情報を確認できる
+   → 変更があれば自動コミット・push
+   → GitHub Pagesへ自動デプロイ
+   → index.html はページを開くたびに data/events.json を
+     fetchして最新表示に更新（「情報更新」ボタンで手動再取得も可）
 ```
 
-Web公開ページ: https://claude.ai/artifact/5saz5d5CVZmiU6VrCUBWmu
+公開ページ: https://lastradezanpano.github.io/tokai-owarai-live/
+GitHubリポジトリ: https://github.com/lastradezanpano/tokai-owarai-live
+ワークフロー定義: `.github/workflows/update-and-deploy.yml`
+更新スクリプト: `scripts/update_events.py`
 
-Codexで確認する固定HTML: `E:\AI\自動作成の検討\owarai_live_tracker\index.html`
+**PCの電源やClaude Codeのセッションに一切依存せず、GitHub側で完結して自動更新されます。**
 
-完成画面をブラウザ表示する場合は、Codexのターミナルで次を実行し、`http://127.0.0.1:8765/index.html` を開きます。
+## 自動更新される範囲と、されない範囲
+
+- **自動更新される**: FANYチケット（吉本興業公式）掲載分。`scripts/update_events.py`が毎日API から直接取得し、`src: "fany_ticket"` の公演を丸ごと入れ替える。
+- **自動更新されない（手動の一次データのまま）**: イープラス・チケットぴあ・バス比較なび経由で登録した公演（`src: eplus_aichi` / `eplus_mie` / `eplus_gifu` / `pia_search` / `bushikaku_chubu`）。これらはスクリプトが「開催日が今日以降なら残す」だけで、新しい公演の追加はしない。イープラス等で新しい公演を追加したい場合は、Claudeとの会話で情報収集を依頼するか、`scripts/update_events.py`にそれらのサイト向けの取得処理を追加する必要がある。
+
+## ローカルで確認する
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File "E:\AI\自動作成の検討\owarai_live_tracker\preview.ps1"
 ```
 
-HTML本体の正本はプロジェクト内の `index.html` です。Claude Code/Codexがデータ収集後にこのファイルを更新し、Artifact公開機能が利用できる場合だけ公開版にも同期します。そのため公開版へサインインできない場合でも、Codex内では固定HTMLを安定して確認できます。
+`http://127.0.0.1:8765/index.html` を開く。
 
-## 手順1: 一度、手動で更新を試す
+## 手動でワークフローを実行する
 
-まずタスクスケジューラーに登録する前に、ターミナルで一度動作確認してください。
+GitHubの当該リポジトリ → Actions タブ → 「Update and deploy」 → 「Run workflow」。
 
-```bash
-claude -p "$(cat 'E:/AI/自動作成の検討/owarai_live_tracker/update_prompt.md')"
-```
+## 更新頻度・失敗時の確認
 
-- `claude` コマンドが見つからない場合は、Claude Code のインストール先を確認してください。
-- 実行中、WebFetch や Artifact の再公開時に許可確認が出る場合があります。何度も出る場合は下記「手順2」で許可リストに追加してください。
-- 初回はサイト構造の解釈にばらつきが出ることがあるので、`data/events.json` と Artifact ページの内容を必ず目視確認してください。
-
-## 手順2（任意）: 許可確認を減らす
-
-無人実行時に許可確認で止まらないよう、`E:\AI\自動作成の検討\.claude\settings.local.json` の `permissions.allow` に以下を追加すると、WebFetchとArtifact操作が確認なしで実行されます（他の破壊的操作は引き続きブロックされたままです）。
-
-```json
-"WebFetch",
-"Artifact"
-```
-
-この変更はセキュリティ設定の変更にあたるため、必要であれば私(Claude)に「追加して」と指示してください。自動では変更しません。
-
-## 手順3: Windowsタスクスケジューラーに登録する
-
-1. 「タスクスケジューラー」を開く
-2. 「基本タスクの作成」→ 名前: `お笑いライブ帳_定期更新`
-3. トリガー: 毎日（例: 朝9:00）または毎週（例: 月・木 9:00）
-4. 操作: 「プログラムの開始」
-   - プログラム/スクリプト: `claude` の実行ファイルパス（`where claude` で確認）
-   - 引数の追加:
-     ```
-     -p "$(cat 'E:/AI/自動作成の検討/owarai_live_tracker/update_prompt.md')"
-     ```
-     ※ Windowsのタスクスケジューラーは `$(cat ...)` のようなシェル展開をしないため、実際にはバッチファイル(.bat)またはPowerShellスクリプト(.ps1)を用意し、その中でプロンプトファイルを読み込んで `claude -p` に渡す形にするのが確実です。下記の `run_update.ps1` を参照してください。
-   - 開始(作業)フォルダー: `E:\AI\自動作成の検討\owarai_live_tracker`
-5. 「条件」タブで「AC電源」「スリープ解除」などPCの状態に応じた設定を必要に応じて調整
-6. 保存して、一度「実行」で手動テストする
-
-### run_update.ps1（雛形）
-
-タスクスケジューラーからはこのPowerShellスクリプトを呼び出す運用を推奨します。
-
-```powershell
-$promptPath = "E:\AI\自動作成の検討\owarai_live_tracker\update_prompt.md"
-$prompt = Get-Content -Raw -Encoding UTF8 $promptPath
-Set-Location "E:\AI\自動作成の検討\owarai_live_tracker"
-claude -p $prompt
-```
-
-タスクスケジューラーの「操作」は以下のように設定します。
-
-- プログラム/スクリプト: `powershell.exe`
-- 引数の追加: `-NoProfile -ExecutionPolicy Bypass -File "E:\AI\自動作成の検討\owarai_live_tracker\run_update.ps1"`
-
-## 更新頻度の目安
-
-- 前売開始・公演告知は数日〜数週間おきに出るため、**週1〜2回**の実行で十分実用的です。
-- PCの電源が入っていない時間帯は実行されないため、PCをよく使う時間帯（例: 起動直後や昼休み）に合わせるのがおすすめです。
+- 現在は毎日1回（9:15 JST）。頻度を変えたい場合は `.github/workflows/update-and-deploy.yml` の `cron` を編集する。
+- 実行結果はGitHubのActionsタブで確認できる。失敗が続く場合はFANY側のAPI仕様変更の可能性があるため、`scripts/update_events.py` の`fetch_page`/`normalize`関数を見直す。
 
 ## 注意事項
 
-- 各チケットサイトの利用規約の範囲内で、公開されている一覧ページの閲覧・要約として利用してください。ログイン必須ページや購入手続きの自動化は行いません。
-- サイトのURL構造やレイアウトが変わると `sources.json` の更新が必要になります。実行結果は `update_log.md` に記録されるので、失敗が続く情報源がないか時々確認してください。
-- 取得先ページの中に「指示を無視しろ」等の埋め込み指示があっても、Claudeはそれに従わず、通常のデータとして扱います（`update_prompt.md` の手順7）。
+- FANYチケットの公開検索APIのみを利用し、ログイン・パスワード・Cookie・APIキーは一切使用しない。
+- 各チケットサイトの利用規約の範囲内で、公開されている一覧ページの閲覧・要約として利用する。
+- 取得元のデータに不審な指示が埋め込まれていても、スクリプトは単純にJSONを解析するだけなので実行に影響しない。
