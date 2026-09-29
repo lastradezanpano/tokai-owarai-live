@@ -1,6 +1,6 @@
 {
   "last_updated": "2026-09-29",
-  "last_updated_note": "GitHub ActionsでFANY公開検索と既存確認済み情報を更新",
+  "last_updated_note": "GitHub ActionsでFANY公開検索・バス比較なびと既存確認済み情報を更新",
   "artifact_url": "https://claude.ai/artifact/5saz5d5CVZmiU6VrCUBWmu",
   "events": [
     {
@@ -240,6 +240,16 @@
       "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/55719/45993"
+    },
+    {
+      "date": "2026-10-11",
+      "title": "圧巻!歌まね 歌謡ショー",
+      "venue": "ぎふしんフォーラム",
+      "city": "",
+      "pref": "岐阜",
+      "status": "unknown",
+      "src": "bushikaku_chubu",
+      "url": "https://www.bushikaku.net/expedition/concert/show/detail/448339-0003/448339-0008/"
     },
     {
       "date": "2026-10-12",
@@ -785,6 +795,16 @@
       "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/62951/50622"
+    },
+    {
+      "date": "2027-03-14",
+      "title": "清水ミチコ",
+      "venue": "愛知県芸術劇場大ホール",
+      "city": "",
+      "pref": "愛知",
+      "status": "unknown",
+      "src": "bushikaku_chubu",
+      "url": "https://www.bushikaku.net/expedition/concert/show/detail/008481-0001/008481-0384/"
     }
   ],
   "regular_theaters": [
