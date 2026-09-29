@@ -344,18 +344,23 @@ def normalize_bushikaku(raw: dict, pref: str) -> dict | None:
     return event
 
 
-def _run_source(label: str, fetch_fn) -> tuple[list[dict], bool]:
+def _run_source(label: str, fetch_fn, diagnostics: dict) -> tuple[list[dict], bool]:
     """1情報源の取得を実行する。例外が起きても他ソースを巻き込まない。
 
     戻り値の2つ目はこの取得が成功したかどうか。失敗した場合、
     呼び出し側は既存データを温存し、誤って全消去しないようにする。
+    結果は diagnostics[label] にも記録し、CIログにサインインしなくても
+    後から原因を追えるように data/scrape_status.json へ書き出す。
     """
     try:
         events = fetch_fn()
         print(f"[ok] {label}: {len(events)}件取得")
+        diagnostics[label] = {"ok": True, "count": len(events), "error": None}
         return events, True
     except Exception as exc:  # noqa: BLE001 - 1ソースの失敗で全体を止めない
-        print(f"[warn] {label}の取得に失敗したためスキップ: {exc!r}")
+        message = f"{type(exc).__name__}: {exc}"
+        print(f"[warn] {label}の取得に失敗したためスキップ: {message}")
+        diagnostics[label] = {"ok": False, "count": 0, "error": message}
         return [], False
 
 
@@ -404,10 +409,11 @@ def main() -> None:
                 out.append(event)
         return out
 
-    fany_events, fany_ok = _run_source("FANY", fetch_fany_all)
-    bushikaku_events, bushikaku_ok = _run_source("バス比較なび", fetch_bushikaku_all)
-    eplus_events, eplus_ok = _run_source("イープラス", fetch_eplus_all)
-    ltike_events, ltike_ok = _run_source("ローソンチケット", fetch_ltike_all)
+    diagnostics: dict[str, dict] = {}
+    fany_events, fany_ok = _run_source("FANY", fetch_fany_all, diagnostics)
+    bushikaku_events, bushikaku_ok = _run_source("バス比較なび", fetch_bushikaku_all, diagnostics)
+    eplus_events, eplus_ok = _run_source("イープラス", fetch_eplus_all, diagnostics)
+    ltike_events, ltike_ok = _run_source("ローソンチケット", fetch_ltike_all, diagnostics)
     # イープラス・ローソンチケットはbot対策で無言のまま0件になり得る
     # (Playwright未インストール、bot検知でブロック等、例外を投げない失敗)。
     # 愛知・岐阜・三重3県合計で0件は現実的にまず起きないので、0件は
@@ -415,9 +421,20 @@ def main() -> None:
     if eplus_ok and not eplus_events:
         print("[warn] イープラス: 0件のため取得失敗とみなし既存データを維持")
         eplus_ok = False
+        diagnostics["イープラス"] = {"ok": False, "count": 0, "error": "0件(bot対策等でブロックされた可能性)"}
     if ltike_ok and not ltike_events:
         print("[warn] ローソンチケット: 0件のため取得失敗とみなし既存データを維持")
         ltike_ok = False
+        diagnostics["ローソンチケット"] = {"ok": False, "count": 0, "error": "0件(bot対策等でブロックされた可能性)"}
+
+    diagnostics_path = ROOT / "data" / "scrape_status.json"
+    diagnostics_path.write_text(
+        json.dumps(
+            {"checked_at": today, "sources": diagnostics},
+            ensure_ascii=False, indent=2,
+        ) + "\n",
+        encoding="utf-8",
+    )
 
     # 取得に成功したソースの既存データだけを入れ替え対象にする。失敗した
     # ソース(bot対策強化やサイト構造変更等)は既存データをそのまま温存し、
