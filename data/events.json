@@ -1,6 +1,6 @@
 {
   "last_updated": "2026-09-29",
-  "last_updated_note": "GitHub ActionsでFANY公開検索・バス比較なびと既存確認済み情報を更新",
+  "last_updated_note": "GitHub ActionsでFANY・バス比較なび・イープラス・ローソンチケットと既存確認済み情報を更新（一部ソースは取得失敗のため既存データを維持）",
   "artifact_url": "https://claude.ai/artifact/5saz5d5CVZmiU6VrCUBWmu",
   "events": [
     {
@@ -722,32 +722,12 @@
     },
     {
       "date": "2026-12-12",
-      "title": "アブナイ ヨセ全国ツアー2026「アブナイ ヨセin愛知」",
-      "venue": "ウインクあいち　大ホール",
-      "city": "",
-      "pref": "愛知",
-      "status": "open",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/65579/52585"
-    },
-    {
-      "date": "2026-12-12",
       "title": "教育おたのしみ会 ～笑いとげんじつ～",
       "venue": "ウインクあいち",
       "city": "名古屋市",
       "pref": "愛知",
       "status": "soon",
       "src": "eplus_aichi"
-    },
-    {
-      "date": "2026-12-12",
-      "title": "教育おたのしみ会～笑いとげんじつ～【愛知公演】",
-      "venue": "ウインクあいち　大ホール",
-      "city": "",
-      "pref": "愛知",
-      "status": "open",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/67301/53656"
     },
     {
       "date": "2027-01-08",
