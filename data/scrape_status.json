@@ -13,13 +13,13 @@
     },
     "イープラス": {
       "ok": true,
-      "count": 1,
+      "count": 18,
       "error": null
     },
     "ローソンチケット": {
       "ok": false,
       "count": 0,
-      "error": "TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://l-tike.com/search/?tig=240&pref=21%2C23%2C24\", waiting until \"domcontentloaded\"\n"
+      "error": "自動化を断念(2026-09-29): net::ERR_HTTP2_PROTOCOL_ERRORが解消せずIPブロックと判断。詳細はSETUP.md参照"
     }
   }
 }
