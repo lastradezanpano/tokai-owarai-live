@@ -42,7 +42,7 @@ GitHubリポジトリ: https://github.com/lastradezanpano/tokai-owarai-live
 ## ローカルで確認する
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File "E:\AI\自動作成の検討\owarai_live_tracker\preview.ps1"
+powershell -NoProfile -ExecutionPolicy Bypass -File "E:\AI\owarai_live_tracker\preview.ps1"
 ```
 
 `http://127.0.0.1:8765/index.html` を開く。
