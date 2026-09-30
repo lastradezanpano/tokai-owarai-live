@@ -1,35 +1,15 @@
 {
-  "last_updated": "2026-09-29",
+  "last_updated": "2026-09-30",
   "last_updated_note": "GitHub ActionsでFANY・バス比較なび・イープラス・ローソンチケットと既存確認済み情報を更新（一部ソースは取得失敗のため既存データを維持）",
   "artifact_url": "https://claude.ai/artifact/5saz5d5CVZmiU6VrCUBWmu",
   "events": [
-    {
-      "date": "2026-09-29",
-      "title": "ピュートと名古屋よしもと若手芸人コーナーライブ",
-      "venue": "大須演芸場",
-      "city": "名古屋市",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/63975/51229"
-    },
-    {
-      "date": "2026-09-29",
-      "title": "紅ポイント",
-      "venue": "大須演芸場",
-      "city": "名古屋市",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/63987/51230"
-    },
     {
       "date": "2026-09-30",
       "title": "よしもと名駅四丁目ライブ 東名阪交流SHOW",
       "venue": "ミッドランドスクエアシネマ２スクリーン８",
       "city": "名古屋市",
       "pref": "愛知",
-      "status": "open",
+      "status": "closed",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/66403/52851"
     },
@@ -574,6 +554,16 @@
       "status": "unknown",
       "src": "bushikaku_chubu",
       "url": "https://www.bushikaku.net/expedition/play/show/detail/282535-0001/282535-0008/"
+    },
+    {
+      "date": "2026-11-19",
+      "title": "先着 美川憲一&amp;コロッケ",
+      "venue": "三重県文化会館&nbsp;大ホール(三重県総合文化センター)",
+      "city": "",
+      "pref": "三重",
+      "status": "open",
+      "src": "eplus_mie",
+      "url": "https://eplus.jp/sf/detail/0186410001-P0030086P021001"
     },
     {
       "date": "2026-11-20",
