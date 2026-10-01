@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-09-30",
+  "checked_at": "2026-10-01",
   "sources": {
     "FANY": {
       "ok": true,
@@ -8,12 +8,12 @@
     },
     "バス比較なび": {
       "ok": true,
-      "count": 12,
+      "count": 13,
       "error": null
     },
     "イープラス": {
       "ok": true,
-      "count": 19,
+      "count": 21,
       "error": null
     },
     "ローソンチケット": {
