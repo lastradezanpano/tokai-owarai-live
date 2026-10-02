@@ -1,25 +1,25 @@
 {
-  "checked_at": "2026-09-29",
+  "checked_at": "2026-10-02",
   "sources": {
     "FANY": {
       "ok": true,
-      "count": 65,
+      "count": 63,
       "error": null
     },
     "バス比較なび": {
       "ok": true,
-      "count": 12,
+      "count": 13,
       "error": null
     },
     "イープラス": {
       "ok": true,
-      "count": 1,
+      "count": 3,
       "error": null
     },
     "ローソンチケット": {
       "ok": false,
       "count": 0,
-      "error": "TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://l-tike.com/search/?tig=240&pref=21%2C23%2C24\", waiting until \"domcontentloaded\"\n"
+      "error": "自動化を断念(2026-09-29): net::ERR_HTTP2_PROTOCOL_ERRORが解消せずIPブロックと判断。詳細はSETUP.md参照"
     }
   }
 }
