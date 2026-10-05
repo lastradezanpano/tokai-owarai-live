@@ -1,48 +1,8 @@
 {
-  "last_updated": "2026-10-04",
+  "last_updated": "2026-10-05",
   "last_updated_note": "GitHub ActionsでFANY・バス比較なび・イープラス・ローソンチケットと既存確認済み情報を更新（一部ソースは取得失敗のため既存データを維持）",
   "artifact_url": "https://claude.ai/artifact/5saz5d5CVZmiU6VrCUBWmu",
   "events": [
-    {
-      "date": "2026-10-04",
-      "title": "PAA LIVE vol.10 ～亀裂の大復活祭り～",
-      "venue": "MusicBarPerch",
-      "city": "",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/68132/54151"
-    },
-    {
-      "date": "2026-10-04",
-      "title": "ちょっとお邪魔していいですか？",
-      "venue": "MusicBarPerch",
-      "city": "",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/68131/54150"
-    },
-    {
-      "date": "2026-10-04",
-      "title": "ポニーものまね大バズりライブ",
-      "venue": "MusicBarPerch",
-      "city": "",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/68073/54110"
-    },
-    {
-      "date": "2026-10-04",
-      "title": "異世界 単独ライブ「離世界」",
-      "venue": "MusicBarPerch",
-      "city": "",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/68130/54149"
-    },
     {
       "date": "2026-10-07",
       "title": "NORAコーナー",
@@ -173,6 +133,26 @@
       "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/55719/45993"
+    },
+    {
+      "date": "2026-10-11",
+      "title": "先着 圧巻!歌まね&nbsp;歌謡ショー in岐阜&nbsp;～奇跡の歌声&nbsp;極上エンターテインメント～",
+      "venue": "ぎふしんフォーラム",
+      "city": "",
+      "pref": "岐阜",
+      "status": "closed",
+      "src": "eplus_gifu",
+      "url": "https://eplus.jp/sf/detail/4483390001-P0030006P021001"
+    },
+    {
+      "date": "2026-10-11",
+      "title": "先着 圧巻!歌まね&nbsp;歌謡ショー in岐阜&nbsp;～奇跡の歌声&nbsp;極上エンターテインメント～&nbsp;&lt;子供舞台芸術鑑賞体験支援事業受付&gt;",
+      "venue": "ぎふしんフォーラム",
+      "city": "",
+      "pref": "岐阜",
+      "status": "closed",
+      "src": "eplus_gifu",
+      "url": "https://eplus.jp/sf/detail/4483390003-P0030008P021001"
     },
     {
       "date": "2026-10-11",
@@ -476,14 +456,14 @@
       "url": "https://www.bushikaku.net/expedition/play/show/detail/282535-0001/282535-0008/"
     },
     {
-      "date": "2026-11-19",
+      "date": "2026-11-20",
       "title": "先着 美川憲一&amp;コロッケ",
-      "venue": "三重県文化会館&nbsp;大ホール(三重県総合文化センター)",
+      "venue": "ぎふしんフォーラム",
       "city": "",
-      "pref": "三重",
+      "pref": "岐阜",
       "status": "open",
-      "src": "eplus_mie",
-      "url": "https://eplus.jp/sf/detail/0186410001-P0030086P021002"
+      "src": "eplus_gifu",
+      "url": "https://eplus.jp/sf/detail/0186410001-P0030087P021002"
     },
     {
       "date": "2026-11-22",
@@ -597,6 +577,16 @@
     },
     {
       "date": "2026-11-29",
+      "title": "先着 爆笑!お笑いエンタメライブ in岐阜",
+      "venue": "ぎふしんフォーラム大ホール(岐阜市民会館)",
+      "city": "",
+      "pref": "岐阜",
+      "status": "closed",
+      "src": "eplus_gifu",
+      "url": "https://eplus.jp/sf/detail/2660340001-P0030044P021001"
+    },
+    {
+      "date": "2026-11-29",
       "title": "爆笑!お笑いエンタメライブ",
       "venue": "ぎふしんフォーラム",
       "city": "",
@@ -674,16 +664,6 @@
       "status": "unknown",
       "src": "bushikaku_chubu",
       "url": "https://www.bushikaku.net/expedition/play/show/detail/457946-0001/457946-0001/"
-    },
-    {
-      "date": "2027-01-11",
-      "title": "先着 爆笑!お笑いエンタメライブ in四日市",
-      "venue": "四日市市文化会館&nbsp;第1ホール",
-      "city": "",
-      "pref": "三重",
-      "status": "open",
-      "src": "eplus_mie",
-      "url": "https://eplus.jp/sf/detail/2660340001-P0030045P021001"
     },
     {
       "date": "2027-01-11",
