@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-06",
+  "checked_at": "2026-10-07",
   "sources": {
     "FANY": {
       "ok": true,
@@ -12,9 +12,9 @@
       "error": null
     },
     "イープラス": {
-      "ok": true,
-      "count": 20,
-      "error": null
+      "ok": false,
+      "count": 0,
+      "error": "0件(bot対策等でブロックされた可能性)"
     },
     "ローソンチケット": {
       "ok": false,
