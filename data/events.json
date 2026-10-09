@@ -1,38 +1,8 @@
 {
-  "last_updated": "2026-10-08",
+  "last_updated": "2026-10-09",
   "last_updated_note": "GitHub ActionsでFANY・バス比較なび・イープラス・ローソンチケットと既存確認済み情報を更新（一部ソースは取得失敗のため既存データを維持）",
   "artifact_url": "https://claude.ai/artifact/5saz5d5CVZmiU6VrCUBWmu",
   "events": [
-    {
-      "date": "2026-10-08",
-      "title": "先着 ラブレターズ 単独ライブ2026「溺愛」",
-      "venue": "名古屋市中村文化小劇場",
-      "city": "",
-      "pref": "愛知",
-      "status": "open",
-      "src": "eplus_aichi",
-      "url": "https://eplus.jp/sf/detail/0533760008-P0030043P021008"
-    },
-    {
-      "date": "2026-10-09",
-      "title": "先着 ラブレターズ 単独ライブ2026「溺愛」",
-      "venue": "名古屋市中村文化小劇場",
-      "city": "",
-      "pref": "愛知",
-      "status": "open",
-      "src": "eplus_aichi",
-      "url": "https://eplus.jp/sf/detail/0533760008-P0030043P021009"
-    },
-    {
-      "date": "2026-10-09",
-      "title": "先着 大久保佳代子with青木さやか&nbsp;ザ･トークショー",
-      "venue": "東別院テラスホール",
-      "city": "",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "eplus_aichi",
-      "url": "https://eplus.jp/sf/detail/4116590001-P0030012P021001"
-    },
     {
       "date": "2026-10-10",
       "title": "ニューヨーク単独ライブ｢ニューヨークの横からシツレ～します！｣",
@@ -125,26 +95,6 @@
     },
     {
       "date": "2026-10-11",
-      "title": "先着 圧巻!歌まね&nbsp;歌謡ショー in岐阜&nbsp;～奇跡の歌声&nbsp;極上エンターテインメント～",
-      "venue": "ぎふしんフォーラム",
-      "city": "",
-      "pref": "岐阜",
-      "status": "closed",
-      "src": "eplus_gifu",
-      "url": "https://eplus.jp/sf/detail/4483390001-P0030006P021001"
-    },
-    {
-      "date": "2026-10-11",
-      "title": "先着 圧巻!歌まね&nbsp;歌謡ショー in岐阜&nbsp;～奇跡の歌声&nbsp;極上エンターテインメント～&nbsp;&lt;子供舞台芸術鑑賞体験支援事業受付&gt;",
-      "venue": "ぎふしんフォーラム",
-      "city": "",
-      "pref": "岐阜",
-      "status": "closed",
-      "src": "eplus_gifu",
-      "url": "https://eplus.jp/sf/detail/4483390003-P0030008P021001"
-    },
-    {
-      "date": "2026-10-11",
       "title": "圧巻!歌まね 歌謡ショー",
       "venue": "ぎふしんフォーラム",
       "city": "",
@@ -185,6 +135,17 @@
     },
     {
       "date": "2026-10-16",
+      "title": "HRF",
+      "venue": "東別院テラスホール",
+      "city": "",
+      "pref": "愛知",
+      "status": "unknown",
+      "src": "bushikaku_chubu",
+      "url": "https://www.bushikaku.net/expedition/play/show/detail/396504-0003/396504-0004/",
+      "date_end": "2026-10-17"
+    },
+    {
+      "date": "2026-10-16",
       "title": "よしもと名駅四丁目ライブ 東名阪交流SHOW",
       "venue": "ミッドランドスクエアシネマ２スクリーン８",
       "city": "名古屋市",
@@ -192,16 +153,6 @@
       "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/67105/53574"
-    },
-    {
-      "date": "2026-10-16",
-      "title": "先着 HRF 2026&nbsp;～偽物だらけの国内最大級フェス～",
-      "venue": "東別院テラスホール",
-      "city": "",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "eplus_aichi",
-      "url": "https://eplus.jp/sf/detail/3965040003-P0030004P021003"
     },
     {
       "date": "2026-10-17",
@@ -212,16 +163,6 @@
       "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/63151/50690"
-    },
-    {
-      "date": "2026-10-17",
-      "title": "先着 HRF 2026&nbsp;～偽物だらけの国内最大級フェス～",
-      "venue": "東別院テラスホール",
-      "city": "",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "eplus_aichi",
-      "url": "https://eplus.jp/sf/detail/3965040003-P0030004P021002"
     },
     {
       "date": "2026-10-22",
@@ -384,6 +325,106 @@
       "url": "https://ticket.fany.lol/reception/68159/54245"
     },
     {
+      "date": "2026-11-01",
+      "title": "BIKE-T SUPER LIVE",
+      "venue": "MusicBarPerch",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/70348/55332"
+    },
+    {
+      "date": "2026-11-01",
+      "title": "なごよし新ネタ学校 ～テーマ：秋～",
+      "venue": "MusicBarPerch",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/70347/55333"
+    },
+    {
+      "date": "2026-11-01",
+      "title": "ネクストメンバーコーナーライブ",
+      "venue": "MusicBarPerch",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/70313/55328"
+    },
+    {
+      "date": "2026-11-01",
+      "title": "帰ってきた！小馬と小虎",
+      "venue": "MusicBarPerch",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/70349/55331"
+    },
+    {
+      "date": "2026-11-03",
+      "title": "UDE-DA-MESHI",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/70368/55355"
+    },
+    {
+      "date": "2026-11-03",
+      "title": "なごよしネクストバトル",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/70350/55334"
+    },
+    {
+      "date": "2026-11-03",
+      "title": "ケバブ丸さんいらっしゃい！",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/70352/55335"
+    },
+    {
+      "date": "2026-11-03",
+      "title": "稲田ケバブ丸名古屋移住記念公演  愛知くん！竜党くん！・・・",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/70351/55336"
+    },
+    {
+      "date": "2026-11-08",
+      "title": "UDE-DA-MESHI",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/70368/55357"
+    },
+    {
+      "date": "2026-11-08",
+      "title": "森貴史の本の虫 vol.4・番外編",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/70353/55337"
+    },
+    {
       "date": "2026-11-09",
       "title": "大王×空前メテオ×兄弟×例えば炎 全国ユニット・・・",
       "venue": "大須演芸場",
@@ -445,13 +486,13 @@
     },
     {
       "date": "2026-11-15",
-      "title": "先着 神奈月 神奈月&nbsp;ソロライブツアー2026～ものまねLOVE&nbsp;in&nbsp;名古屋",
-      "venue": "東別院テラスホール(東別院ホール)",
+      "title": "神奈月",
+      "venue": "東別院テラスホール",
       "city": "",
       "pref": "愛知",
-      "status": "open",
-      "src": "eplus_aichi",
-      "url": "https://eplus.jp/sf/detail/2825350001-P0030008P021002"
+      "status": "unknown",
+      "src": "bushikaku_chubu",
+      "url": "https://www.bushikaku.net/expedition/play/show/detail/282535-0001/282535-0008/"
     },
     {
       "date": "2026-11-19",
@@ -472,6 +513,16 @@
       "status": "open",
       "src": "eplus_gifu",
       "url": "https://eplus.jp/sf/detail/0186410001-P0030087P021002"
+    },
+    {
+      "date": "2026-11-20",
+      "title": "UDE-DA-MESHI",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/70368/55358"
     },
     {
       "date": "2026-11-22",
@@ -515,6 +566,16 @@
     },
     {
       "date": "2026-11-27",
+      "title": "『千原ジュニアのヘベレケ』トークライブ2",
+      "venue": "岡谷鋼機名古屋公会堂 大ホール",
+      "city": "",
+      "pref": "愛知",
+      "status": "unknown",
+      "src": "bushikaku_chubu",
+      "url": "https://www.bushikaku.net/expedition/play/show/detail/459133-0001/459133-0001/"
+    },
+    {
+      "date": "2026-11-27",
       "title": "『千原ジュニアのヘベレケ』トークライブ２",
       "venue": "岡谷鋼機名古屋公会堂　大ホール",
       "city": "",
@@ -524,14 +585,14 @@
       "url": "https://ticket.fany.lol/reception/66112/52652"
     },
     {
-      "date": "2026-11-27",
-      "title": "先着 『千原ジュニアのヘベレケ』トークライブ2",
-      "venue": "岡谷鋼機名古屋公会堂&nbsp;大ホール",
+      "date": "2026-11-28",
+      "title": "UDE-DA-MESHI",
+      "venue": "静かの海",
       "city": "",
       "pref": "愛知",
-      "status": "open",
-      "src": "eplus_aichi",
-      "url": "https://eplus.jp/sf/detail/4591330001-P0030001P021001"
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/70368/55360"
     },
     {
       "date": "2026-11-28",
@@ -542,6 +603,16 @@
       "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/56544/46638"
+    },
+    {
+      "date": "2026-11-28",
+      "title": "なごよしツーマン",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/70354/55340"
     },
     {
       "date": "2026-11-28",
@@ -565,6 +636,16 @@
     },
     {
       "date": "2026-11-28",
+      "title": "ピンネタは楽しいよライブ！",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/70356/55341"
+    },
+    {
+      "date": "2026-11-28",
       "title": "三代目林家菊丸独演会2026～上方人情噺の世界～",
       "venue": "大須演芸場",
       "city": "",
@@ -584,6 +665,16 @@
       "url": "https://ticket.fany.lol/reception/54544/45117"
     },
     {
+      "date": "2026-11-28",
+      "title": "冬の新作コレクション",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/70355/55342"
+    },
+    {
       "date": "2026-11-29",
       "title": "先着 爆笑!お笑いエンタメライブ in岐阜",
       "venue": "ぎふしんフォーラム大ホール(岐阜市民会館)",
@@ -592,6 +683,16 @@
       "status": "closed",
       "src": "eplus_gifu",
       "url": "https://eplus.jp/sf/detail/2660340001-P0030044P021001"
+    },
+    {
+      "date": "2026-11-29",
+      "title": "爆笑!お笑いエンタメライブ",
+      "venue": "ぎふしんフォーラム",
+      "city": "",
+      "pref": "岐阜",
+      "status": "unknown",
+      "src": "bushikaku_chubu",
+      "url": "https://www.bushikaku.net/expedition/play/show/detail/266034-0001/266034-0044/"
     },
     {
       "date": "2026-11-29",
@@ -635,33 +736,33 @@
     },
     {
       "date": "2026-12-12",
-      "title": "先着 アブナイ&nbsp;ヨセ 全国ツアー2026「アブナイ&nbsp;ヨセin愛知」",
-      "venue": "愛知県産業労働センター&nbsp;ウインクあいち&nbsp;大ホール",
+      "title": "教育おたのしみ会～笑いとげんじつ～",
+      "venue": "愛知県産業労働センター ウインクあいち 大ホール",
       "city": "",
       "pref": "愛知",
-      "status": "closed",
-      "src": "eplus_aichi",
-      "url": "https://eplus.jp/sf/detail/4402420001-P0030007P021002"
+      "status": "unknown",
+      "src": "bushikaku_chubu",
+      "url": "https://www.bushikaku.net/expedition/play/show/detail/460409-0001/460409-0002/"
     },
     {
       "date": "2026-12-12",
-      "title": "先着 教育おたのしみ会～笑いとげんじつ～ 【愛知公演】",
-      "venue": "愛知県産業労働センター&nbsp;ウインクあいち&nbsp;大ホール",
-      "city": "",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "eplus_aichi",
-      "url": "https://eplus.jp/sf/detail/4604090001-P0030002P021002"
-    },
-    {
-      "date": "2027-01-08",
-      "title": "先着 最強!ものまねフェスin名古屋 ビューティーこくぶ×ミラクルひかる×荒牧陽子×エハラマサヒロ",
-      "venue": "Niterra日本特殊陶業市民会館フォレストホール",
+      "title": "教育おたのしみ会～笑いとげんじつ～【愛知公演】",
+      "venue": "ウインクあいち　大ホール",
       "city": "",
       "pref": "愛知",
       "status": "open",
-      "src": "eplus_aichi",
-      "url": "https://eplus.jp/sf/detail/4579460001-P0030001P021001"
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/67301/53656"
+    },
+    {
+      "date": "2027-01-08",
+      "title": "最強!ものまねフェスin名古屋",
+      "venue": "Niterra日本特殊陶業市民会館フォレストホール",
+      "city": "",
+      "pref": "愛知",
+      "status": "unknown",
+      "src": "bushikaku_chubu",
+      "url": "https://www.bushikaku.net/expedition/play/show/detail/457946-0001/457946-0001/"
     },
     {
       "date": "2027-01-11",
@@ -672,6 +773,16 @@
       "status": "open",
       "src": "eplus_mie",
       "url": "https://eplus.jp/sf/detail/2660340001-P0030045P021001"
+    },
+    {
+      "date": "2027-01-11",
+      "title": "爆笑!お笑いエンタメライブ",
+      "venue": "四日市市文化会館 第一ホール",
+      "city": "",
+      "pref": "三重",
+      "status": "unknown",
+      "src": "bushikaku_chubu",
+      "url": "https://www.bushikaku.net/expedition/play/show/detail/266034-0001/266034-0045/"
     },
     {
       "date": "2027-01-30",
