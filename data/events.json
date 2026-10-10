@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-09",
+  "last_updated": "2026-10-10",
   "last_updated_note": "GitHub ActionsでFANY・バス比較なび・イープラス・ローソンチケットと既存確認済み情報を更新（一部ソースは取得失敗のため既存データを維持）",
   "artifact_url": "https://claude.ai/artifact/5saz5d5CVZmiU6VrCUBWmu",
   "events": [
@@ -9,7 +9,7 @@
       "venue": "じゅうろくプラザ　ホール",
       "city": "",
       "pref": "岐阜",
-      "status": "open",
+      "status": "closed",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/55719/45991"
     },
@@ -19,7 +19,7 @@
       "venue": "静かの海",
       "city": "",
       "pref": "愛知",
-      "status": "open",
+      "status": "closed",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/68064/54073"
     },
@@ -29,7 +29,7 @@
       "venue": "静かの海",
       "city": "",
       "pref": "愛知",
-      "status": "open",
+      "status": "closed",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/68154/54244"
     },
@@ -39,7 +39,7 @@
       "venue": "静かの海",
       "city": "",
       "pref": "愛知",
-      "status": "open",
+      "status": "closed",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/68137/54231"
     },
@@ -49,7 +49,7 @@
       "venue": "東別院テラスホール",
       "city": "",
       "pref": "愛知",
-      "status": "open",
+      "status": "closed",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/64438/51947"
     },
@@ -59,7 +59,7 @@
       "venue": "東別院テラスホール",
       "city": "",
       "pref": "愛知",
-      "status": "open",
+      "status": "closed",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/61535/50211"
     },
@@ -69,7 +69,7 @@
       "venue": "静かの海",
       "city": "",
       "pref": "愛知",
-      "status": "open",
+      "status": "closed",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/68193/54261"
     },
@@ -79,7 +79,7 @@
       "venue": "静かの海",
       "city": "",
       "pref": "愛知",
-      "status": "open",
+      "status": "closed",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/68194/54262"
     },
@@ -495,16 +495,6 @@
       "url": "https://www.bushikaku.net/expedition/play/show/detail/282535-0001/282535-0008/"
     },
     {
-      "date": "2026-11-19",
-      "title": "先着 美川憲一&amp;コロッケ",
-      "venue": "三重県文化会館&nbsp;大ホール(三重県総合文化センター)",
-      "city": "",
-      "pref": "三重",
-      "status": "open",
-      "src": "eplus_mie",
-      "url": "https://eplus.jp/sf/detail/0186410001-P0030086P021002"
-    },
-    {
       "date": "2026-11-20",
       "title": "先着 美川憲一&amp;コロッケ",
       "venue": "ぎふしんフォーラム",
@@ -766,16 +756,6 @@
     },
     {
       "date": "2027-01-11",
-      "title": "先着 爆笑!お笑いエンタメライブ in四日市",
-      "venue": "四日市市文化会館&nbsp;第1ホール",
-      "city": "",
-      "pref": "三重",
-      "status": "open",
-      "src": "eplus_mie",
-      "url": "https://eplus.jp/sf/detail/2660340001-P0030045P021001"
-    },
-    {
-      "date": "2027-01-11",
       "title": "爆笑!お笑いエンタメライブ",
       "venue": "四日市市文化会館 第一ホール",
       "city": "",
@@ -793,6 +773,16 @@
       "status": "unknown",
       "src": "bushikaku_chubu",
       "url": "https://www.bushikaku.net/expedition/play/show/detail/432949-0001/432949-0013/"
+    },
+    {
+      "date": "2027-01-31",
+      "title": "寛平GMプロデュース公演 新喜劇出前ツアー2026 岐阜公演",
+      "venue": "高山市民文化会館　大ホール",
+      "city": "",
+      "pref": "岐阜",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/70530/55459"
     },
     {
       "date": "2027-01-31",
