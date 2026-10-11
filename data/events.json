@@ -1,95 +1,15 @@
 {
-  "last_updated": "2026-10-10",
+  "last_updated": "2026-10-11",
   "last_updated_note": "GitHub ActionsでFANY・バス比較なび・イープラス・ローソンチケットと既存確認済み情報を更新（一部ソースは取得失敗のため既存データを維持）",
   "artifact_url": "https://claude.ai/artifact/5saz5d5CVZmiU6VrCUBWmu",
   "events": [
-    {
-      "date": "2026-10-10",
-      "title": "ニューヨーク単独ライブ｢ニューヨークの横からシツレ～します！｣",
-      "venue": "じゅうろくプラザ　ホール",
-      "city": "",
-      "pref": "岐阜",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/55719/45991"
-    },
-    {
-      "date": "2026-10-10",
-      "title": "UDE-DA-MESHI",
-      "venue": "静かの海",
-      "city": "",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/68064/54073"
-    },
-    {
-      "date": "2026-10-10",
-      "title": "おばけ 単独ライブ「全部の中の人 」",
-      "venue": "静かの海",
-      "city": "",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/68154/54244"
-    },
-    {
-      "date": "2026-10-10",
-      "title": "なごよしネクストバトル",
-      "venue": "静かの海",
-      "city": "",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/68137/54231"
-    },
-    {
-      "date": "2026-10-10",
-      "title": "吉本新喜劇アキと愉快な仲間たちトークライブin名古屋",
-      "venue": "東別院テラスホール",
-      "city": "",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/64438/51947"
-    },
-    {
-      "date": "2026-10-10",
-      "title": "吉本新喜劇アキのいぃよぉ ～の感謝祭2026",
-      "venue": "東別院テラスホール",
-      "city": "",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/61535/50211"
-    },
-    {
-      "date": "2026-10-10",
-      "title": "紅点×天ロクの丘ツーマンライブ「テンテン」",
-      "venue": "静かの海",
-      "city": "",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/68193/54261"
-    },
-    {
-      "date": "2026-10-10",
-      "title": "紅点×天ロクの丘ツーマンライブ「テンテン」 トークライブ",
-      "venue": "静かの海",
-      "city": "",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/68194/54262"
-    },
     {
       "date": "2026-10-11",
       "title": "ニューヨーク単独ライブ｢ニューヨークの横からシツレ～します！｣",
       "venue": "じゅうろくプラザ　ホール",
       "city": "",
       "pref": "岐阜",
-      "status": "open",
+      "status": "closed",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/55719/45993"
     },
@@ -330,7 +250,7 @@
       "venue": "MusicBarPerch",
       "city": "",
       "pref": "愛知",
-      "status": "soon",
+      "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/70348/55332"
     },
@@ -340,7 +260,7 @@
       "venue": "MusicBarPerch",
       "city": "",
       "pref": "愛知",
-      "status": "soon",
+      "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/70347/55333"
     },
@@ -350,7 +270,7 @@
       "venue": "MusicBarPerch",
       "city": "",
       "pref": "愛知",
-      "status": "soon",
+      "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/70313/55328"
     },
@@ -360,7 +280,7 @@
       "venue": "MusicBarPerch",
       "city": "",
       "pref": "愛知",
-      "status": "soon",
+      "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/70349/55331"
     },
@@ -370,7 +290,7 @@
       "venue": "静かの海",
       "city": "",
       "pref": "愛知",
-      "status": "soon",
+      "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/70368/55355"
     },
@@ -380,7 +300,7 @@
       "venue": "静かの海",
       "city": "",
       "pref": "愛知",
-      "status": "soon",
+      "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/70350/55334"
     },
@@ -390,7 +310,7 @@
       "venue": "静かの海",
       "city": "",
       "pref": "愛知",
-      "status": "soon",
+      "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/70352/55335"
     },
@@ -400,7 +320,7 @@
       "venue": "静かの海",
       "city": "",
       "pref": "愛知",
-      "status": "soon",
+      "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/70351/55336"
     },
@@ -410,7 +330,7 @@
       "venue": "静かの海",
       "city": "",
       "pref": "愛知",
-      "status": "soon",
+      "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/70368/55357"
     },
@@ -420,7 +340,7 @@
       "venue": "静かの海",
       "city": "",
       "pref": "愛知",
-      "status": "soon",
+      "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/70353/55337"
     },
@@ -510,7 +430,7 @@
       "venue": "静かの海",
       "city": "",
       "pref": "愛知",
-      "status": "soon",
+      "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/70368/55358"
     },
@@ -580,7 +500,7 @@
       "venue": "静かの海",
       "city": "",
       "pref": "愛知",
-      "status": "soon",
+      "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/70368/55360"
     },
@@ -600,7 +520,7 @@
       "venue": "静かの海",
       "city": "",
       "pref": "愛知",
-      "status": "soon",
+      "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/70354/55340"
     },
@@ -630,7 +550,7 @@
       "venue": "静かの海",
       "city": "",
       "pref": "愛知",
-      "status": "soon",
+      "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/70356/55341"
     },
@@ -660,7 +580,7 @@
       "venue": "静かの海",
       "city": "",
       "pref": "愛知",
-      "status": "soon",
+      "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/70355/55342"
     },
