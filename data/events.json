@@ -1,35 +1,15 @@
 {
-  "last_updated": "2026-10-11",
+  "last_updated": "2026-10-12",
   "last_updated_note": "GitHub ActionsでFANY・バス比較なび・イープラス・ローソンチケットと既存確認済み情報を更新（一部ソースは取得失敗のため既存データを維持）",
   "artifact_url": "https://claude.ai/artifact/5saz5d5CVZmiU6VrCUBWmu",
   "events": [
-    {
-      "date": "2026-10-11",
-      "title": "ニューヨーク単独ライブ｢ニューヨークの横からシツレ～します！｣",
-      "venue": "じゅうろくプラザ　ホール",
-      "city": "",
-      "pref": "岐阜",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/55719/45993"
-    },
-    {
-      "date": "2026-10-11",
-      "title": "圧巻!歌まね 歌謡ショー",
-      "venue": "ぎふしんフォーラム",
-      "city": "",
-      "pref": "岐阜",
-      "status": "unknown",
-      "src": "bushikaku_chubu",
-      "url": "https://www.bushikaku.net/expedition/concert/show/detail/448339-0003/448339-0008/"
-    },
     {
       "date": "2026-10-12",
       "title": "KUWATA SUPER LIVE",
       "venue": "静かの海",
       "city": "",
       "pref": "愛知",
-      "status": "open",
+      "status": "closed",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/68156/54246"
     },
@@ -39,7 +19,7 @@
       "venue": "静かの海",
       "city": "",
       "pref": "愛知",
-      "status": "open",
+      "status": "closed",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/68064/54076"
     },
@@ -49,7 +29,7 @@
       "venue": "静かの海",
       "city": "",
       "pref": "愛知",
-      "status": "open",
+      "status": "closed",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/68155/54248"
     },
@@ -350,7 +330,7 @@
       "venue": "大須演芸場",
       "city": "",
       "pref": "愛知",
-      "status": "soon",
+      "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/70076/55124"
     },
@@ -360,7 +340,7 @@
       "venue": "大須演芸場",
       "city": "",
       "pref": "愛知",
-      "status": "soon",
+      "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/70056/55115"
     },
@@ -370,7 +350,7 @@
       "venue": "大須演芸場",
       "city": "",
       "pref": "愛知",
-      "status": "soon",
+      "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/70056/55114"
     },
@@ -593,16 +573,6 @@
       "status": "closed",
       "src": "eplus_gifu",
       "url": "https://eplus.jp/sf/detail/2660340001-P0030044P021001"
-    },
-    {
-      "date": "2026-11-29",
-      "title": "爆笑!お笑いエンタメライブ",
-      "venue": "ぎふしんフォーラム",
-      "city": "",
-      "pref": "岐阜",
-      "status": "unknown",
-      "src": "bushikaku_chubu",
-      "url": "https://www.bushikaku.net/expedition/play/show/detail/266034-0001/266034-0044/"
     },
     {
       "date": "2026-11-29",
