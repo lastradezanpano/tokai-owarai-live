@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-14",
+  "last_updated": "2026-10-15",
   "last_updated_note": "GitHub ActionsでFANY・バス比較なび・イープラス・ローソンチケットと既存確認済み情報を更新（一部ソースは取得失敗のため既存データを維持）",
   "artifact_url": "https://claude.ai/artifact/5saz5d5CVZmiU6VrCUBWmu",
   "events": [
@@ -365,16 +365,6 @@
       "url": "https://eplus.jp/sf/detail/2825350001-P0030008P021002"
     },
     {
-      "date": "2026-11-15",
-      "title": "神奈月",
-      "venue": "東別院テラスホール",
-      "city": "",
-      "pref": "愛知",
-      "status": "unknown",
-      "src": "bushikaku_chubu",
-      "url": "https://www.bushikaku.net/expedition/play/show/detail/282535-0001/282535-0008/"
-    },
-    {
       "date": "2026-11-20",
       "title": "先着 美川憲一&amp;コロッケ",
       "venue": "ぎふしんフォーラム",
@@ -433,16 +423,6 @@
       "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/67489/53738"
-    },
-    {
-      "date": "2026-11-27",
-      "title": "『千原ジュニアのヘベレケ』トークライブ2",
-      "venue": "岡谷鋼機名古屋公会堂 大ホール",
-      "city": "",
-      "pref": "愛知",
-      "status": "unknown",
-      "src": "bushikaku_chubu",
-      "url": "https://www.bushikaku.net/expedition/play/show/detail/459133-0001/459133-0001/"
     },
     {
       "date": "2026-11-27",
@@ -566,16 +546,6 @@
     },
     {
       "date": "2026-11-29",
-      "title": "爆笑!お笑いエンタメライブ",
-      "venue": "ぎふしんフォーラム",
-      "city": "",
-      "pref": "岐阜",
-      "status": "unknown",
-      "src": "bushikaku_chubu",
-      "url": "https://www.bushikaku.net/expedition/play/show/detail/266034-0001/266034-0044/"
-    },
-    {
-      "date": "2026-11-29",
       "title": "アインシュタイン15周年ツアー「ゲストシュタインin名古屋」",
       "venue": "御園座",
       "city": "",
@@ -635,26 +605,6 @@
       "url": "https://eplus.jp/sf/detail/4604090001-P0030002P021002"
     },
     {
-      "date": "2026-12-12",
-      "title": "教育おたのしみ会～笑いとげんじつ～",
-      "venue": "愛知県産業労働センター ウインクあいち 大ホール",
-      "city": "",
-      "pref": "愛知",
-      "status": "unknown",
-      "src": "bushikaku_chubu",
-      "url": "https://www.bushikaku.net/expedition/play/show/detail/460409-0001/460409-0002/"
-    },
-    {
-      "date": "2026-12-12",
-      "title": "教育おたのしみ会～笑いとげんじつ～【愛知公演】",
-      "venue": "ウインクあいち　大ホール",
-      "city": "",
-      "pref": "愛知",
-      "status": "open",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/67301/53656"
-    },
-    {
       "date": "2027-01-08",
       "title": "先着 最強!ものまねフェスin名古屋 ビューティーこくぶ×ミラクルひかる×荒牧陽子×エハラマサヒロ",
       "venue": "Niterra日本特殊陶業市民会館フォレストホール",
@@ -663,16 +613,6 @@
       "status": "open",
       "src": "eplus_aichi",
       "url": "https://eplus.jp/sf/detail/4579460001-P0030001P021001"
-    },
-    {
-      "date": "2027-01-08",
-      "title": "最強!ものまねフェスin名古屋",
-      "venue": "Niterra日本特殊陶業市民会館フォレストホール",
-      "city": "",
-      "pref": "愛知",
-      "status": "unknown",
-      "src": "bushikaku_chubu",
-      "url": "https://www.bushikaku.net/expedition/play/show/detail/457946-0001/457946-0001/"
     },
     {
       "date": "2027-01-11",
@@ -733,16 +673,6 @@
       "status": "soon",
       "src": "eplus_aichi",
       "url": "https://eplus.jp/sf/detail/0063170001-P0030523P021001"
-    },
-    {
-      "date": "2027-02-06",
-      "title": "綾小路きみまろ",
-      "venue": "岡谷鋼機名古屋公会堂 大ホール",
-      "city": "",
-      "pref": "愛知",
-      "status": "unknown",
-      "src": "bushikaku_chubu",
-      "url": "https://www.bushikaku.net/expedition/play/show/detail/006317-0001/006317-0523/"
     },
     {
       "date": "2027-02-28",
