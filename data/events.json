@@ -1,36 +1,15 @@
 {
-  "last_updated": "2026-10-16",
+  "last_updated": "2026-10-17",
   "last_updated_note": "GitHub ActionsでFANY・バス比較なび・イープラス・ローソンチケットと既存確認済み情報を更新（一部ソースは取得失敗のため既存データを維持）",
   "artifact_url": "https://claude.ai/artifact/5saz5d5CVZmiU6VrCUBWmu",
   "events": [
-    {
-      "date": "2026-10-16",
-      "title": "HRF",
-      "venue": "東別院テラスホール",
-      "city": "",
-      "pref": "愛知",
-      "status": "unknown",
-      "src": "bushikaku_chubu",
-      "url": "https://www.bushikaku.net/expedition/play/show/detail/396504-0003/396504-0004/",
-      "date_end": "2026-10-17"
-    },
-    {
-      "date": "2026-10-16",
-      "title": "よしもと名駅四丁目ライブ 東名阪交流SHOW",
-      "venue": "ミッドランドスクエアシネマ２スクリーン８",
-      "city": "名古屋市",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/67105/53574"
-    },
     {
       "date": "2026-10-17",
       "title": "COWCOW 33rd LIVE 名古屋(愛知)公演",
       "venue": "今池ガスホール",
       "city": "名古屋市",
       "pref": "愛知",
-      "status": "open",
+      "status": "closed",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/63151/50690"
     },
@@ -455,6 +434,16 @@
       "url": "https://ticket.fany.lol/reception/66112/52652"
     },
     {
+      "date": "2026-11-27",
+      "title": "よしもと名駅四丁目ライブ 東名阪交流SHOW",
+      "venue": "ミッドランドスクエアシネマ２スクリーン８",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/71275/56203"
+    },
+    {
       "date": "2026-11-28",
       "title": "UDE-DA-MESHI",
       "venue": "静かの海",
@@ -556,16 +545,6 @@
     },
     {
       "date": "2026-11-29",
-      "title": "爆笑!お笑いエンタメライブ",
-      "venue": "ぎふしんフォーラム",
-      "city": "",
-      "pref": "岐阜",
-      "status": "unknown",
-      "src": "bushikaku_chubu",
-      "url": "https://www.bushikaku.net/expedition/play/show/detail/266034-0001/266034-0044/"
-    },
-    {
-      "date": "2026-11-29",
       "title": "アインシュタイン15周年ツアー「ゲストシュタインin名古屋」",
       "venue": "御園座",
       "city": "",
@@ -643,16 +622,6 @@
       "status": "soon",
       "src": "eplus_mie",
       "url": "https://eplus.jp/sf/detail/2660340001-P0030045P021001"
-    },
-    {
-      "date": "2027-01-11",
-      "title": "爆笑!お笑いエンタメライブ",
-      "venue": "四日市市文化会館 第一ホール",
-      "city": "",
-      "pref": "三重",
-      "status": "unknown",
-      "src": "bushikaku_chubu",
-      "url": "https://www.bushikaku.net/expedition/play/show/detail/266034-0001/266034-0045/"
     },
     {
       "date": "2027-01-30",
