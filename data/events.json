@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-18",
+  "last_updated": "2026-10-19",
   "last_updated_note": "GitHub ActionsでFANY・バス比較なび・イープラス・ローソンチケットと既存確認済み情報を更新（一部ソースは取得失敗のため既存データを維持）",
   "artifact_url": "https://claude.ai/artifact/5saz5d5CVZmiU6VrCUBWmu",
   "events": [
@@ -325,6 +325,16 @@
     },
     {
       "date": "2026-11-15",
+      "title": "先着 神奈月 神奈月&nbsp;ソロライブツアー2026～ものまねLOVE&nbsp;in&nbsp;名古屋",
+      "venue": "東別院テラスホール(東別院ホール)",
+      "city": "",
+      "pref": "愛知",
+      "status": "open",
+      "src": "eplus_aichi",
+      "url": "https://eplus.jp/sf/detail/2825350001-P0030008P021002"
+    },
+    {
+      "date": "2026-11-15",
       "title": "神奈月",
       "venue": "東別院テラスホール",
       "city": "",
@@ -432,6 +442,16 @@
       "status": "soon",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/71275/56203"
+    },
+    {
+      "date": "2026-11-27",
+      "title": "先着 『千原ジュニアのヘベレケ』トークライブ2",
+      "venue": "岡谷鋼機名古屋公会堂&nbsp;大ホール",
+      "city": "",
+      "pref": "愛知",
+      "status": "open",
+      "src": "eplus_aichi",
+      "url": "https://eplus.jp/sf/detail/4591330001-P0030001P021001"
     },
     {
       "date": "2026-11-28",
@@ -554,6 +574,56 @@
       "url": "https://ticket.fany.lol/reception/54544/45118"
     },
     {
+      "date": "2026-12-02",
+      "title": "年末恒例大爆笑大会　よしもと爆笑公演・・・",
+      "venue": "御園座",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/71306/56220"
+    },
+    {
+      "date": "2026-12-03",
+      "title": "年末恒例大爆笑大会　よしもと爆笑公演・・・",
+      "venue": "御園座",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/71306/56221"
+    },
+    {
+      "date": "2026-12-04",
+      "title": "年末恒例大爆笑大会　よしもと爆笑公演・・・",
+      "venue": "御園座",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/71306/56222"
+    },
+    {
+      "date": "2026-12-05",
+      "title": "年末恒例大爆笑大会　よしもと爆笑公演・・・",
+      "venue": "御園座",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/71306/56224"
+    },
+    {
+      "date": "2026-12-06",
+      "title": "年末恒例大爆笑大会　よしもと爆笑公演・・・",
+      "venue": "御園座",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "fany_ticket",
+      "url": "https://ticket.fany.lol/reception/71306/56219"
+    },
+    {
       "date": "2026-12-12",
       "title": "アブナイ ヨセ",
       "venue": "愛知県産業労働センター ウインクあいち 大ホール",
@@ -575,6 +645,26 @@
     },
     {
       "date": "2026-12-12",
+      "title": "先着 アブナイ&nbsp;ヨセ 全国ツアー2026「アブナイ&nbsp;ヨセin愛知」",
+      "venue": "愛知県産業労働センター&nbsp;ウインクあいち&nbsp;大ホール",
+      "city": "",
+      "pref": "愛知",
+      "status": "closed",
+      "src": "eplus_aichi",
+      "url": "https://eplus.jp/sf/detail/4402420001-P0030007P021002"
+    },
+    {
+      "date": "2026-12-12",
+      "title": "先着 教育おたのしみ会～笑いとげんじつ～ 【愛知公演】",
+      "venue": "愛知県産業労働センター&nbsp;ウインクあいち&nbsp;大ホール",
+      "city": "",
+      "pref": "愛知",
+      "status": "closed",
+      "src": "eplus_aichi",
+      "url": "https://eplus.jp/sf/detail/4604090001-P0030002P021002"
+    },
+    {
+      "date": "2026-12-12",
       "title": "教育おたのしみ会～笑いとげんじつ～",
       "venue": "愛知県産業労働センター ウインクあいち 大ホール",
       "city": "",
@@ -592,6 +682,16 @@
       "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/67301/53656"
+    },
+    {
+      "date": "2027-01-08",
+      "title": "先着 最強!ものまねフェスin名古屋 ビューティーこくぶ×ミラクルひかる×荒牧陽子×エハラマサヒロ",
+      "venue": "Niterra日本特殊陶業市民会館フォレストホール",
+      "city": "",
+      "pref": "愛知",
+      "status": "open",
+      "src": "eplus_aichi",
+      "url": "https://eplus.jp/sf/detail/4579460001-P0030001P021001"
     },
     {
       "date": "2027-01-08",
@@ -634,6 +734,16 @@
       "url": "https://www.bushikaku.net/expedition/play/show/detail/432949-0001/432949-0013/"
     },
     {
+      "date": "2027-01-30",
+      "title": "先着 THE&nbsp;柳沢慎吾劇場 日本列島大捜査網&nbsp;★&nbsp;ROCK45TOUR",
+      "venue": "Niterra日本特殊陶業市民会館ビレッジホール",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "eplus_aichi",
+      "url": "https://eplus.jp/sf/detail/4329490001-P0030013P021001"
+    },
+    {
       "date": "2027-01-31",
       "title": "寛平GMプロデュース公演 新喜劇出前ツアー2026 岐阜公演",
       "venue": "高山市民文化会館　大ホール",
@@ -652,6 +762,16 @@
       "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/51131/43106"
+    },
+    {
+      "date": "2027-02-06",
+      "title": "先着 綾小路きみまろ 爆笑スーパーライブin名古屋",
+      "venue": "岡谷鋼機名古屋公会堂",
+      "city": "",
+      "pref": "愛知",
+      "status": "open",
+      "src": "eplus_aichi",
+      "url": "https://eplus.jp/sf/detail/0063170001-P0030523P021001"
     },
     {
       "date": "2027-02-06",
