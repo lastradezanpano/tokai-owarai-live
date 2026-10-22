@@ -1,10 +1,10 @@
 {
-  "checked_at": "2026-10-21",
+  "checked_at": "2026-10-22",
   "sources": {
     "FANY": {
-      "ok": true,
-      "count": 74,
-      "error": null
+      "ok": false,
+      "count": 0,
+      "error": "HTTPError: HTTP Error 403: Forbidden"
     },
     "バス比較なび": {
       "ok": true,
@@ -13,7 +13,7 @@
     },
     "イープラス": {
       "ok": true,
-      "count": 11,
+      "count": 6,
       "error": null
     },
     "ローソンチケット": {
