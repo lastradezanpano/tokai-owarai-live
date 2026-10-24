@@ -1,18 +1,8 @@
 {
-  "last_updated": "2026-10-23",
+  "last_updated": "2026-10-24",
   "last_updated_note": "GitHub ActionsでFANY・バス比較なび・イープラス・ローソンチケットと既存確認済み情報を更新（一部ソースは取得失敗のため既存データを維持）",
   "artifact_url": "https://claude.ai/artifact/5saz5d5CVZmiU6VrCUBWmu",
   "events": [
-    {
-      "date": "2026-10-23",
-      "title": "UDE-DA-MESHI",
-      "venue": "静かの海",
-      "city": "",
-      "pref": "愛知",
-      "status": "open",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/68064/54077"
-    },
     {
       "date": "2026-10-24",
       "title": "ぎょうぶ×バッテリィズツーマンライブ「おいなり」",
@@ -325,16 +315,6 @@
     },
     {
       "date": "2026-11-19",
-      "title": "先着 美川憲一&amp;コロッケ",
-      "venue": "三重県文化会館&nbsp;大ホール(三重県総合文化センター)",
-      "city": "",
-      "pref": "三重",
-      "status": "open",
-      "src": "eplus_mie",
-      "url": "https://eplus.jp/sf/detail/0186410001-P0030086P021002"
-    },
-    {
-      "date": "2026-11-19",
       "title": "出張！フットボールアワーの笑う大須演芸場 IN COMTEC PORTBASE",
       "venue": "COMTEC PORTBASE",
       "city": "",
@@ -342,16 +322,6 @@
       "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/71203/56127"
-    },
-    {
-      "date": "2026-11-20",
-      "title": "先着 美川憲一&amp;コロッケ",
-      "venue": "ぎふしんフォーラム",
-      "city": "",
-      "pref": "岐阜",
-      "status": "open",
-      "src": "eplus_gifu",
-      "url": "https://eplus.jp/sf/detail/0186410001-P0030087P021002"
     },
     {
       "date": "2026-11-20",
@@ -535,16 +505,6 @@
     },
     {
       "date": "2026-11-29",
-      "title": "先着 爆笑!お笑いエンタメライブ in岐阜",
-      "venue": "ぎふしんフォーラム大ホール(岐阜市民会館)",
-      "city": "",
-      "pref": "岐阜",
-      "status": "closed",
-      "src": "eplus_gifu",
-      "url": "https://eplus.jp/sf/detail/2660340001-P0030044P021001"
-    },
-    {
-      "date": "2026-11-29",
       "title": "爆笑!お笑いエンタメライブ",
       "venue": "ぎふしんフォーラム",
       "city": "",
@@ -675,16 +635,6 @@
     },
     {
       "date": "2027-01-11",
-      "title": "先着 爆笑!お笑いエンタメライブ in四日市",
-      "venue": "四日市市文化会館&nbsp;第1ホール",
-      "city": "",
-      "pref": "三重",
-      "status": "open",
-      "src": "eplus_mie",
-      "url": "https://eplus.jp/sf/detail/2660340001-P0030045P021001"
-    },
-    {
-      "date": "2027-01-11",
       "title": "爆笑!お笑いエンタメライブ",
       "venue": "四日市市文化会館 第一ホール",
       "city": "",
@@ -759,7 +709,7 @@
       "venue": "Niterra日本特殊陶業市民会館フォレストホール",
       "city": "",
       "pref": "愛知",
-      "status": "soon",
+      "status": "open",
       "src": "eplus_aichi",
       "url": "https://eplus.jp/sf/detail/2660340001-P0030046P021001"
     },
