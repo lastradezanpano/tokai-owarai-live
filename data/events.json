@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-27",
+  "last_updated": "2026-10-28",
   "last_updated_note": "GitHub ActionsでFANY・バス比較なび・イープラス・ローソンチケットと既存確認済み情報を更新（一部ソースは取得失敗のため既存データを維持）",
   "artifact_url": "https://claude.ai/artifact/5saz5d5CVZmiU6VrCUBWmu",
   "events": [
@@ -534,14 +534,14 @@
       "url": "https://eplus.jp/sf/detail/2660340001-P0030045P021001"
     },
     {
-      "date": "2027-01-11",
-      "title": "爆笑!お笑いエンタメライブ",
-      "venue": "四日市市文化会館 第一ホール",
+      "date": "2027-01-16",
+      "title": "バッテリィズ寺家の三重っぱりフェス",
+      "venue": "津市産業･スポーツセンター サオリーナ",
       "city": "",
       "pref": "三重",
       "status": "unknown",
       "src": "bushikaku_chubu",
-      "url": "https://www.bushikaku.net/expedition/play/show/detail/266034-0001/266034-0045/"
+      "url": "https://www.bushikaku.net/expedition/play/show/detail/462749-0001/462749-0001/"
     },
     {
       "date": "2027-01-30",
@@ -582,6 +582,16 @@
       "status": "unknown",
       "src": "bushikaku_chubu",
       "url": "https://www.bushikaku.net/expedition/play/show/detail/006317-0001/006317-0523/"
+    },
+    {
+      "date": "2027-02-23",
+      "title": "神奈月&ミラクルひかる",
+      "venue": "クラギ文化ホール",
+      "city": "",
+      "pref": "三重",
+      "status": "unknown",
+      "src": "bushikaku_chubu",
+      "url": "https://www.bushikaku.net/expedition/play/show/detail/453343-0002/453343-0002/"
     },
     {
       "date": "2027-02-27",
