@@ -1,48 +1,8 @@
 {
-  "last_updated": "2026-11-01",
+  "last_updated": "2026-11-02",
   "last_updated_note": "GitHub ActionsでFANY・バス比較なび・イープラス・ローソンチケットと既存確認済み情報を更新（一部ソースは取得失敗のため既存データを維持）",
   "artifact_url": "https://claude.ai/artifact/5saz5d5CVZmiU6VrCUBWmu",
   "events": [
-    {
-      "date": "2026-11-01",
-      "title": "BIKE-T SUPER LIVE",
-      "venue": "MusicBarPerch",
-      "city": "",
-      "pref": "愛知",
-      "status": "open",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/70348/55332"
-    },
-    {
-      "date": "2026-11-01",
-      "title": "なごよし新ネタ学校 ～テーマ：秋～",
-      "venue": "MusicBarPerch",
-      "city": "",
-      "pref": "愛知",
-      "status": "open",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/70347/55333"
-    },
-    {
-      "date": "2026-11-01",
-      "title": "ネクストメンバーコーナーライブ",
-      "venue": "MusicBarPerch",
-      "city": "",
-      "pref": "愛知",
-      "status": "open",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/70313/55328"
-    },
-    {
-      "date": "2026-11-01",
-      "title": "帰ってきた！小馬と小虎",
-      "venue": "MusicBarPerch",
-      "city": "",
-      "pref": "愛知",
-      "status": "open",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/70349/55331"
-    },
     {
       "date": "2026-11-03",
       "title": "UDE-DA-MESHI",
