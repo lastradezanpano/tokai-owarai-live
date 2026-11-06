@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-11-05",
+  "last_updated": "2026-11-06",
   "last_updated_note": "GitHub ActionsでFANY・バス比較なび・イープラス・ローソンチケットと既存確認済み情報を更新（一部ソースは取得失敗のため既存データを維持）",
   "artifact_url": "https://claude.ai/artifact/5saz5d5CVZmiU6VrCUBWmu",
   "events": [
@@ -509,7 +509,7 @@
       "venue": "Niterra日本特殊陶業市民会館ビレッジホール",
       "city": "",
       "pref": "愛知",
-      "status": "soon",
+      "status": "closed",
       "src": "eplus_aichi",
       "url": "https://eplus.jp/sf/detail/4329490001-P0030013P021001"
     },
@@ -552,6 +552,26 @@
       "status": "unknown",
       "src": "bushikaku_chubu",
       "url": "https://www.bushikaku.net/expedition/play/show/detail/006317-0001/006317-0523/"
+    },
+    {
+      "date": "2027-02-11",
+      "title": "先着 爆笑!お笑いライブ&nbsp;in&nbsp;刈谷",
+      "venue": "刈谷市総合文化センター&nbsp;大ホール",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "eplus_aichi",
+      "url": "https://eplus.jp/sf/detail/4629470001-P0030001P021002"
+    },
+    {
+      "date": "2027-02-11",
+      "title": "爆笑!お笑いライブ in 刈谷",
+      "venue": "刈谷市総合文化センター 大ホール",
+      "city": "",
+      "pref": "愛知",
+      "status": "unknown",
+      "src": "bushikaku_chubu",
+      "url": "https://www.bushikaku.net/expedition/play/show/detail/462947-0001/462947-0001/"
     },
     {
       "date": "2027-02-23",
