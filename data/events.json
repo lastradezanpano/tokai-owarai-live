@@ -1,38 +1,8 @@
 {
-  "last_updated": "2026-11-15",
+  "last_updated": "2026-11-16",
   "last_updated_note": "GitHub ActionsでFANY・バス比較なび・イープラス・ローソンチケットと既存確認済み情報を更新（一部ソースは取得失敗のため既存データを維持）",
   "artifact_url": "https://claude.ai/artifact/5saz5d5CVZmiU6VrCUBWmu",
   "events": [
-    {
-      "date": "2026-11-15",
-      "title": "ツートライブ漫才ツアー『闊歩旅'26』IN愛知",
-      "venue": "大須演芸場",
-      "city": "名古屋市",
-      "pref": "愛知",
-      "status": "open",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/59274/47986"
-    },
-    {
-      "date": "2026-11-15",
-      "title": "神奈月",
-      "venue": "東別院テラスホール",
-      "city": "",
-      "pref": "愛知",
-      "status": "unknown",
-      "src": "bushikaku_chubu",
-      "url": "https://www.bushikaku.net/expedition/play/show/detail/282535-0001/282535-0008/"
-    },
-    {
-      "date": "2026-11-19",
-      "title": "先着 美川憲一&amp;コロッケ",
-      "venue": "三重県文化会館&nbsp;大ホール(三重県総合文化センター)",
-      "city": "",
-      "pref": "三重",
-      "status": "open",
-      "src": "eplus_mie",
-      "url": "https://eplus.jp/sf/detail/0186410001-P0030086P021002"
-    },
     {
       "date": "2026-11-19",
       "title": "出張！フットボールアワーの笑う大須演芸場 IN COMTEC PORTBASE",
@@ -42,16 +12,6 @@
       "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/71203/56127"
-    },
-    {
-      "date": "2026-11-20",
-      "title": "先着 美川憲一&amp;コロッケ",
-      "venue": "ぎふしんフォーラム",
-      "city": "",
-      "pref": "岐阜",
-      "status": "open",
-      "src": "eplus_gifu",
-      "url": "https://eplus.jp/sf/detail/0186410001-P0030087P021002"
     },
     {
       "date": "2026-11-20",
@@ -345,16 +305,6 @@
     },
     {
       "date": "2027-01-11",
-      "title": "先着 爆笑!お笑いエンタメライブ in四日市",
-      "venue": "四日市市文化会館&nbsp;第1ホール",
-      "city": "",
-      "pref": "三重",
-      "status": "open",
-      "src": "eplus_mie",
-      "url": "https://eplus.jp/sf/detail/2660340001-P0030045P021002"
-    },
-    {
-      "date": "2027-01-11",
       "title": "爆笑!お笑いエンタメライブ",
       "venue": "四日市市文化会館 第一ホール",
       "city": "",
@@ -372,16 +322,6 @@
       "status": "unknown",
       "src": "bushikaku_chubu",
       "url": "https://www.bushikaku.net/expedition/play/show/detail/462749-0001/462749-0001/"
-    },
-    {
-      "date": "2027-01-16",
-      "title": "先着 バッテリィズ寺家の三重っぱりフェス",
-      "venue": "津市産業･スポーツセンター&nbsp;サオリーナ",
-      "city": "",
-      "pref": "三重",
-      "status": "closed",
-      "src": "eplus_mie",
-      "url": "https://eplus.jp/sf/detail/4627490001-P0030001P021001"
     },
     {
       "date": "2027-01-30",
@@ -472,6 +412,16 @@
       "status": "unknown",
       "src": "bushikaku_chubu",
       "url": "https://www.bushikaku.net/expedition/concert/show/detail/008481-0001/008481-0384/"
+    },
+    {
+      "date": "2027-04-24",
+      "title": "鬼暴!! ものまねLIVE",
+      "venue": "刈谷市総合文化センター 大ホール",
+      "city": "",
+      "pref": "愛知",
+      "status": "unknown",
+      "src": "bushikaku_chubu",
+      "url": "https://www.bushikaku.net/expedition/play/show/detail/463649-0001/463649-0001/"
     }
   ],
   "regular_theaters": [
