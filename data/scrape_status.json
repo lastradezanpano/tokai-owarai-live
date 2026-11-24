@@ -13,7 +13,7 @@
     },
     "イープラス": {
       "ok": true,
-      "count": 1,
+      "count": 14,
       "error": null
     },
     "名古屋よしもと": {
@@ -33,10 +33,7 @@
       "error": "自動化を断念(2026-09-29): net::ERR_HTTP2_PROTOCOL_ERRORが解消せずIPブロックと判断。詳細はSETUP.md参照"
     }
   },
-  "merged_due_to_drop": [
-    "eplus_aichi: 前回6件→今回0件",
-    "eplus_mie: 前回2件→今回0件"
-  ],
+  "merged_due_to_drop": [],
   "history": {
     "FANY": {
       "last_ok": "2026-10-21",
