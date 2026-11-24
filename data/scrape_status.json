@@ -13,7 +13,7 @@
     },
     "イープラス": {
       "ok": true,
-      "count": 4,
+      "count": 1,
       "error": null
     },
     "名古屋よしもと": {
@@ -34,7 +34,8 @@
     }
   },
   "merged_due_to_drop": [
-    "eplus_aichi: 前回6件→今回0件"
+    "eplus_aichi: 前回6件→今回0件",
+    "eplus_mie: 前回2件→今回0件"
   ],
   "history": {
     "FANY": {
