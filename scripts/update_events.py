@@ -40,11 +40,12 @@ LTIKE_URL = "https://l-tike.com/search/?tig=240&pref=21%2C23%2C24"
 LTIKE_PREF_BY_KEYWORD = {"愛知": "愛知", "岐阜": "岐阜", "三重": "三重"}
 
 
-def _get_browser_html(url: str) -> str | None:
+def _get_browser_html(url: str, after_load=None) -> str | None:
     """Playwrightで実ブラウザを起動してレンダリング済みHTMLを取得する。
 
     playwrightが利用できない(未インストール)環境ではNoneを返し、
     呼び出し側でそのソースの取得をスキップできるようにする。
+    after_load(page)を渡すと、HTMLを取る前に実行する(描画完了待ち等)。
     """
     try:
         from playwright.sync_api import sync_playwright
@@ -65,6 +66,8 @@ def _get_browser_html(url: str) -> str | None:
                     # すいため、DOM構築完了を待ってから固定時間だけ追加待機する。
                     page.goto(url, wait_until="domcontentloaded", timeout=30000)
                     page.wait_for_timeout(3000)
+                    if after_load:
+                        after_load(page)
                     html = page.content()
                     page.close()
                     return html
@@ -221,9 +224,33 @@ EPLUS_VENUE_RE = re.compile(r'ticket-item__venue">\s*<p>(.*?)</p>', re.DOTALL)
 EPLUS_STATUS_RE = re.compile(r'ticket-status__item[^"]*">([^<]*)<')
 
 
+def _eplus_wait_until_loaded(page) -> None:
+    """一覧の描画が終わり、件数が増えなくなるまで待つ。
+
+    以前は固定3秒待ちだけで、日によって1件しか取れない(描画途中の
+    HTMLを取ってしまう)ことがあった(2026-10〜11の実績: 1〜20件で変動)。
+    スクロールで追加表示される分も拾えるよう、下までスクロールしながら
+    件数が2回続けて変わらなくなるまで待つ(最大15回)。
+    """
+    selector = "a.ticket-item--kouen"
+    try:
+        page.wait_for_selector(selector, timeout=20000)
+    except Exception:  # noqa: BLE001 - 本当に0件の場合もある
+        return
+    last, stable = -1, 0
+    for _ in range(15):
+        page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
+        page.wait_for_timeout(1500)
+        count = page.locator(selector).count()
+        stable = stable + 1 if count == last else 0
+        last = count
+        if stable >= 2:
+            break
+
+
 def fetch_eplus(pref_slug: str) -> list[dict]:
     url = f"https://eplus.jp/sf/play/comedy/{pref_slug}"
-    html = _get_browser_html(url)
+    html = _get_browser_html(url, _eplus_wait_until_loaded)
     if html is None:
         return []
     results = []
@@ -446,15 +473,6 @@ def main() -> None:
         eplus_ok = False
         diagnostics["イープラス"] = {"ok": False, "count": 0, "error": "0件(bot対策等でブロックされた可能性)"}
 
-    diagnostics_path = ROOT / "data" / "scrape_status.json"
-    diagnostics_path.write_text(
-        json.dumps(
-            {"checked_at": today, "sources": diagnostics},
-            ensure_ascii=False, indent=2,
-        ) + "\n",
-        encoding="utf-8",
-    )
-
     # 取得に成功したソースの既存データだけを入れ替え対象にする。失敗した
     # ソース(bot対策強化やサイト構造変更等)は既存データをそのまま温存し、
     # 手動収集分(チケットぴあ等)と合わせて残す。
@@ -467,6 +485,34 @@ def main() -> None:
         replaced_sources.update({"eplus_aichi", "eplus_gifu", "eplus_mie"})
     if ltike_ok:
         replaced_sources.add("ltike")
+
+    # 取得が「成功」でも、描画途中や一時的なブロックで件数が急減することが
+    # ある(イープラスで20件→1件など)。前回の掲載件数(未来日分)の半分未満
+    # しか取れなかった情報源は入れ替えず、既存データに新規分を足す形で統合
+    # して、一時的な取りこぼしで公演が消えないようにする。
+    fetched_by_src: dict[str, int] = {}
+    for e in fany_events + bushikaku_events + eplus_events + ltike_events:
+        fetched_by_src[e["src"]] = fetched_by_src.get(e["src"], 0) + 1
+    merged_notes = []
+    for src in sorted(replaced_sources):
+        before = sum(
+            1 for e in existing if e.get("src") == src and e.get("date", "") >= today
+        )
+        after = fetched_by_src.get(src, 0)
+        if before >= 2 and after * 2 < before:
+            print(f"[warn] {src}: {before}件→{after}件に急減したため既存データと統合")
+            replaced_sources.discard(src)
+            merged_notes.append(f"{src}: 前回{before}件→今回{after}件")
+
+    diagnostics_path = ROOT / "data" / "scrape_status.json"
+    diagnostics_path.write_text(
+        json.dumps(
+            {"checked_at": today, "sources": diagnostics,
+             "merged_due_to_drop": merged_notes},
+            ensure_ascii=False, indent=2,
+        ) + "\n",
+        encoding="utf-8",
+    )
 
     retained = [
         e for e in existing
