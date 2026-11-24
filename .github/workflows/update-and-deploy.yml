@@ -43,6 +43,8 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/events.json data/scrape_status.json
           git commit -m "chore: update live events"
+          # 実行中に別のコミットが入っていても失敗しないよう、最新を取り込んでから送る
+          git pull --rebase origin main
           git push
       # 同じ情報源が3日以上続けて失敗したらIssueを作る(GitHubから登録メール
       # アドレスに通知が届く)。2日目以降は同じIssueの本文を更新するだけで、
