@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""FANY・バス比較なび・イープラス・ローソンチケットから東海3県のお笑い公演を更新する。
+"""FANY・バス比較なび・イープラス・名古屋よしもと・よしもとライブから東海3県のお笑い公演を更新する。
+
+FANYは2026-10-22以降HTTP 403で拒否されている(回避はしない)。
 
 イープラス・ローソンチケットは単純なHTTPリクエストだとbot対策で
 ブロックされる(HTTP 503 / タイムアウト・強制切断)ため、Playwrightで
@@ -164,7 +166,11 @@ VENUE_LINK_RE = re.compile(
 
 
 def _clean_text(fragment: str) -> str:
-    return TAG_RE.sub(" ", fragment).strip()
+    # &nbsp; 等の文字参照が「先着 アブナイ&nbsp;ヨセ」のように公演名に
+    # 残っていたため、文字に戻してから余分な空白をまとめる(2026-11-25修正)。
+    import html as _h
+    text = _h.unescape(TAG_RE.sub(" ", fragment)).replace("\xa0", " ")
+    return re.sub(r"[ \t\r\n]+", " ", text).strip()
 
 
 def parse_bushikaku_dates(date_fragment: str) -> tuple[str, str] | None:
@@ -363,6 +369,254 @@ def normalize_ltike(raw: dict) -> dict | None:
     }
 
 
+# ---------------------------------------------------------------------------
+# 吉本興業の公式サイト(名古屋よしもと・よしもとライブ)
+#
+# FANYチケットの検索APIが2026-10-22以降HTTP 403で拒否されるようになった
+# ため、その代わりとして追加(2026-11-25)。どちらもrobots.txtで対象ページ
+# は制限されておらず、吉本興業サイトのチケット約款等にも自動取得の禁止
+# 規定は見当たらなかった。相手サーバーに負担をかけないよう、正直な
+# User-Agentを名乗り、リクエストの間に1秒以上の間隔を空ける。
+# ---------------------------------------------------------------------------
+import html as _html
+import time as _time
+
+POLITE_HEADERS = {
+    "User-Agent": (
+        "Tokai-Owarai-Live-Tracker/1.0 "
+        "(+https://github.com/lastradezanpano/tokai-owarai-live)"
+    )
+}
+POLITE_INTERVAL_SEC = 1.5
+NAGOYA_SCHEDULE_URL = "https://nagoya.yoshimoto.co.jp/schedule/"
+YLIVE_BASE = "https://live.yoshimoto.co.jp"
+YLIVE_PREF_CODES = {"23": "愛知", "21": "岐阜", "24": "三重"}
+
+# 会場名から県を判定するための手がかり。名古屋よしもとの公演は大半が
+# 愛知県内なので、ここに当てはまらなければ愛知とみなす。
+MIE_HINTS = ("三重", "アスト津", "津市", "四日市", "鈴鹿", "伊勢", "桑名", "松阪",
+             "名張", "亀山", "伊賀", "鳥羽", "尾鷲", "志摩")
+GIFU_HINTS = ("岐阜", "大垣", "多治見", "各務原", "高山", "中津川", "可児", "羽島",
+              "関市", "美濃", "土岐", "瑞浪", "恵那", "郡上", "じゅうろくプラザ")
+
+_last_polite_request = [0.0]
+
+
+def _polite_get(url: str) -> str:
+    wait = POLITE_INTERVAL_SEC - (_time.monotonic() - _last_polite_request[0])
+    if wait > 0:
+        _time.sleep(wait)
+    request = urllib.request.Request(url, headers=POLITE_HEADERS)
+    try:
+        with urllib.request.urlopen(request, timeout=30) as response:
+            return response.read().decode("utf-8", errors="replace")
+    finally:
+        _last_polite_request[0] = _time.monotonic()
+
+
+def _html_to_lines(fragment: str) -> list[str]:
+    text = re.sub(r"<br\s*/?>|</p>|</div>|</li>", "\n", fragment, flags=re.I)
+    text = _html.unescape(TAG_RE.sub("", text)).replace("　", " ")
+    return [re.sub(r"\s+", " ", line).strip() for line in text.split("\n") if line.strip()]
+
+
+def guess_pref(*texts: str) -> str:
+    joined = " ".join(texts)
+    if any(h in joined for h in MIE_HINTS):
+        return "三重"
+    if any(h in joined for h in GIFU_HINTS):
+        return "岐阜"
+    return "愛知"
+
+
+NAGOYA_ITEM_RE = re.compile(
+    r'<li[^>]*>\s*<a href="([^"]+)">.*?<time datetime="(\d{4}-\d{2}-\d{2})".*?'
+    r'<h3 class="entrytitle">(.*?)</h3>',
+    re.DOTALL,
+)
+
+
+def parse_nagoya_schedule(page_html: str) -> list[dict]:
+    """名古屋よしもと公式のスケジュール一覧HTMLから公演を取り出す。
+
+    1件ごとに「公演名<br>[会場]…<br>[時間]…開場｜…開演<br>[出演者]…」の形。
+    同じ日に同名公演が複数回ある(UDE-DA-MESHI等)ため、その場合は公演名に
+    開演時刻を付けて別カードとして区別する。
+    """
+    page_html = re.sub(r"<!--.*?-->", "", page_html.replace("\r", ""), flags=re.DOTALL)
+    start = page_html.find("sec-news")
+    if start < 0:
+        raise RuntimeError("スケジュール一覧(sec-news)が見つからない。ページ構造が変わった可能性")
+    raw = []
+    for href, date, h3 in NAGOYA_ITEM_RE.findall(page_html[start:]):
+        lines = _html_to_lines(h3)
+        if not lines:
+            continue
+        info = {"title": lines[0], "venue": "", "time": ""}
+        for line in lines[1:]:
+            if line.startswith("[会場]"):
+                info["venue"] = line[len("[会場]"):].strip()
+            elif line.startswith("[時間]"):
+                m = re.search(r"(\d{1,2}:\d{2})開演", line)
+                info["time"] = m.group(1) if m else ""
+        raw.append({**info, "date": date, "url": href})
+    counts: dict[tuple[str, str], int] = {}
+    for r in raw:
+        counts[(r["date"], r["title"])] = counts.get((r["date"], r["title"]), 0) + 1
+    results = []
+    for r in raw:
+        title = r["title"]
+        if counts[(r["date"], title)] > 1 and r["time"]:
+            title = f"{title}（{r['time']}開演）"
+        results.append({
+            "date": r["date"], "title": title, "venue": r["venue"],
+            "city": "", "pref": guess_pref(r["venue"], r["title"]),
+            "status": "unknown", "src": "nagoya_yoshimoto", "url": r["url"],
+        })
+    return results
+
+
+def fetch_nagoya_yoshimoto() -> list[dict]:
+    return parse_nagoya_schedule(_polite_get(NAGOYA_SCHEDULE_URL))
+
+
+YLIVE_CARD_RE = re.compile(
+    r'<li id="post-\d+">\s*<a href="([^"]*/live/live-\d+/)">(.*?)</a>', re.DOTALL
+)
+YLIVE_PERIOD_RE = re.compile(r"(\d{4})\.(\d{2})\.(\d{2})")
+# 2026年12月12日 / 12月12日 / 12/12 のいずれかの日付表記
+DATE_ANY_RE = re.compile(
+    r"(?:(\d{4})\s*年\s*)?(\d{1,2})\s*月\s*(\d{1,2})\s*日"
+    r"|(?<![\d/:])(\d{1,2})/(\d{1,2})(?=\s*[（(])"
+)
+REGION_WORDS = {"愛知": "愛知", "名古屋": "愛知", "岐阜": "岐阜", "三重": "三重"}
+
+
+def parse_ylive_list(page_html: str) -> list[dict]:
+    """よしもとライブの都道府県検索結果から、詳細ページURL・会場欄・期間を取る。"""
+    cards = []
+    for url, body in YLIVE_CARD_RE.findall(page_html):
+        venue_m = re.search(r'class="venue">(.*?)</div>', body, re.DOTALL)
+        label = _clean_text(venue_m.group(1)) if venue_m else ""
+        dates = YLIVE_PERIOD_RE.findall(body)
+        if not dates:
+            continue
+        start = "-".join(dates[0])
+        end = "-".join(dates[-1])
+        cards.append({"url": url, "label": label, "start": start, "end": end})
+    return cards
+
+
+def _dates_in(text: str, start: str, end: str) -> list[str]:
+    """文中の日付をISO形式にする。年の書いていない日付は掲載期間から年を決める。"""
+    out = []
+    years = range(int(start[:4]), int(end[:4]) + 1)
+    for m in DATE_ANY_RE.finditer(text):
+        y, mo, d = (m.group(1), m.group(2), m.group(3)) if m.group(2) else (None, m.group(4), m.group(5))
+        candidates = [int(y)] if y else list(years)
+        for year in candidates:
+            iso = f"{year}-{int(mo):02d}-{int(d):02d}"
+            if y or start <= iso <= end:
+                out.append(iso)
+                break
+    return list(dict.fromkeys(out))
+
+
+def _ylive_table(page_html: str) -> dict[str, str]:
+    rows = {}
+    for th, td in re.findall(r"<th>(.*?)</th>\s*<td>(.*?)</td>", page_html, re.DOTALL):
+        rows[_clean_text(th)] = td
+    return rows
+
+
+def parse_ylive_detail(page_html: str, card: dict, pref_hint: str) -> list[dict]:
+    """よしもとライブの詳細ページから東海3県分の公演を取り出す。
+
+    - 単独公演ページ(一覧の会場欄が「愛知県」等): 公演日程欄の日付すべてと会場欄。
+    - ツアーページ(会場欄が「ツアー」等): 公演日程欄を【愛知】＜愛知公演＞●…愛知…
+      のような見出しで区切り、東海3県の見出しのブロックに日付が書かれている
+      ものだけ採用する。日付が読み取れない場合は推測で載せない
+      (sources.jsonのチケットぴあ注記と同じ方針: 日付未確認の公演は掲載しない)。
+    """
+    title_m = re.search(r"<title>(.*?)</title>", page_html, re.DOTALL)
+    if not title_m:
+        return []
+    title = _html.unescape(title_m.group(1)).split(" – ")[0].replace("　", " ").strip()
+    title = re.sub(r"^【(?:全国|愛知|岐阜|三重|名古屋)】\s*", "", title)
+    rows = _ylive_table(page_html)
+    sched_html = next((v for k, v in rows.items() if "公演日程" in k), "")
+    if not sched_html:
+        return []
+    venue_lines = _html_to_lines(next((v for k, v in rows.items() if k == "会場"), ""))
+    venue = venue_lines[0] if venue_lines else ""
+    lines = _html_to_lines(sched_html)
+    events = []
+
+    def add(date: str, venue_name: str, pref: str) -> None:
+        events.append({
+            "date": date, "title": title, "venue": venue_name, "city": "",
+            "pref": pref, "status": "unknown", "src": "yoshimoto_live",
+            "url": card["url"],
+        })
+
+    if card["label"] in ("愛知県", "岐阜県", "三重県"):
+        pref = card["label"][:-1]
+        for date in _dates_in("\n".join(lines), card["start"], card["end"]):
+            add(date, venue, pref)
+        return events
+
+    # ツアーページ: 見出し行でブロックに分ける
+    header_re = re.compile(r"^(?:【[^】]*】|＜[^＞]*＞|<[^>]*>|●.*|■.*|◆.*)")
+    blocks: list[tuple[str, list[str]]] = []
+    for line in lines:
+        if header_re.match(line):
+            blocks.append((line, []))
+        elif blocks:
+            blocks[-1][1].append(line)
+    for header, body in blocks:
+        pref = next((p for w, p in REGION_WORDS.items() if w in header), "")
+        if not pref:
+            continue
+        dates = _dates_in("\n".join(body), card["start"], card["end"])
+        if not dates:
+            continue
+        block_venue = ""
+        for i, line in enumerate(body):
+            m = re.match(r"会場[：:]\s*(.+)", line)
+            if m:
+                block_venue = m.group(1).strip()
+                break
+        if not block_venue:
+            # 「日付行の次の行が会場」という書き方に対応
+            for i, line in enumerate(body):
+                if DATE_ANY_RE.search(line) and i + 1 < len(body):
+                    nxt = body[i + 1]
+                    if not re.match(r"(主催|出演|※|料金|チケット)", nxt) and not DATE_ANY_RE.search(nxt):
+                        block_venue = nxt
+                    break
+        for date in dates:
+            add(date, block_venue, pref)
+    return events
+
+
+def fetch_yoshimoto_live(today: str) -> tuple[list[dict], int]:
+    """戻り値: (東海3県の公演一覧, 東海公演を読み取れなかった詳細ページ数)"""
+    cards: dict[str, dict] = {}
+    for code, pref in YLIVE_PREF_CODES.items():
+        listing = _polite_get(f"{YLIVE_BASE}/?pref={code}&ym=&s=")
+        for card in parse_ylive_list(listing):
+            if card["end"] >= today:
+                cards.setdefault(card["url"], {**card, "pref_hint": pref})
+    events, unparsed = [], 0
+    for card in cards.values():
+        found = parse_ylive_detail(_polite_get(card["url"]), card, card["pref_hint"])
+        if not found:
+            unparsed += 1
+            print(f"[info] よしもとライブ: 東海3県の日程を読み取れず掲載見送り {card['url']}")
+        events.extend(e for e in found if e["date"] >= today)
+    return events, unparsed
+
+
 _TITLE_NOISE_RE = re.compile(r"[\s!！「」『』～〜\-ー]")
 
 
@@ -449,10 +703,24 @@ def main() -> None:
                 out.append(event)
         return out
 
+    def fetch_ylive_all() -> list[dict]:
+        events, unparsed = fetch_yoshimoto_live(today)
+        ylive_unparsed[0] = unparsed
+        return events
+
+    ylive_unparsed = [0]
     diagnostics: dict[str, dict] = {}
     fany_events, fany_ok = _run_source("FANY", fetch_fany_all, diagnostics)
     bushikaku_events, bushikaku_ok = _run_source("バス比較なび", fetch_bushikaku_all, diagnostics)
     eplus_events, eplus_ok = _run_source("イープラス", fetch_eplus_all, diagnostics)
+    nagoya_events, nagoya_ok = _run_source(
+        "名古屋よしもと",
+        lambda: [e for e in fetch_nagoya_yoshimoto() if e["date"] >= today],
+        diagnostics,
+    )
+    ylive_events, ylive_ok = _run_source("よしもとライブ", fetch_ylive_all, diagnostics)
+    if ylive_ok:
+        diagnostics["よしもとライブ"]["unparsed_pages"] = ylive_unparsed[0]
     # ローソンチケットは2026-09-29に自動化を断念(詳細はSETUP.md参照)。
     # Playwright+HTTP/2無効化+リトライでも net::ERR_HTTP2_PROTOCOL_ERROR が
     # 再現し、同条件でイープラスは成功しているためブラウザ側の問題ではなく
@@ -472,6 +740,11 @@ def main() -> None:
         print("[warn] イープラス: 0件のため取得失敗とみなし既存データを維持")
         eplus_ok = False
         diagnostics["イープラス"] = {"ok": False, "count": 0, "error": "0件(bot対策等でブロックされた可能性)"}
+    # 名古屋よしもとは毎週公演があるため、0件はページ構造の変更等とみなす。
+    if nagoya_ok and not nagoya_events:
+        print("[warn] 名古屋よしもと: 0件のため取得失敗とみなし既存データを維持")
+        nagoya_ok = False
+        diagnostics["名古屋よしもと"] = {"ok": False, "count": 0, "error": "0件(ページ構造が変わった可能性)"}
 
     # 取得に成功したソースの既存データだけを入れ替え対象にする。失敗した
     # ソース(bot対策強化やサイト構造変更等)は既存データをそのまま温存し、
@@ -483,15 +756,26 @@ def main() -> None:
         replaced_sources.add("bushikaku_chubu")
     if eplus_ok:
         replaced_sources.update({"eplus_aichi", "eplus_gifu", "eplus_mie"})
+    if nagoya_ok:
+        replaced_sources.add("nagoya_yoshimoto")
+    if ylive_ok:
+        replaced_sources.add("yoshimoto_live")
     if ltike_ok:
         replaced_sources.add("ltike")
+
+    # 重複時にどの情報源のカードを残すかの優先順。販売状況(受付中など)が
+    # 分かる情報源を先にする。
+    fetched_all = (
+        eplus_events + fany_events + ltike_events + bushikaku_events
+        + ylive_events + nagoya_events
+    )
 
     # 取得が「成功」でも、描画途中や一時的なブロックで件数が急減することが
     # ある(イープラスで20件→1件など)。前回の掲載件数(未来日分)の半分未満
     # しか取れなかった情報源は入れ替えず、既存データに新規分を足す形で統合
     # して、一時的な取りこぼしで公演が消えないようにする。
     fetched_by_src: dict[str, int] = {}
-    for e in fany_events + bushikaku_events + eplus_events + ltike_events:
+    for e in fetched_all:
         fetched_by_src[e["src"]] = fetched_by_src.get(e["src"], 0) + 1
     merged_notes = []
     for src in sorted(replaced_sources):
@@ -504,48 +788,45 @@ def main() -> None:
             replaced_sources.discard(src)
             merged_notes.append(f"{src}: 前回{before}件→今回{after}件")
 
-    diagnostics_path = ROOT / "data" / "scrape_status.json"
-    diagnostics_path.write_text(
-        json.dumps(
-            {"checked_at": today, "sources": diagnostics,
-             "merged_due_to_drop": merged_notes},
-            ensure_ascii=False, indent=2,
-        ) + "\n",
-        encoding="utf-8",
-    )
+    write_status(today, diagnostics, merged_notes)
 
     retained = [
         e for e in existing
         if e.get("src") not in replaced_sources and e.get("date", "") >= today
     ]
-    retained_by_date: dict[str, list[str]] = {}
+    # 同じ日付・同一公演らしきもの(タイトルの部分一致)が別の情報源に既に
+    # あれば、表記の揺れ(記号・スペース・省略)による重複カード化を避ける
+    # ためスキップする。同じ情報源の中での重複判定はしない(同日の別公演を
+    # 誤って消さないため)。
+    accepted_by_date: dict[str, list[tuple[str, str]]] = {}
     for e in retained:
-        retained_by_date.setdefault(e["date"], []).append(_title_key(e["title"]))
+        accepted_by_date.setdefault(e["date"], []).append((_title_key(e["title"]), e.get("src", "")))
 
-    def is_duplicate_of_retained(event: dict) -> bool:
-        # 手動収集分(チケットぴあ等)や取得失敗で温存した分と同じ日付・
-        # 同一公演らしきものがあれば、タイトル表記の揺れ(記号・スペース・
-        # 省略)による重複カード化を避けるため部分一致でスキップする。
+    def is_duplicate(event: dict) -> bool:
         key = _title_key(event["title"])
-        for other in retained_by_date.get(event["date"], []):
+        for other, src in accepted_by_date.get(event["date"], []):
+            if src == event["src"]:
+                continue
             if len(key) >= 3 and len(other) >= 3 and (key in other or other in key):
                 return True
         return False
 
-    new_events = [
-        e for e in fany_events + bushikaku_events + eplus_events + ltike_events
-        if not is_duplicate_of_retained(e)
-    ]
+    new_events = []
+    for e in fetched_all:
+        if is_duplicate(e):
+            continue
+        new_events.append(e)
+        accepted_by_date.setdefault(e["date"], []).append((_title_key(e["title"]), e["src"]))
 
     unique = {}
     for event in retained + new_events:
         unique[(event["date"], event["title"], event["venue"])] = event
+    all_ok = all([fany_ok, bushikaku_ok, eplus_ok, nagoya_ok, ylive_ok])
     data["last_updated"] = today
     data["last_updated_note"] = (
-        "GitHub ActionsでFANY・バス比較なび・イープラス・ローソンチケットと"
-        "既存確認済み情報を更新"
-        + ("" if all([fany_ok, bushikaku_ok, eplus_ok, ltike_ok])
-           else "（一部ソースは取得失敗のため既存データを維持）")
+        "GitHub ActionsでFANY・バス比較なび・イープラス・名古屋よしもと・"
+        "よしもとライブと既存確認済み情報を更新"
+        + ("" if all_ok else "（一部ソースは取得失敗のため既存データを維持）")
     )
     data["events"] = sorted(
         unique.values(),
@@ -559,9 +840,78 @@ def main() -> None:
         f"(FANY {len(fany_events)}/{'ok' if fany_ok else 'FAILED'}, "
         f"bushikaku {len(bushikaku_events)}/{'ok' if bushikaku_ok else 'FAILED'}, "
         f"eplus {len(eplus_events)}/{'ok' if eplus_ok else 'FAILED'}, "
-        f"ltike {len(ltike_events)}/{'ok' if ltike_ok else 'FAILED'})"
+        f"nagoya {len(nagoya_events)}/{'ok' if nagoya_ok else 'FAILED'}, "
+        f"ylive {len(ylive_events)}/{'ok' if ylive_ok else 'FAILED'})"
     )
 
+
+# ---------------------------------------------------------------------------
+# 取得状況の記録と停止検知
+#
+# 2026-10-22〜11-24にFANYが毎日403で失敗し続けていたのに、1か月以上
+# 気付けなかった反省から追加。情報源ごとに「最後に成功した日」と
+# 「連続失敗日数」を scrape_status.json に残し、ALERT_DAYS日以上続けて
+# 失敗している情報源があれば ALERT_PATH にお知らせ文を書き出す。
+# GitHub Actions側でこのファイルがあればIssueを作成(=メール通知)する。
+# ---------------------------------------------------------------------------
+STATUS_PATH = ROOT / "data" / "scrape_status.json"
+ALERT_PATH = ROOT / "alert.md"
+ALERT_DAYS = 3
+NOT_MONITORED = {"ローソンチケット"}  # 自動化を断念済みのため通知対象外
+
+
+def write_status(today: str, diagnostics: dict, merged_notes: list[str]) -> None:
+    try:
+        previous = json.loads(STATUS_PATH.read_text(encoding="utf-8"))
+    except (FileNotFoundError, json.JSONDecodeError):
+        previous = {}
+    prev_history = previous.get("history", {})
+    prev_checked = previous.get("checked_at")
+    history = {}
+    for label, info in diagnostics.items():
+        h = dict(prev_history.get(label, {"last_ok": None, "fail_streak": 0}))
+        if info["ok"]:
+            h["last_ok"] = today
+            h["fail_streak"] = 0
+        elif prev_checked != today:  # 同じ日の再実行では数えない
+            h["fail_streak"] = h.get("fail_streak", 0) + 1
+        h.setdefault("last_ok", None)
+        history[label] = h
+    STATUS_PATH.write_text(
+        json.dumps(
+            {"checked_at": today, "sources": diagnostics,
+             "merged_due_to_drop": merged_notes, "history": history},
+            ensure_ascii=False, indent=2,
+        ) + "\n",
+        encoding="utf-8",
+    )
+
+    failing = [
+        (label, h) for label, h in history.items()
+        if label not in NOT_MONITORED and h["fail_streak"] >= ALERT_DAYS
+    ]
+    if not failing:
+        if ALERT_PATH.exists():
+            ALERT_PATH.unlink()
+        return
+    lines = [
+        "東海お笑いライブ帳の自動更新で、次の情報源が続けて取得に失敗しています。",
+        "失敗中の情報源は以前のデータを残したままなので、新しい公演が追加されていません。",
+        "",
+        "| 情報源 | 連続失敗 | 最後に成功した日 | 直近のエラー |",
+        "|---|---|---|---|",
+    ]
+    for label, h in failing:
+        err = str(diagnostics[label].get("error") or "").replace("|", "/")
+        lines.append(f"| {label} | {h['fail_streak']}日 | {h['last_ok'] or '不明'} | {err} |")
+    lines += [
+        "",
+        f"確認日: {today}",
+        "",
+        "このIssueは全ての情報源が復旧すると自動で閉じられます。"
+        "詳しくはリポジトリの `data/scrape_status.json` を確認してください。",
+    ]
+    ALERT_PATH.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 if __name__ == "__main__":
     main()

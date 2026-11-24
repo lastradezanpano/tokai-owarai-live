@@ -331,6 +331,14 @@ header.top{
 .src-list li a{color:var(--accent-ink);font-weight:700;text-decoration:none;}
 .src-list li a:hover{text-decoration:underline;}
 .src-list li .note{display:block;margin-top:4px;color:var(--text-faint);font-size:11.8px;}
+.status-box{margin:0 0 18px;}
+.status-box h3{font-size:14px;margin:0 0 8px;}
+.status-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px;}
+.status-list li{background:var(--surface);border:1px solid var(--line-soft);border-radius:10px;padding:9px 12px;font-size:12.5px;line-height:1.6;}
+.status-list li b{display:block;font-size:13px;}
+.status-list .ok{color:var(--pine);font-weight:700;}
+.status-list .ng{color:var(--accent);font-weight:700;}
+.status-list .off{color:var(--text-faint);font-weight:700;}
 
 .disclaimer{
   margin-top:18px;font-size:11.8px;color:var(--text-faint);line-height:1.8;max-width:78ch;
@@ -381,6 +389,10 @@ header.top{
   <div class="sources" id="sourcesBox">
     <h2>収集している情報源</h2>
     <p>下記のチケット販売サイト・公式サイトを定期的に確認し、愛知・岐阜・三重で開催される公演を抽出しています。太字サイトへのリンクから最新情報を直接確認できます。</p>
+    <div class="status-box" id="statusBox" hidden>
+      <h3>自動取得の状況</h3>
+      <ul class="status-list" id="statusList"></ul>
+    </div>
     <ul class="src-list" id="srcList"></ul>
   </div>
 
@@ -390,7 +402,7 @@ header.top{
 </div>
 
 <script>
-const TODAY = new Date('2026-09-17');
+const TODAY = new Date(); // 以前は2026-09-17固定だった
 
 let EVENTS = [
   {date:'2026-09-17', title:'ロングコートダディ単独ライブツアー「月光もたらす」', venue:'名古屋芸術大学アートスクエア 大ホール', city:'名古屋市', pref:'愛知', status:'closed', src:'fany', url:'https://ticket.fany.lol/reception/61327/49912'},
@@ -479,10 +491,10 @@ const SOURCES = [
   {name:'チケットぴあ', url:'https://t.pia.jp/', note:'公演名・会場から個別検索'},
   {name:'ローソンチケット', url:'https://l-tike.com/search/?tig=240&pref=21%2C23%2C24', note:'お笑いジャンル×岐阜/愛知/三重で絞込'},
   {name:'バス比較なび（中部お笑いライブ）', url:'https://www.bushikaku.net/expedition/play/shows/403/region-chubu/', note:'複数サイトの遠征向けまとめ'},
-  {name:'名古屋よしもと（公式）', url:'https://nagoya.yoshimoto.co.jp/', note:'吉本興業 名古屋拠点・週次スケジュール'},
-  {name:'よしもとライブ（愛知タグ）', url:'https://live.yoshimoto.co.jp/tag/%E6%84%9B%E7%9F%A5/', note:'吉本の全国ツアー公演を都道府県で絞込'},
-  {name:'よしもとライブ（岐阜タグ）', url:'https://live.yoshimoto.co.jp/tag/%E5%B2%90%E9%98%9C/', note:'吉本の全国ツアー公演を都道府県で絞込'},
-  {name:'よしもとライブ（三重タグ）', url:'https://live.yoshimoto.co.jp/tag/%E4%B8%89%E9%87%8D/', note:'吉本の全国ツアー公演を都道府県で絞込'},
+  {name:'名古屋よしもと（公式）', url:'https://nagoya.yoshimoto.co.jp/schedule/', note:'吉本興業 名古屋拠点のスケジュール（毎日自動取得）'},
+  {name:'よしもとライブ（愛知）', url:'https://live.yoshimoto.co.jp/?pref=23&ym=&s=', note:'吉本の全国ツアー等を都道府県で絞込（毎日自動取得）'},
+  {name:'よしもとライブ（岐阜）', url:'https://live.yoshimoto.co.jp/?pref=21&ym=&s=', note:'吉本の全国ツアー等を都道府県で絞込（毎日自動取得）'},
+  {name:'よしもとライブ（三重）', url:'https://live.yoshimoto.co.jp/?pref=24&ym=&s=', note:'吉本の全国ツアー等を都道府県で絞込（毎日自動取得）'},
   {name:'FANYチケット（吉本興業公式）', url:'https://ticket.fany.lol/', note:'よしもと公式チケット検索。都道府県×お笑いジャンルで絞込可能'},
   {name:'大須演芸場（公式）', url:'https://www.osuengei.nagoya/', note:'中京圏唯一の常設寄席'},
   {name:'ワタナベエンターテインメント LIVE INFO', url:'https://www.watanabepro.co.jp/liveinfo/', note:'JS描画のためブラウザでの確認推奨'},
@@ -492,6 +504,7 @@ const STATUS_LABEL = {open:'受付中', soon:'受付前', closed:'完売・終�
 const SRC_LABEL = {
   eplus_aichi:'イープラス(愛知)', eplus_mie:'イープラス(三重)', eplus_gifu:'イープラス(岐阜)',
   busikaku:'バス比較なび', pia:'チケットぴあ', fany:'FANYチケット(吉本公式)',
+  nagoya_yoshimoto:'名古屋よしもと(公式)', yoshimoto_live:'よしもとライブ(公式)',
 };
 // 個別のチケットページが分からない公演は、情報を確認した一覧ページにリンクする
 const SRC_FALLBACK_URL = {
@@ -501,6 +514,8 @@ const SRC_FALLBACK_URL = {
   busikaku:'https://www.bushikaku.net/expedition/play/shows/403/region-chubu/',
   pia:'https://t.pia.jp/',
   fany:'https://ticket.fany.lol/',
+  nagoya_yoshimoto:'https://nagoya.yoshimoto.co.jp/schedule/',
+  yoshimoto_live:'https://live.yoshimoto.co.jp/?pref=23&ym=&s=',
 };
 const PREF_CODE = {'岐阜':'21','愛知':'23','三重':'24'};
 function eventUrl(e){
@@ -638,8 +653,37 @@ SOURCES.forEach(s=>{
   srcList.appendChild(li);
 });
 
+// 情報源ごとの自動取得状況(data/scrape_status.json)を表示する。
+// 取得が止まっている情報源に気付けるようにするため(2026-11-25追加)。
+async function showScrapeStatus(){
+  try{
+    const r = await fetch('data/scrape_status.json?ts='+Date.now(), {cache:'no-store'});
+    if(!r.ok) return;
+    const st = await r.json();
+    const list = document.getElementById('statusList');
+    list.innerHTML = '';
+    const fmt = iso => { if(!iso) return '記録なし'; const d = iso.split('-'); return Number(d[1])+'/'+Number(d[2]); };
+    Object.entries(st.sources || {}).forEach(([label, info])=>{
+      const h = (st.history || {})[label] || {};
+      const li = document.createElement('li');
+      let state;
+      if(info.ok){
+        state = `<span class="ok">取得OK</span>（${info.count}件）`;
+      }else if(String(info.error||'').startsWith('自動化を断念')){
+        state = `<span class="off">自動取得の対象外</span>`;
+      }else{
+        state = `<span class="ng">取得失敗中</span>（${h.fail_streak||'?'}日連続）`;
+      }
+      li.innerHTML = `<b>${label}</b>${state}<br>最後に取得できた日：${fmt(h.last_ok || (info.ok ? st.checked_at : null))}`;
+      list.appendChild(li);
+    });
+    document.getElementById('statusBox').hidden = list.children.length === 0;
+  }catch(e){ console.error(e); }
+}
+
 render();
 updateInformation();
+showScrapeStatus();
 </script>
 </body>
 </html>

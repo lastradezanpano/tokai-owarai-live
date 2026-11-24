@@ -9,6 +9,9 @@
        → FANYチケットの公開検索API（ログイン不要・通常のHTTPで取得）
        → バス比較なびの公開ページ（通常のHTTPで取得）
        → イープラス（Playwrightで実ブラウザ経由で取得）
+       → 名古屋よしもと公式スケジュール（通常のHTTPで取得）
+       → よしもとライブ公式の都道府県検索＋各公演ページ（通常のHTTPで取得）
+       → 3日以上続けて失敗した情報源があれば GitHub の Issue を自動作成（メール通知）
        → 愛知・岐阜・三重のお笑い公演を取得しdata/events.jsonを更新
    → 変更があれば自動コミット・push
    → GitHub Pagesへ自動デプロイ
@@ -26,7 +29,10 @@ GitHubリポジトリ: https://github.com/lastradezanpano/tokai-owarai-live
 ## 自動更新される範囲と、されない範囲
 
 - **自動更新される**（`scripts/update_events.py`が毎日実行）:
-  - **FANYチケット（吉本興業公式）**: 公開検索API（`ticket.fany.lol/search/event_more`）から直接取得。`src: "fany_ticket"`
+  - **FANYチケット（吉本興業公式）**: 公開検索API（`ticket.fany.lol/search/event_more`）から直接取得。`src: "fany_ticket"`。**2026-10-22以降はHTTP 403（アクセス拒否）で失敗し続けている。** 同サイトのFAQページは見られるのに検索部分だけが拒否されるため、FANY側が意図的に機械的な取得を止めたと判断し、ブラウザを装って回避することはしない方針（2026-11-25）。代わりに下の名古屋よしもと・よしもとライブで補う。
+  - **名古屋よしもと（公式）**: `nagoya.yoshimoto.co.jp/schedule/` のHTMLに当月〜翌月の公演（公演日・公演名・[会場]・[時間]）が全件入っている。`src: "nagoya_yoshimoto"`。販売状況は載っていないため `status: unknown`。会場名から三重・岐阜を判定し、当てはまらなければ愛知とする。同日同名の公演は開演時刻を公演名に付けて区別する。
+  - **よしもとライブ（公式）**: `live.yoshimoto.co.jp/?pref=23&ym=&s=`（21=岐阜、24=三重）の検索結果から公演ページを集め、各ページの「公演日程」「会場」欄を読む。`src: "yoshimoto_live"`。単独公演ページは確実に読めるが、全国ツアーのページは書き方が公演ごとに違うため、【愛知】＜愛知公演＞●…愛知…のような見出しの直後に日付があるものだけを採用し、読み取れないものは掲載しない（日付を推測で載せないため）。読み取れなかったページ数は `scrape_status.json` の `unparsed_pages` に記録。
+  - 両サイトとも robots.txt で対象ページは制限されておらず、吉本興業サイトのチケット約款等にも自動取得の禁止規定は見当たらなかった（2026-11-25確認）。正直なUser-Agentを名乗り、リクエスト間隔を1.5秒空けている。
   - **バス比較なび**: 愛知/岐阜/三重の各ページ（`bushikaku.net/expedition/play/shows/403/region-chubu/<pref>/`）から通常のHTTPで取得。`src: "bushikaku_chubu"`
   - **イープラス**: 愛知/岐阜/三重の各ページ（`eplus.jp/sf/play/comedy/<pref>`）をPlaywright（Chromium）で開いて取得。`src: "eplus_aichi"` / `"eplus_gifu"` / `"eplus_mie"`
   - いずれもチケットぴあ等の既存情報とタイトルが似ている場合は重複カード化を避けるため自動的にスキップする（`is_duplicate_of_retained`）。
@@ -58,6 +64,9 @@ GitHubの当該リポジトリ → Actions タブ → 「Update and deploy」 �
 - 現在は毎日1回（9:15 JST）。頻度を変えたい場合は `.github/workflows/update-and-deploy.yml` の `cron` を編集する。
 - **`data/scrape_status.json`** に毎回の実行結果（各情報源のok/count/error）が記録される。GitHub Actionsのログはサインインしないと見えないため、まずこのファイルを見れば失敗理由の見当がつく。
 - 各ソースは失敗しても他のソースを巻き込まないよう独立して実行され（`_run_source`）、失敗時は該当ソースの既存データをそのまま維持する（誤って全消去しない）。特にイープラスは、例外が起きなくても0件しか取れなかった場合は「取得失敗」とみなして既存データを維持する安全策が入っている。
+- 取得「成功」でも、件数が前回（未来日分）の半分未満に急減した情報源は入れ替えずに既存データと統合する（2026-11-25追加。イープラスで20件→1件のような取りこぼしが実際に起きていたため）。統合した場合は `scrape_status.json` の `merged_due_to_drop` に記録。
+- **停止の検知（2026-11-25追加）**: `scrape_status.json` の `history` に情報源ごとの「最後に成功した日（last_ok）」と「連続失敗日数（fail_streak）」を残す。3日以上続けて失敗した情報源があると `alert.md` が作られ、ワークフローが「自動更新：情報源の取得失敗が続いています」というIssueを作成（2日目以降は本文を更新、全て復旧したら自動で閉じる）。サイトの「収集している情報源」欄にも取得状況と最後に取得できた日を表示する。
+- Issueのメール通知が届かない場合は、GitHubの Settings → Notifications と、リポジトリの Watch 設定を確認する。
 - 失敗が続く場合は各サイトのHTML構造・URL仕様変更の可能性があるため、該当する`fetch_*`関数（正規表現がCSSクラス名やdata属性名に依存している）を見直す。
 - Playwrightでの取得が繰り返し失敗する場合は、bot対策がさらに強化された可能性がある。`data/scrape_status.json`のerror内容を確認しつつ、改善が見込めなければイープラスの自動化も諦め、SETUP.mdの記載を「自動更新されない」側に戻すことも選択肢。
 

@@ -8,7 +8,7 @@
 ## 運用の仕組み
 
 - GitHub Pagesで公開。GitHub Actions（`.github/workflows/update-and-deploy.yml`）が毎日9:15（JST）ごろに自動更新する。手動実行はActionsの「Update and deploy」から。
-- 自動取得の対象は3つ（FANYチケット・バス比較なび・イープラス）。ローソンチケットはクラウドIPがブロックされるため対象外（`scripts/update_events.py`の`fetch_ltike`は残してあるが`main()`から外してある）。チケットぴあは安定した一覧URLがないため対象外。
+- 自動取得の対象は5つ（FANYチケット・バス比較なび・イープラス・名古屋よしもと公式・よしもとライブ公式）。ただしFANYは2026-10-22以降HTTP 403で拒否されており、回避はしない方針（2026-11-25、詳細はSETUP.md）。3日以上続けて失敗した情報源があるとGitHubのIssueで通知される。ローソンチケットはクラウドIPがブロックされるため対象外（`scripts/update_events.py`の`fetch_ltike`は残してあるが`main()`から外してある）。チケットぴあは安定した一覧URLがないため対象外。
 - パスワード・Cookie・APIキーは保存しない。公開ページのみ利用する。
 
 ## 構成

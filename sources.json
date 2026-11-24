@@ -1,5 +1,9 @@
 {
-  "region": ["愛知", "岐阜", "三重"],
+  "region": [
+    "愛知",
+    "岐阜",
+    "三重"
+  ],
   "updated_note": "各サイトの実際のURLパターンは変更されることがあるため、定期実行時にリンク切れがあれば都度修正すること。",
   "sources": [
     {
@@ -54,25 +58,25 @@
       "id": "yoshimoto_live_aichi",
       "name": "よしもとライブ（全国お笑いライブ）愛知タグ",
       "type": "agency_official_genre_pref",
-      "url": "https://live.yoshimoto.co.jp/tag/%E6%84%9B%E7%9F%A5/",
+      "url": "https://live.yoshimoto.co.jp/?pref=23&ym=&s=",
       "prefecture": "愛知",
-      "notes": "吉本興業の全国公演ポータルを都道府県タグで絞込。2026-09-15時点は該当0件だったが、ツアー公演が入り次第表示されるため定期確認の価値あり。"
+      "notes": "2026-11-25から自動取得(src: yoshimoto_live)。タグページは使われておらず0件だったため、都道府県検索(pref=JISコード)に変更。ツアーページは東海の見出し直後に日付がある場合のみ採用。"
     },
     {
       "id": "yoshimoto_live_gifu",
       "name": "よしもとライブ（全国お笑いライブ）岐阜タグ",
       "type": "agency_official_genre_pref",
-      "url": "https://live.yoshimoto.co.jp/tag/%E5%B2%90%E9%98%9C/",
+      "url": "https://live.yoshimoto.co.jp/?pref=21&ym=&s=",
       "prefecture": "岐阜",
-      "notes": "同上。岐阜タグ版。"
+      "notes": "2026-11-25から自動取得(src: yoshimoto_live)。タグページは使われておらず0件だったため、都道府県検索(pref=JISコード)に変更。ツアーページは東海の見出し直後に日付がある場合のみ採用。"
     },
     {
       "id": "yoshimoto_live_mie",
       "name": "よしもとライブ（全国お笑いライブ）三重タグ",
       "type": "agency_official_genre_pref",
-      "url": "https://live.yoshimoto.co.jp/tag/%E4%B8%89%E9%87%8D/",
+      "url": "https://live.yoshimoto.co.jp/?pref=24&ym=&s=",
       "prefecture": "三重",
-      "notes": "同上。三重タグ版。"
+      "notes": "2026-11-25から自動取得(src: yoshimoto_live)。タグページは使われておらず0件だったため、都道府県検索(pref=JISコード)に変更。ツアーページは東海の見出し直後に日付がある場合のみ採用。"
     },
     {
       "id": "fany_ticket",
@@ -80,7 +84,7 @@
       "type": "ticket_platform_json_api",
       "url": "https://ticket.fany.lol/search/event_more?keywords=&from=&to=&prefectures={PREF_CODE}&genre=30&search_type=form&offset={OFFSET}",
       "prefecture": "全て（{PREF_CODE}: 岐阜=21, 愛知=23, 三重=24。JIS都道府県コード準拠）",
-      "notes": "重要・要注意点あり。トップページの個別公演の『マイページ』的な深い操作はログインが要るが、この検索結果API自体はログイン不要でJSONを直接返す(WebFetchで取得可能、Cookie不要)。1回のリクエストで最大10件、{OFFSET}を0,10,20,...と増やしてperformances配列が空になるまで取得すると全件揃う。genre=30(お笑い)を指定しても山岡カントリークラブのゴルフ大会等、明らかに非お笑いの項目が混ざることがあるため、genreパラメータだけを信用せずタイトル・会場から目視でお笑い公演か判断すること。除外してよいのはスポーツ大会（ゴルフ大会等、明らかに競技イベント）とファンミーティング（『〜初ファンイベント』等、ライブ/ネタ披露ではなく物販・交流が主目的のもの）のみ。名古屋よしもと定期公演(静かの海／長円寺会館／大須演芸場)の個々の公演（UDE-DA-MESHI、ネクストメンバーコーナーライブ、ネタしゃち寄席等）は『定期公演だから』という理由だけで丸めて省略しない — 2026-09-16にユーザーから『掲載漏れ』を指摘され、これらを個別カードとして追加し直した経緯がある。1つ1つが実際にチケットが取れる別公演なので、必ず個別に掲載すること。performances[].name=公演名、venue_name=会場、performance_date=日付、performance_sales[0].display_sales_status=販売状況、performance_sales[0].destination_url=購入ページURL。"
+      "notes": "【2026-10-22以降 HTTP 403で取得不可・回避しない方針(2026-11-25)】重要・要注意点あり。トップページの個別公演の『マイページ』的な深い操作はログインが要るが、この検索結果API自体はログイン不要でJSONを直接返す(WebFetchで取得可能、Cookie不要)。1回のリクエストで最大10件、{OFFSET}を0,10,20,...と増やしてperformances配列が空になるまで取得すると全件揃う。genre=30(お笑い)を指定しても山岡カントリークラブのゴルフ大会等、明らかに非お笑いの項目が混ざることがあるため、genreパラメータだけを信用せずタイトル・会場から目視でお笑い公演か判断すること。除外してよいのはスポーツ大会（ゴルフ大会等、明らかに競技イベント）とファンミーティング（『〜初ファンイベント』等、ライブ/ネタ披露ではなく物販・交流が主目的のもの）のみ。名古屋よしもと定期公演(静かの海／長円寺会館／大須演芸場)の個々の公演（UDE-DA-MESHI、ネクストメンバーコーナーライブ、ネタしゃち寄席等）は『定期公演だから』という理由だけで丸めて省略しない — 2026-09-16にユーザーから『掲載漏れ』を指摘され、これらを個別カードとして追加し直した経緯がある。1つ1つが実際にチケットが取れる別公演なので、必ず個別に掲載すること。performances[].name=公演名、venue_name=会場、performance_date=日付、performance_sales[0].display_sales_status=販売状況、performance_sales[0].destination_url=購入ページURL。"
     },
     {
       "id": "yoshimoto_nagoya",
@@ -88,7 +92,7 @@
       "type": "agency_official",
       "url": "https://nagoya.yoshimoto.co.jp/schedule/",
       "prefecture": "愛知",
-      "notes": "静かの海・長円寺会館・大須演芸場での週次公演スケジュール。件数が多いため『定期公演』として要約する運用でも良い。"
+      "notes": "2026-11-25から自動取得(src: nagoya_yoshimoto)。当月〜翌月分が静的HTMLに入っている。定期公演も1件ずつ個別に掲載する(丸めない)。販売状況は載っていない。"
     },
     {
       "id": "osu_engeijo",

@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
   pages: write
   id-token: write
 
@@ -43,6 +44,25 @@ jobs:
           git add data/events.json data/scrape_status.json
           git commit -m "chore: update live events"
           git push
+      # 同じ情報源が3日以上続けて失敗したらIssueを作る(GitHubから登録メール
+      # アドレスに通知が届く)。2日目以降は同じIssueの本文を更新するだけで、
+      # 全ての情報源が復旧したら自動で閉じる。
+      - name: Notify when a source keeps failing
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TITLE="自動更新：情報源の取得失敗が続いています"
+          NUM=$(gh issue list --state open --limit 50 --json number,title \
+                --jq ".[] | select(.title == \"$TITLE\") | .number" | head -n1)
+          if [ -f alert.md ]; then
+            if [ -z "$NUM" ]; then
+              gh issue create --title "$TITLE" --body-file alert.md
+            else
+              gh issue edit "$NUM" --body-file alert.md
+            fi
+          elif [ -n "$NUM" ]; then
+            gh issue close "$NUM" --comment "全ての情報源の取得が復旧したため、自動で閉じました。"
+          fi
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
