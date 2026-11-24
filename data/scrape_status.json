@@ -23,9 +23,9 @@
     },
     "よしもとライブ": {
       "ok": true,
-      "count": 6,
+      "count": 10,
       "error": null,
-      "unparsed_pages": 7
+      "unparsed_pages": 2
     },
     "ローソンチケット": {
       "ok": false,
