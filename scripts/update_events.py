@@ -671,7 +671,10 @@ _TITLE_NOISE_RE = re.compile(r"[\s!！「」『』～〜\-ー]")
 
 
 def _title_key(title: str) -> str:
-    return _TITLE_NOISE_RE.sub("", title).lower()
+    # 全角・半角の違い(「トークライブ２」と「トークライブ2」等)で同じ公演が
+    # 別カードにならないよう、NFKC正規化してから比較する(2026-11-25追加)。
+    import unicodedata
+    return _TITLE_NOISE_RE.sub("", unicodedata.normalize("NFKC", title)).lower()
 
 
 def normalize_bushikaku(raw: dict, pref: str) -> dict | None:
