@@ -485,8 +485,10 @@ YLIVE_CARD_RE = re.compile(
 )
 YLIVE_PERIOD_RE = re.compile(r"(\d{4})\.(\d{2})\.(\d{2})")
 # 2026年12月12日 / 12月12日 / 12/12 のいずれかの日付表記
+# 2026年12月12日 / 2027/1/31 / 12月12日 / 12/12( のいずれかの日付表記
 DATE_ANY_RE = re.compile(
     r"(?:(\d{4})\s*年\s*)?(\d{1,2})\s*月\s*(\d{1,2})\s*日"
+    r"|(\d{4})/(\d{1,2})/(\d{1,2})"
     r"|(?<![\d/:])(\d{1,2})/(\d{1,2})(?=\s*[（(])"
 )
 REGION_WORDS = {"愛知": "愛知", "名古屋": "愛知", "岐阜": "岐阜", "三重": "三重"}
@@ -508,17 +510,36 @@ def parse_ylive_list(page_html: str) -> list[dict]:
 
 
 def _dates_in(text: str, start: str, end: str) -> list[str]:
-    """文中の日付をISO形式にする。年の書いていない日付は掲載期間から年を決める。"""
+    """文中の日付をISO形式にする。
+
+    年の書いていない日付は、一覧の掲載期間の終わり(end)以前で最も新しい年と
+    みなす(ただし期間の始まりの1年前より古くはしない)。一覧の期間がツアー
+    最終日だけのこともあるため(例: 2027.02.12 のみ表示で、愛知公演は12/12)。
+    """
     out = []
-    years = range(int(start[:4]), int(end[:4]) + 1)
+    lo = (datetime.fromisoformat(start) - timedelta(days=366)).date().isoformat()
     for m in DATE_ANY_RE.finditer(text):
-        y, mo, d = (m.group(1), m.group(2), m.group(3)) if m.group(2) else (None, m.group(4), m.group(5))
-        candidates = [int(y)] if y else list(years)
-        for year in candidates:
-            iso = f"{year}-{int(mo):02d}-{int(d):02d}"
-            if y or start <= iso <= end:
+        g = m.groups()
+        if g[1]:
+            y, mo, d = g[0], g[1], g[2]
+        elif g[3]:
+            y, mo, d = g[3], g[4], g[5]
+        else:
+            y, mo, d = None, g[6], g[7]
+        try:
+            if y:
+                iso = f"{int(y)}-{int(mo):02d}-{int(d):02d}"
+                datetime.fromisoformat(iso)
                 out.append(iso)
-                break
+                continue
+            for year in range(int(end[:4]), int(lo[:4]) - 1, -1):
+                iso = f"{year}-{int(mo):02d}-{int(d):02d}"
+                datetime.fromisoformat(iso)
+                if lo <= iso <= end:
+                    out.append(iso)
+                    break
+        except ValueError:
+            continue
     return list(dict.fromkeys(out))
 
 
@@ -545,11 +566,23 @@ def parse_ylive_detail(page_html: str, card: dict, pref_hint: str) -> list[dict]
     title = re.sub(r"^【(?:全国|愛知|岐阜|三重|名古屋)】\s*", "", title)
     rows = _ylive_table(page_html)
     sched_html = next((v for k, v in rows.items() if "公演日程" in k), "")
-    if not sched_html:
+    single = card["label"] in ("愛知県", "岐阜県", "三重県")
+    if sched_html:
+        lines = _html_to_lines(sched_html)
+    elif not single:
+        # 日程表が無く、説明文に「【愛知】11/28(土)～29(日) 📍御園座」のように
+        # 書かれているツアーページ向け。本文を「各公演情報」の手前まで読む。
+        body = re.sub(r"<(script|style)\b.*?</\1>", "", page_html, flags=re.DOTALL | re.I)
+        body = body[body.find("<body"):] if "<body" in body else body
+        lines = []
+        for line in _html_to_lines(body):
+            if "各公演情報" in line or "公演一覧へ戻る" in line:
+                break
+            lines.append(line)
+    else:
         return []
     venue_lines = _html_to_lines(next((v for k, v in rows.items() if k == "会場"), ""))
     venue = venue_lines[0] if venue_lines else ""
-    lines = _html_to_lines(sched_html)
     events = []
 
     def add(date: str, venue_name: str, pref: str) -> None:
@@ -559,13 +592,23 @@ def parse_ylive_detail(page_html: str, card: dict, pref_hint: str) -> list[dict]
             "url": card["url"],
         })
 
-    if card["label"] in ("愛知県", "岐阜県", "三重県"):
+    if single:
         pref = card["label"][:-1]
         for date in _dates_in("\n".join(lines), card["start"], card["end"]):
             add(date, venue, pref)
         return events
 
-    # ツアーページ: 見出し行でブロックに分ける
+    parse_tour_lines(lines, card, add)
+    return events
+
+
+def parse_tour_lines(lines: list[str], card: dict, add) -> None:
+    """ツアーの日程文を見出しごとのブロックに分け、東海3県分を add() する。
+
+    見出し例: 【愛知公演】 / ＜愛知公演＞ / ●…～名古屋～ / ●2/28(日) 開場…
+    県の判定は見出し、またはブロック内の「（愛知県）」等の表記で行う。
+    日付は見出し・ブロック内の両方から探す。読み取れなければ何もしない。
+    """
     header_re = re.compile(r"^(?:【[^】]*】|＜[^＞]*＞|<[^>]*>|●.*|■.*|◆.*)")
     blocks: list[tuple[str, list[str]]] = []
     for line in lines:
@@ -575,28 +618,35 @@ def parse_ylive_detail(page_html: str, card: dict, pref_hint: str) -> list[dict]
             blocks[-1][1].append(line)
     for header, body in blocks:
         pref = next((p for w, p in REGION_WORDS.items() if w in header), "")
+        venue = ""
+        if not pref:
+            for line in body:
+                m = re.search(r"[（(](愛知|岐阜|三重)県[）)]", line)
+                if m:
+                    pref = m.group(1)
+                    venue = re.sub(r"[（(](?:愛知|岐阜|三重)県[）)]", "", line).strip()
+                    break
         if not pref:
             continue
-        dates = _dates_in("\n".join(body), card["start"], card["end"])
+        dates = _dates_in("\n".join([header] + body), card["start"], card["end"])
         if not dates:
             continue
-        block_venue = ""
-        for i, line in enumerate(body):
-            m = re.match(r"会場[：:]\s*(.+)", line)
-            if m:
-                block_venue = m.group(1).strip()
-                break
-        if not block_venue:
+        if not venue:
+            for line in [header] + body:
+                m = re.search(r"(?:会場[：:]|📍)\s*(.+)", line)
+                if m:
+                    venue = m.group(1).strip()
+                    break
+        if not venue:
             # 「日付行の次の行が会場」という書き方に対応
             for i, line in enumerate(body):
                 if DATE_ANY_RE.search(line) and i + 1 < len(body):
                     nxt = body[i + 1]
-                    if not re.match(r"(主催|出演|※|料金|チケット)", nxt) and not DATE_ANY_RE.search(nxt):
-                        block_venue = nxt
+                    if not re.match(r"(主催|出演|※|料金|チケット|日時)", nxt) and not DATE_ANY_RE.search(nxt):
+                        venue = nxt
                     break
         for date in dates:
-            add(date, block_venue, pref)
-    return events
+            add(date, venue, pref)
 
 
 def fetch_yoshimoto_live(today: str) -> tuple[list[dict], int]:
@@ -805,7 +855,10 @@ def main() -> None:
     def is_duplicate(event: dict) -> bool:
         key = _title_key(event["title"])
         for other, src in accepted_by_date.get(event["date"], []):
-            if src == event["src"]:
+            # 同じ情報源同士は、同日の別公演(2回公演・ネタ/トーク等)を誤って
+            # 消さないよう重複判定しない。ただし、よしもとライブはツアー全体の
+            # ページと各県の個別ページに同じ公演が載るため同士でも判定する。
+            if src == event["src"] != "yoshimoto_live":
                 continue
             if len(key) >= 3 and len(other) >= 3 and (key in other or other in key):
                 return True
