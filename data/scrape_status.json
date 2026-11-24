@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-24",
+  "checked_at": "2026-11-25",
   "sources": {
     "FANY": {
       "ok": false,
@@ -8,13 +8,24 @@
     },
     "バス比較なび": {
       "ok": true,
-      "count": 14,
+      "count": 15,
       "error": null
     },
     "イープラス": {
       "ok": true,
-      "count": 13,
+      "count": 14,
       "error": null
+    },
+    "名古屋よしもと": {
+      "ok": true,
+      "count": 27,
+      "error": null
+    },
+    "よしもとライブ": {
+      "ok": true,
+      "count": 6,
+      "error": null,
+      "unparsed_pages": 7
     },
     "ローソンチケット": {
       "ok": false,
@@ -22,22 +33,31 @@
       "error": "自動化を断念(2026-09-29): net::ERR_HTTP2_PROTOCOL_ERRORが解消せずIPブロックと判断。詳細はSETUP.md参照"
     }
   },
+  "merged_due_to_drop": [],
   "history": {
     "FANY": {
       "last_ok": "2026-10-21",
-      "fail_streak": 34
+      "fail_streak": 35
     },
     "バス比較なび": {
-      "last_ok": "2026-11-24",
+      "last_ok": "2026-11-25",
       "fail_streak": 0
     },
     "イープラス": {
-      "last_ok": "2026-11-24",
+      "last_ok": "2026-11-25",
+      "fail_streak": 0
+    },
+    "名古屋よしもと": {
+      "last_ok": "2026-11-25",
+      "fail_streak": 0
+    },
+    "よしもとライブ": {
+      "last_ok": "2026-11-25",
       "fail_streak": 0
     },
     "ローソンチケット": {
       "last_ok": null,
-      "fail_streak": 0
+      "fail_streak": 1
     }
   }
 }

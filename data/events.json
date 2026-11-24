@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-11-24",
-  "last_updated_note": "GitHub ActionsでFANY・バス比較なび・イープラス・ローソンチケットと既存確認済み情報を更新（一部ソースは取得失敗のため既存データを維持）",
+  "last_updated": "2026-11-25",
+  "last_updated_note": "GitHub ActionsでFANY・バス比較なび・イープラス・名古屋よしもと・よしもとライブと既存確認済み情報を更新（一部ソースは取得失敗のため既存データを維持）",
   "artifact_url": "https://claude.ai/artifact/5saz5d5CVZmiU6VrCUBWmu",
   "events": [
     {
@@ -135,16 +135,6 @@
     },
     {
       "date": "2026-11-29",
-      "title": "爆笑!お笑いエンタメライブ",
-      "venue": "ぎふしんフォーラム",
-      "city": "",
-      "pref": "岐阜",
-      "status": "unknown",
-      "src": "bushikaku_chubu",
-      "url": "https://www.bushikaku.net/expedition/play/show/detail/266034-0001/266034-0044/"
-    },
-    {
-      "date": "2026-11-29",
       "title": "アインシュタイン15周年ツアー「ゲストシュタインin名古屋」",
       "venue": "御園座",
       "city": "",
@@ -162,6 +152,16 @@
       "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/54544/45118"
+    },
+    {
+      "date": "2026-12-01",
+      "title": "おかんとオフ会 ～ちょっぴりよばれさせてもらお～",
+      "venue": "まっちゃ好好亭",
+      "city": "",
+      "pref": "愛知",
+      "status": "unknown",
+      "src": "nagoya_yoshimoto",
+      "url": "https://nagoya.yoshimoto.co.jp/2026/12/sp-2.html"
     },
     {
       "date": "2026-12-02",
@@ -195,6 +195,36 @@
     },
     {
       "date": "2026-12-05",
+      "title": "PAA LIVE vol.11 ～亀裂のクリスマス～",
+      "venue": "鶴舞MusicBarPerch",
+      "city": "",
+      "pref": "愛知",
+      "status": "unknown",
+      "src": "nagoya_yoshimoto",
+      "url": "https://nagoya.yoshimoto.co.jp/2026/12/ude-da-meshi.html"
+    },
+    {
+      "date": "2026-12-05",
+      "title": "お笑いシニア倶楽部寄席 vol.2",
+      "venue": "鶴舞MusicBarPerch",
+      "city": "",
+      "pref": "愛知",
+      "status": "unknown",
+      "src": "nagoya_yoshimoto",
+      "url": "https://nagoya.yoshimoto.co.jp/2026/12/ude-da-meshi-2.html"
+    },
+    {
+      "date": "2026-12-05",
+      "title": "ニキサンキ",
+      "venue": "鶴舞MusicBarPerch",
+      "city": "",
+      "pref": "愛知",
+      "status": "unknown",
+      "src": "nagoya_yoshimoto",
+      "url": "https://nagoya.yoshimoto.co.jp/2026/12/ude-da-meshi-1.html"
+    },
+    {
+      "date": "2026-12-05",
       "title": "年末恒例大爆笑大会　よしもと爆笑公演・・・",
       "venue": "御園座",
       "city": "",
@@ -202,6 +232,76 @@
       "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/71306/56224"
+    },
+    {
+      "date": "2026-12-05",
+      "title": "紅点の絶対打ち上げ行くライブ2",
+      "venue": "鶴舞MusicBarPerch",
+      "city": "",
+      "pref": "愛知",
+      "status": "unknown",
+      "src": "nagoya_yoshimoto",
+      "url": "https://nagoya.yoshimoto.co.jp/2026/12/ude-da-meshi-3.html"
+    },
+    {
+      "date": "2026-12-06",
+      "title": "#むかいの集い方 Vol.6",
+      "venue": "Zepp Nagoya",
+      "city": "",
+      "pref": "愛知",
+      "status": "unknown",
+      "src": "yoshimoto_live",
+      "url": "https://live.yoshimoto.co.jp/live/live-33669/"
+    },
+    {
+      "date": "2026-12-06",
+      "title": "UDE-DA-MESHI～漫才・コント・ピン芸・モノマネ・パフォーマンス・なんで...（16:45開演）",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "unknown",
+      "src": "nagoya_yoshimoto",
+      "url": "https://nagoya.yoshimoto.co.jp/2026/12/ude-da-meshi-7.html"
+    },
+    {
+      "date": "2026-12-06",
+      "title": "UDE-DA-MESHI～漫才・コント・ピン芸・モノマネ・パフォーマンス・なんで...（18:30開演）",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "unknown",
+      "src": "nagoya_yoshimoto",
+      "url": "https://nagoya.yoshimoto.co.jp/2026/12/ude-da-meshi-8.html"
+    },
+    {
+      "date": "2026-12-06",
+      "title": "ごきもり2～なんか5期生がもりあがるやつ～",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "unknown",
+      "src": "nagoya_yoshimoto",
+      "url": "https://nagoya.yoshimoto.co.jp/2026/12/ude-da-meshi-6.html"
+    },
+    {
+      "date": "2026-12-06",
+      "title": "なごよしネクストバトル",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "unknown",
+      "src": "nagoya_yoshimoto",
+      "url": "https://nagoya.yoshimoto.co.jp/2026/12/ude-da-meshi-4.html"
+    },
+    {
+      "date": "2026-12-06",
+      "title": "なごよし新ネタ学校 ～テーマ：ペット～",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "unknown",
+      "src": "nagoya_yoshimoto",
+      "url": "https://nagoya.yoshimoto.co.jp/2026/12/ude-da-meshi-5.html"
     },
     {
       "date": "2026-12-06",
@@ -212,6 +312,16 @@
       "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/71306/56219"
+    },
+    {
+      "date": "2026-12-11",
+      "title": "UDE-DA-MESHI～漫才・コント・ピン芸・モノマネ・パフォーマンス・なんで...",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "unknown",
+      "src": "nagoya_yoshimoto",
+      "url": "https://nagoya.yoshimoto.co.jp/2026/12/ude-da-meshi-9.html"
     },
     {
       "date": "2026-12-12",
@@ -225,16 +335,6 @@
     },
     {
       "date": "2026-12-12",
-      "title": "先着 アブナイ&nbsp;ヨセ 全国ツアー2026「アブナイ&nbsp;ヨセin愛知」",
-      "venue": "愛知県産業労働センター&nbsp;ウインクあいち&nbsp;大ホール",
-      "city": "",
-      "pref": "愛知",
-      "status": "closed",
-      "src": "eplus_aichi",
-      "url": "https://eplus.jp/sf/detail/4402420001-P0030007P021002"
-    },
-    {
-      "date": "2026-12-12",
       "title": "教育おたのしみ会～笑いとげんじつ～【愛知公演】",
       "venue": "ウインクあいち　大ホール",
       "city": "",
@@ -242,6 +342,106 @@
       "status": "open",
       "src": "fany_ticket",
       "url": "https://ticket.fany.lol/reception/67301/53656"
+    },
+    {
+      "date": "2026-12-13",
+      "title": "UDE-DA-MESHI～漫才・コント・ピン芸・モノマネ・パフォーマンス・なんで...（16:30開演）",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "unknown",
+      "src": "nagoya_yoshimoto",
+      "url": "https://nagoya.yoshimoto.co.jp/2026/12/ude-da-meshi-13.html"
+    },
+    {
+      "date": "2026-12-13",
+      "title": "UDE-DA-MESHI～漫才・コント・ピン芸・モノマネ・パフォーマンス・なんで...（18:15開演）",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "unknown",
+      "src": "nagoya_yoshimoto",
+      "url": "https://nagoya.yoshimoto.co.jp/2026/12/ude-da-meshi-14.html"
+    },
+    {
+      "date": "2026-12-13",
+      "title": "なごよしネクストメンバーコーナーライブ",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "unknown",
+      "src": "nagoya_yoshimoto",
+      "url": "https://nagoya.yoshimoto.co.jp/2026/12/ude-da-meshi-12.html"
+    },
+    {
+      "date": "2026-12-13",
+      "title": "紅点・兄弟ツーマンライブ「まなか185」",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "unknown",
+      "src": "nagoya_yoshimoto",
+      "url": "https://nagoya.yoshimoto.co.jp/2026/12/ude-da-meshi-10.html"
+    },
+    {
+      "date": "2026-12-13",
+      "title": "紅点・兄弟ツーマンライブ「まなか185」トークライブ",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "unknown",
+      "src": "nagoya_yoshimoto",
+      "url": "https://nagoya.yoshimoto.co.jp/2026/12/ude-da-meshi-11.html"
+    },
+    {
+      "date": "2026-12-15",
+      "title": "よしもと名駅四丁目ライブ 東名阪交流SHOW",
+      "venue": "ミッドランドスクエアシネマ2 スクリーン8",
+      "city": "",
+      "pref": "愛知",
+      "status": "unknown",
+      "src": "nagoya_yoshimoto",
+      "url": "https://nagoya.yoshimoto.co.jp/2026/12/960.html"
+    },
+    {
+      "date": "2026-12-18",
+      "title": "バッテリィズ寺家の三重おいない百景年末SPライブ",
+      "venue": "アスト津 アストホール",
+      "city": "",
+      "pref": "三重",
+      "status": "unknown",
+      "src": "nagoya_yoshimoto",
+      "url": "https://nagoya.yoshimoto.co.jp/2026/12/sp.html"
+    },
+    {
+      "date": "2026-12-20",
+      "title": "なごよしチャレンジバトル",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "unknown",
+      "src": "nagoya_yoshimoto",
+      "url": "https://nagoya.yoshimoto.co.jp/2026/12/ude-da-meshi-15.html"
+    },
+    {
+      "date": "2026-12-20",
+      "title": "冬の若手大集合ライブ",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "unknown",
+      "src": "nagoya_yoshimoto",
+      "url": "https://nagoya.yoshimoto.co.jp/2026/12/ude-da-meshi-17.html"
+    },
+    {
+      "date": "2026-12-20",
+      "title": "鷹森の弟子募集ライブ",
+      "venue": "静かの海",
+      "city": "",
+      "pref": "愛知",
+      "status": "unknown",
+      "src": "nagoya_yoshimoto",
+      "url": "https://nagoya.yoshimoto.co.jp/2026/12/ude-da-meshi-16.html"
     },
     {
       "date": "2027-01-08",
@@ -254,19 +454,9 @@
       "url": "https://eplus.jp/sf/detail/4579460001-P0030001P021001"
     },
     {
-      "date": "2027-01-08",
-      "title": "最強!ものまねフェスin名古屋",
-      "venue": "Niterra日本特殊陶業市民会館フォレストホール",
-      "city": "",
-      "pref": "愛知",
-      "status": "unknown",
-      "src": "bushikaku_chubu",
-      "url": "https://www.bushikaku.net/expedition/play/show/detail/457946-0001/457946-0001/"
-    },
-    {
       "date": "2027-01-11",
       "title": "先着 爆笑!お笑いエンタメライブ in四日市",
-      "venue": "四日市市文化会館&nbsp;第1ホール",
+      "venue": "四日市市文化会館 第1ホール",
       "city": "",
       "pref": "三重",
       "status": "open",
@@ -274,29 +464,9 @@
       "url": "https://eplus.jp/sf/detail/2660340001-P0030045P021002"
     },
     {
-      "date": "2027-01-11",
-      "title": "爆笑!お笑いエンタメライブ",
-      "venue": "四日市市文化会館 第一ホール",
-      "city": "",
-      "pref": "三重",
-      "status": "unknown",
-      "src": "bushikaku_chubu",
-      "url": "https://www.bushikaku.net/expedition/play/show/detail/266034-0001/266034-0045/"
-    },
-    {
-      "date": "2027-01-16",
-      "title": "バッテリィズ寺家の三重っぱりフェス",
-      "venue": "津市産業･スポーツセンター サオリーナ",
-      "city": "",
-      "pref": "三重",
-      "status": "unknown",
-      "src": "bushikaku_chubu",
-      "url": "https://www.bushikaku.net/expedition/play/show/detail/462749-0001/462749-0001/"
-    },
-    {
       "date": "2027-01-16",
       "title": "先着 バッテリィズ寺家の三重っぱりフェス",
-      "venue": "津市産業･スポーツセンター&nbsp;サオリーナ",
+      "venue": "津市産業･スポーツセンター サオリーナ",
       "city": "",
       "pref": "三重",
       "status": "open",
@@ -305,23 +475,23 @@
     },
     {
       "date": "2027-01-30",
-      "title": "THE 柳沢慎吾劇場",
-      "venue": "Niterra日本特殊陶業市民会館ビレッジホール",
-      "city": "",
-      "pref": "愛知",
-      "status": "unknown",
-      "src": "bushikaku_chubu",
-      "url": "https://www.bushikaku.net/expedition/play/show/detail/432949-0001/432949-0013/"
-    },
-    {
-      "date": "2027-01-30",
-      "title": "先着 THE&nbsp;柳沢慎吾劇場 日本列島大捜査網&nbsp;★&nbsp;ROCK45TOUR",
+      "title": "先着 THE 柳沢慎吾劇場 日本列島大捜査網 ★ ROCK45TOUR",
       "venue": "Niterra日本特殊陶業市民会館ビレッジホール",
       "city": "",
       "pref": "愛知",
       "status": "closed",
       "src": "eplus_aichi",
       "url": "https://eplus.jp/sf/detail/4329490001-P0030013P021001"
+    },
+    {
+      "date": "2027-01-30",
+      "title": "先着 マキタスポーツ",
+      "venue": "名古屋TOKUZO",
+      "city": "",
+      "pref": "愛知",
+      "status": "soon",
+      "src": "eplus_aichi",
+      "url": "https://eplus.jp/sf/detail/0527700002-P0030059P021001"
     },
     {
       "date": "2027-01-31",
@@ -354,34 +524,14 @@
       "url": "https://eplus.jp/sf/detail/0063170001-P0030523P021001"
     },
     {
-      "date": "2027-02-06",
-      "title": "綾小路きみまろ",
-      "venue": "岡谷鋼機名古屋公会堂 大ホール",
-      "city": "",
-      "pref": "愛知",
-      "status": "unknown",
-      "src": "bushikaku_chubu",
-      "url": "https://www.bushikaku.net/expedition/play/show/detail/006317-0001/006317-0523/"
-    },
-    {
       "date": "2027-02-11",
-      "title": "先着 爆笑!お笑いライブ&nbsp;in&nbsp;刈谷",
-      "venue": "刈谷市総合文化センター&nbsp;大ホール",
+      "title": "先着 爆笑!お笑いライブ in 刈谷",
+      "venue": "刈谷市総合文化センター 大ホール",
       "city": "",
       "pref": "愛知",
       "status": "open",
       "src": "eplus_aichi",
       "url": "https://eplus.jp/sf/detail/4629470001-P0030001P021002"
-    },
-    {
-      "date": "2027-02-11",
-      "title": "爆笑!お笑いライブ in 刈谷",
-      "venue": "刈谷市総合文化センター 大ホール",
-      "city": "",
-      "pref": "愛知",
-      "status": "unknown",
-      "src": "bushikaku_chubu",
-      "url": "https://www.bushikaku.net/expedition/play/show/detail/462947-0001/462947-0001/"
     },
     {
       "date": "2027-02-23",
@@ -402,16 +552,6 @@
       "status": "open",
       "src": "eplus_aichi",
       "url": "https://eplus.jp/sf/detail/2660340001-P0030046P021002"
-    },
-    {
-      "date": "2027-02-27",
-      "title": "爆笑!お笑いエンタメライブ",
-      "venue": "Niterra日本特殊陶業市民会館フォレストホール",
-      "city": "",
-      "pref": "愛知",
-      "status": "unknown",
-      "src": "bushikaku_chubu",
-      "url": "https://www.bushikaku.net/expedition/play/show/detail/266034-0001/266034-0046/"
     },
     {
       "date": "2027-02-28",
