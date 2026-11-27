@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-26",
+  "checked_at": "2026-11-27",
   "sources": {
     "FANY": {
       "ok": false,
@@ -13,7 +13,7 @@
     },
     "イープラス": {
       "ok": true,
-      "count": 13,
+      "count": 3,
       "error": null
     },
     "名古屋よしもと": {
@@ -33,31 +33,33 @@
       "error": "自動化を断念(2026-09-29): net::ERR_HTTP2_PROTOCOL_ERRORが解消せずIPブロックと判断。詳細はSETUP.md参照"
     }
   },
-  "merged_due_to_drop": [],
+  "merged_due_to_drop": [
+    "eplus_aichi: 前回6件→今回0件"
+  ],
   "history": {
     "FANY": {
       "last_ok": "2026-10-21",
-      "fail_streak": 36
+      "fail_streak": 37
     },
     "バス比較なび": {
-      "last_ok": "2026-11-26",
+      "last_ok": "2026-11-27",
       "fail_streak": 0
     },
     "イープラス": {
-      "last_ok": "2026-11-26",
+      "last_ok": "2026-11-27",
       "fail_streak": 0
     },
     "名古屋よしもと": {
-      "last_ok": "2026-11-26",
+      "last_ok": "2026-11-27",
       "fail_streak": 0
     },
     "よしもとライブ": {
-      "last_ok": "2026-11-26",
+      "last_ok": "2026-11-27",
       "fail_streak": 0
     },
     "ローソンチケット": {
       "last_ok": null,
-      "fail_streak": 2
+      "fail_streak": 3
     }
   }
 }

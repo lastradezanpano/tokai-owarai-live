@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-11-26",
+  "last_updated": "2026-11-27",
   "last_updated_note": "GitHub ActionsでFANY・バス比較なび・イープラス・名古屋よしもと・よしもとライブと既存確認済み情報を更新（一部ソースは取得失敗のため既存データを維持）",
   "artifact_url": "https://claude.ai/artifact/5saz5d5CVZmiU6VrCUBWmu",
   "events": [
@@ -471,7 +471,7 @@
       "pref": "愛知",
       "status": "unknown",
       "src": "nagoya_yoshimoto",
-      "url": "https://nagoya.yoshimoto.co.jp/2026/11/sp.html"
+      "url": "https://nagoya.yoshimoto.co.jp/2027/01/sp.html"
     },
     {
       "date": "2027-01-30",
