@@ -1,28 +1,8 @@
 {
-  "last_updated": "2026-11-27",
+  "last_updated": "2026-11-28",
   "last_updated_note": "GitHub ActionsでFANY・バス比較なび・イープラス・名古屋よしもと・よしもとライブと既存確認済み情報を更新（一部ソースは取得失敗のため既存データを維持）",
   "artifact_url": "https://claude.ai/artifact/5saz5d5CVZmiU6VrCUBWmu",
   "events": [
-    {
-      "date": "2026-11-27",
-      "title": "『千原ジュニアのヘベレケ』トークライブ２",
-      "venue": "岡谷鋼機名古屋公会堂　大ホール",
-      "city": "",
-      "pref": "愛知",
-      "status": "open",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/66112/52652"
-    },
-    {
-      "date": "2026-11-27",
-      "title": "よしもと名駅四丁目ライブ 東名阪交流SHOW",
-      "venue": "ミッドランドスクエアシネマ２スクリーン８",
-      "city": "",
-      "pref": "愛知",
-      "status": "open",
-      "src": "fany_ticket",
-      "url": "https://ticket.fany.lol/reception/71275/56203"
-    },
     {
       "date": "2026-11-28",
       "title": "UDE-DA-MESHI",
